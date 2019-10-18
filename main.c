@@ -19,17 +19,17 @@ void main(){
 	init(cube1);
 	init(cube);
 	
-	cube1[3][0][1] = 8;
-	
-	printf("\n%d\n",compare(cube1,cube));
-	
-	//affiche(cube);
-	//printf("------------------\n");
-	
+	//cube1[3][0][1] = 8;	
+
 	melangeCube(cube);
+
 	affiche(cube);
-	
+
 	BruteForce(cube);
+	
+	
+
+
 
 	
 
