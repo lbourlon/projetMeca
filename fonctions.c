@@ -367,10 +367,11 @@ int* BruteForce(int cube[6][2][2]){
 			b = b+1;
 		}
 		a = a+1;
-		printf("tour %d \n");
+		printf("tour %d \n",a);
 	}
 
-	printf("désolé messiêr");
+	printf("désolé messiêr"); 
+	//hello
 	
 }
 
