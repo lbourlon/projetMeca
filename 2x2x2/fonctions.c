@@ -246,210 +246,151 @@ void copieCube(int CubeACopier[6][2][2], int CubeSortie[6][2][2])
 }
 	
 
-int* BruteForce(int cube[6][2][2]){
-	int* tabSortie = (int*)malloc(14 * sizeof(int));
+void AppliqueSolution(int cube[6][2][2], int tabSolution[14]){
+	
+	int i;
+	for (i = 0; i < 14; i++)
+	{
+		if (tabSolution[i]!=-1)
+		{
+			tourner(tabSolution[i],cube);
+		}
+		
+	}
+	
+		
+}
+
+int *BruteForce(int cube[6][2][2])
+{
+	clock_t start, end;
+     double timeUsed;
+     
+     start = clock();
+     
+	
+	
+	int* tabSolution = (int*)malloc(14 * sizeof(int));
+	
 	int cubeParfait[6][2][2];
 	init(cubeParfait);
 	
 	int cubecopie[6][2][2];
 	copieCube(cube,cubecopie);
 
-	int a = -1,b ,c,d,e,f,g,h,i,j,k,l,m,n;
-		
-	while(a < 6)
+	int a = -1,b=-1 ,c=-1,d=-1,e=-1,f=-1,g=-1,h=-1,i=-1,j=-1,k=-1,l=-1,m=-1,n=-1;
+	
+	while (a <= 5)
 	{
-		if (a!= -1)
-		{
-			tourner(a,cube);
-		}
+		tabSolution[0] = a;
+		tabSolution[1] = b;
+		tabSolution[2] = c;
+		tabSolution[3] = d;
+		tabSolution[4] = e;
+		tabSolution[5] = f;
+		tabSolution[6] = g;
+		tabSolution[7] = h;
+		tabSolution[8] = i;
+		tabSolution[9] = j;
+		tabSolution[10] = k;
+		tabSolution[11] = l;
+		tabSolution[12] = m;
+		tabSolution[13] = n;
+		AppliqueSolution(cubecopie, tabSolution);
 		
-		b = -1;
-		while(b < 6)
-		{
-				if (b!= -1)
-			{
-				tourner(b,cube);
-			}
+		if (compare(cubecopie, cubeParfait) == 1)
+		{	
 			
-			c = -1;
-			while(c < 6)
-			{
-				if (c!=-1)
-				{
-					tourner(c,cube);
-				}
-
-				d = -1;
-				while(d < 6)
-				{
-					if (d!=-1)
-					{
-						tourner(d,cube);
-					}
-					
-					e = -1;
-					while(e < 6)
-					{
-						if (e!=-1)
-						{
-							tourner(e,cube);
-						}
-						
-						f = -1;
-						while(f < 6)
-						{
-							if (f!=-1)
-							{
-								tourner(f,cube);
-							}
-							
-							
-							g = -1;
-							while(g < 6)
-							{
-								if (g!=-1)
-								{
-									tourner(g,cube);
-								}
-								
-								
-								h = -1;
-								while(h < 6)
-								{
-									if (h!=-1)
-									{
-										tourner(h,cube);
-									}
-									
-									
-									i = -1;
-									while(i < 6)
-									{
-										if (i!=-1)
-										{
-											tourner(i,cube);
-										}
-										
-										
-										j = -1;
-										while(j < 6)
-										{
-											if (i!=-1)
-											{
-												tourner(j,cube);
-											}
-											
-											
-											k = -1;
-											while(k < 6)
-											{
-												if (k!=-1)
-												{
-													tourner(k,cube);
-												}
-												
-												
-												l = -1;
-												while(l < 6)
-												{
-													if (l!=-1)
-													{
-														tourner(l,cube);
-													}
-													
-													
-													m = -1;
-													while(m < 6)
-													{
-														if (m!=-1)
-														{
-															tourner(m,cube);
-														}
-														
-														
-														n = -1;
-														while(n < 6)
-														{
-															if (n!=-1)
-															{
-																tourner(n,cube);
-															}
-															
-															
-															if(compare(cube, cubeParfait) == 1 )
-															{
-																printf("La solution la plus éfficace est : %d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d\n",a,b,c,d,e,f,g,h,i,j,k,l,m,n);
-																
-																tabSortie[0] = n;
-																tabSortie[1] = m;
-																tabSortie[2] = l;
-																tabSortie[3] = k;
-																tabSortie[4] = j;
-																tabSortie[5] = i;
-																tabSortie[6] = h;
-																tabSortie[7] = g;
-																tabSortie[8] = f;
-																tabSortie[9] = e;
-																tabSortie[10] = d;
-																tabSortie[11] = c;
-																tabSortie[12] = b;
-																tabSortie[13] = a;
-																
-																for (int z = 0; z < 14; z++)
-																{
-																	printf("%d\n",tabSortie[z]);
-																}
-																
-																return tabSortie;
-															}
-															copieCube(cube,cubecopie);
-															
-															n = n+1;
-														}
-														m = m+1;
-													}
-													l = l+1;
-												}
-												k = k+1;
-											}
-											j = j+1;
-										}
-										i = i+1;
-									}
-									h = h+1;
-								}
-								g = g+1;
-							}
-							f = f+1;
-						}
-						e = e+1;
-					}
-					d = d+1;
-				}
-				c = c+1;
-			}
-			b = b+1;
+			end = clock();
+			timeUsed = ((double) (end - start)) / CLOCKS_PER_SEC;
+			printf("temps mis pour déterminer la réponse en seconde : %f\n",timeUsed);
+			return tabSolution;
 		}
-		a = a+1;
-		printf("tour %d \n",a);
-	}
-
-	printf("désolé messiêr"); 
-	//hello
-	
-}
-
-
-void resout(int cube[6][2][2], int tabSolution[14]){
-	
-	int i = 0;
-	while(tabSolution[i] != -1){
-		tourner(tabSolution[i],cube);
-		i++;
-	}
-	
 		
+		copieCube(cube,cubecopie);
+		
+		
+		if (a == 5)
+		{
+			if (b==5)
+			{
+				if (c==5)
+				{	
+					if (d==5)
+					{	
+						if (e==5)
+						{	
+							if (f==5)
+							{	
+								if (g==5)
+								{	
+									if (h==5)
+									{	
+										if (i==5)
+										{	
+											if (j==5)
+											{	
+												if (k==5)
+												{	
+													if (l==5)
+													{	
+														if (m==5)
+														{	
+															if (n==5)
+															{	
+																printf("AUCUNE SOLUTION");
+																return tabSolution;
+																n = 0;
+																
+															} else { n++; }		
+															m = 0;
+															
+														} else { m++; }										
+														l = 0;
+														
+													} else { l++; }	
+													k = 0;
+													
+												} else { k++; }										
+												j = 0;
+												
+											} else { j++; }										
+											i = 0;
+											
+										} else { i++; }										
+										h = 0;
+										
+									} else { h++; }										
+									g = 0;
+									
+								} else { g++; }									
+								f = 0;
+								
+							} else { f++; }									
+							e = 0;
+							
+						} else { e++; }									
+						d = 0;
+						
+					} else { d++; }									
+					c = 0;
+					
+				} else { c++; }
+				
+				b = 0;
+				
+			} else { b++; }
+			
+			a = 0;
+		} else { a++;  }
+		
+		
+	}
+	
 }
+
+
+
 
 
 
