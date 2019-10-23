@@ -15,17 +15,23 @@ void main(){
 	srand(time(NULL));
 	
 	int cube[6][2][2];
-	int cube1[6][2][2];
-	init(cube1);
-	init(cube);
+	int cubeParfait[6][2][2];
+
 	
-	//cube1[3][0][1] = 8;	
+	init(cubeParfait);
+	init(cube);
 
-	melangeCube(cube);
+	
+	//melangeCube(cube);
 
-	affiche(cube);
+	tourner(0,cube);
+	
+	//int* tabSolution = BruteForce(cube);
+	int tabSolution[14] = {0,0,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
 
-	BruteForce(cube);
+	resout(cube,tabSolution);
+
+	printf("compare : %d\n", compare(cube,cubeParfait));
 	
 	
 

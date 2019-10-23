@@ -179,8 +179,6 @@ void tourner(int face, int cube[6][2][2]){
 			
 			break;
 			
-		
-			
 		}		
 	
 	
@@ -248,7 +246,6 @@ void copieCube(int CubeACopier[6][2][2], int CubeSortie[6][2][2])
 }
 	
 
-
 int* BruteForce(int cube[6][2][2]){
 	int* tabSortie = (int*)malloc(14 * sizeof(int));
 	int cubeParfait[6][2][2];
@@ -257,64 +254,128 @@ int* BruteForce(int cube[6][2][2]){
 	int cubecopie[6][2][2];
 	copieCube(cube,cubecopie);
 
-	int a = 0,b = 0,c = 0,d = 0,e = 0,f = 0,g = 0,h = 0,i = 0,
-		j = 0,k = 0,l = 0,m = 0,n = 0;
+	int a = -1,b ,c,d,e,f,g,h,i,j,k,l,m,n;
 		
 	while(a < 6)
 	{
-		tourner(a,cube);
-		b = 0;
+		if (a!= -1)
+		{
+			tourner(a,cube);
+		}
+		
+		b = -1;
 		while(b < 6)
 		{
-			tourner(b,cube);
-			c = 0;
+				if (b!= -1)
+			{
+				tourner(b,cube);
+			}
+			
+			c = -1;
 			while(c < 6)
 			{
-				tourner(c,cube);
-				d = 0;
+				if (c!=-1)
+				{
+					tourner(c,cube);
+				}
+
+				d = -1;
 				while(d < 6)
 				{
-					tourner(d,cube);
-					e = 0;
+					if (d!=-1)
+					{
+						tourner(d,cube);
+					}
+					
+					e = -1;
 					while(e < 6)
 					{
-						tourner(e,cube);
-						f = 0;
+						if (e!=-1)
+						{
+							tourner(e,cube);
+						}
+						
+						f = -1;
 						while(f < 6)
 						{
-							tourner(f,cube);
-							g = 0;
+							if (f!=-1)
+							{
+								tourner(f,cube);
+							}
+							
+							
+							g = -1;
 							while(g < 6)
 							{
-								tourner(g,cube);
-								h = 0;
+								if (g!=-1)
+								{
+									tourner(g,cube);
+								}
+								
+								
+								h = -1;
 								while(h < 6)
 								{
-									tourner(h,cube);
-									i = 0;
+									if (h!=-1)
+									{
+										tourner(h,cube);
+									}
+									
+									
+									i = -1;
 									while(i < 6)
 									{
-										tourner(i,cube);
-										j = 0;
+										if (i!=-1)
+										{
+											tourner(i,cube);
+										}
+										
+										
+										j = -1;
 										while(j < 6)
 										{
-											tourner(j,cube);
-											k = 0;
+											if (i!=-1)
+											{
+												tourner(j,cube);
+											}
+											
+											
+											k = -1;
 											while(k < 6)
 											{
-												tourner(k,cube);
-												l = 0;
+												if (k!=-1)
+												{
+													tourner(k,cube);
+												}
+												
+												
+												l = -1;
 												while(l < 6)
 												{
-													tourner(l,cube);
-													m = 0;
+													if (l!=-1)
+													{
+														tourner(l,cube);
+													}
+													
+													
+													m = -1;
 													while(m < 6)
 													{
-														tourner(m,cube);
-														n = 0;
+														if (m!=-1)
+														{
+															tourner(m,cube);
+														}
+														
+														
+														n = -1;
 														while(n < 6)
 														{
-															tourner(n,cube);
+															if (n!=-1)
+															{
+																tourner(n,cube);
+															}
+															
+															
 															if(compare(cube, cubeParfait) == 1 )
 															{
 																printf("La solution la plus éfficace est : %d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d-%d\n",a,b,c,d,e,f,g,h,i,j,k,l,m,n);
@@ -334,7 +395,10 @@ int* BruteForce(int cube[6][2][2]){
 																tabSortie[12] = b;
 																tabSortie[13] = a;
 																
-																
+																for (int z = 0; z < 14; z++)
+																{
+																	printf("%d\n",tabSortie[z]);
+																}
 																
 																return tabSortie;
 															}
@@ -373,6 +437,18 @@ int* BruteForce(int cube[6][2][2]){
 	printf("désolé messiêr"); 
 	//hello
 	
+}
+
+
+void resout(int cube[6][2][2], int tabSolution[14]){
+	
+	int i = 0;
+	while(tabSolution[i] != -1){
+		tourner(tabSolution[i],cube);
+		i++;
+	}
+	
+		
 }
 
 
