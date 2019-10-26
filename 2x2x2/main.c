@@ -42,8 +42,11 @@ void main(){
 
 	//printf("compare : %d\n", compare(cube,cubeParfait));
 	
-	
-
+/*	
+	affiche(cube);
+	tourner(2,cube);
+	affiche(cube);
+*/
 
 
 	
