@@ -143,7 +143,7 @@ void affiche(int cube[6][3][3]){
 }
 void tourner(int face, int cube[6][3][3]){
 		
-		void tourneInter(int face, int cube[6][3][3]){
+		//fait tourner sur la face, s'applique indépendament de la face
 			int temp;
 			temp = cube[face][0][0];
 			cube[face][0][0] = cube[face][0][2];
@@ -156,7 +156,7 @@ void tourner(int face, int cube[6][3][3]){
 			cube[face][0][1] = cube[face][1][2];
 			cube[face][1][2] = cube[face][2][1];
 			cube[face][2][1] = temp;
-		}
+		
 		
 		//SENS HORAIRE MESSIER!
 	
@@ -166,8 +166,32 @@ void tourner(int face, int cube[6][3][3]){
 		
 		
 		switch(face){
+			case 0:
+				temp0 = cube[1][0][2];
+				temp1 = cube[1][1][2];
+				temp2 = cube[1][2][2];
+				
+				
+				cube[1][2][2] = cube[4][2][2];
+				cube[1][1][2] = cube[4][1][2];
+				cube[1][0][2] = cube[4][0][2];
+				
+				cube[4][2][2] = cube[3][2][2];
+				cube[4][1][2] = cube[3][1][2];
+				cube[4][0][2] = cube[3][0][2];
+				
+				cube[3][2][2] = cube[2][2][2];
+				cube[3][1][2] = cube[2][1][2];
+				cube[3][0][2] = cube[2][0][2];
+				
+				cube[2][2][2] = temp2;
+				cube[2][1][2] = temp1;
+				cube[2][0][2] = temp0;
+				
+				break;
+				
 			case 1:
-				tourneInter(face,cube);
+				
 				temp0 = cube[5][0][0];
 				temp1 = cube[5][0][1];
 				temp2 = cube[5][0][2];
@@ -191,7 +215,7 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 			
 			case 2:
-				tourneInter(face,cube);
+				
 				temp0 = cube[0][0][0];
 				temp1 = cube[0][1][0];
 				temp2 = cube[0][2][0];
@@ -213,6 +237,77 @@ void tourner(int face, int cube[6][3][3]){
 				cube[1][2][2] = temp2;
 				
 				break;
+				
+			case 3:
+				temp0 = cube[5][2][2];
+				temp1 = cube[5][2][1];
+				temp2 = cube[5][2][0];
+				
+				
+				cube[5][2][2] = cube[2][2][2];
+				cube[5][2][1] = cube[2][2][1];
+				cube[5][2][0] = cube[2][2][0];
+				
+				cube[2][2][2] = cube[0][2][2];
+				cube[2][2][1] = cube[0][2][1];
+				cube[2][2][0] = cube[0][2][0];
+				
+				cube[0][2][0] = cube[4][0][2];
+				cube[0][2][1] = cube[4][0][1];
+				cube[0][2][2] = cube[4][0][0];
+				
+				cube[4][0][2] = temp2;
+				cube[4][0][1] = temp1;
+				cube[4][0][0] = temp0;
+				break;
+				
+			case 4:
+				temp0 = cube[5][0][0];
+				temp1 = cube[5][1][0];
+				temp2 = cube[5][2][0];
+				
+				
+				cube[5][2][0] = cube[3][2][2];
+				cube[5][1][0] = cube[3][2][1];
+				cube[5][0][0] = cube[3][2][0];
+				
+				cube[3][2][0] = cube[0][2][2];
+				cube[3][2][1] = cube[0][1][2];
+				cube[3][2][2] = cube[0][0][2];
+				
+				cube[0][2][2] = cube[1][0][2];
+				cube[0][1][2] = cube[1][0][1];
+				cube[0][0][2] = cube[1][0][0];
+				
+				cube[1][0][2] = temp0;
+				cube[1][0][1] = temp1;
+				cube[1][0][0] = temp2;
+				break;
+			
+			case 5:
+				temp0 = cube[3][2][0];
+				temp1 = cube[3][1][0];
+				temp2 = cube[3][0][0];
+				
+				
+				cube[3][0][0] = cube[4][0][0];
+				cube[3][1][0] = cube[4][1][0];
+				cube[3][2][0] = cube[4][2][0];
+				
+				cube[4][0][0] = cube[1][0][0];
+				cube[4][1][0] = cube[1][1][0];
+				cube[4][2][0] = cube[1][2][0];
+				
+				cube[1][0][0] = cube[2][0][0];
+				cube[1][1][0] = cube[2][1][0];
+				cube[1][2][0] = cube[2][2][0];
+				
+				
+				cube[2][0][0] = temp2;
+				cube[2][1][0] = temp1;
+				cube[2][2][0] = temp0;
+				break;
+		
 		}
 
 
