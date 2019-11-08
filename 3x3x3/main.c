@@ -34,9 +34,13 @@ void main()
 	tourner(2,cube);
 	
 	melangeCube(cube);
-	affiche(cubeParfait);
+	affiche(cube);
+	printf("---------------------------------------------------\n");
+	FaireCroixOrange(cube,tabMilieux);
 	printf("---------------------------------------------------\n");
 	affiche(cube);
+	
+	/*affiche(cube);
 	printf("---------------------------------------------------\n");
 	
 	milieu mil1 = RechercherMilieu(cubeParfait, tabMilieux, GREEN, ORANGE);
@@ -46,7 +50,7 @@ void main()
 	printf("%d %d %d %d %d %d\n", mil2.coord1.face, mil2.coord1.x, mil2.coord1.y, mil2.coord2.face, mil2.coord2.x, mil2.coord2.y);
 	
 		
-	/*for(int i = 0; i < 12; i++){
+	for(int i = 0; i < 12; i++){
 			cube[tabMilieux[i].coord1.face][tabMilieux[i].coord1.x][tabMilieux[i].coord1.y] = 8+i; 
 			cube[tabMilieux[i].coord2.face][tabMilieux[i].coord2.x][tabMilieux[i].coord2.y] = 8+i; 
 	}*/	

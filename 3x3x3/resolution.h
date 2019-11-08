@@ -21,3 +21,4 @@ struct _coin {
 
 milieu rm(int face1,int x1,int y1,int face2,int x2,int y2);
 milieu RechercherMilieu(int cube[6][3][3],milieu tab[12], int couleur1, int couleur2);
+void FaireCroixOrange(int cube[6][3][3],milieu tab[12]);

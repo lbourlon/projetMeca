@@ -1,5 +1,13 @@
 #include <stdio.h>
+#include "fonctions.h"
 // Résolution faite en començant par la face orange
+#define WHITE   0
+#define GREEN   1
+#define ORANGE  2
+#define BLUE    3
+#define RED     4
+#define YELLOW  5
+
 
 typedef struct _coord coord;
 struct _coord {
@@ -22,7 +30,7 @@ struct _coin {
 };
 
 
-//Prend les coordonnées d'un milieu et les remplie dans un milieu
+//Prend les coordonnées d'une case milieu et les remplie dans un milieu
 //Abréviation de RemplirMilieu
 milieu rm(int face1,int x1,int y1,int face2,int x2,int y2){
 	milieu milieuVar;
@@ -72,31 +80,104 @@ milieu RechercherMilieu(int cube[6][3][3],milieu tab[12], int couleur1, int coul
 
 void FaireCroixOrange(int cube[6][3][3],milieu tab[12])
 {
-	int mil25, mil21, mil20, mil23;
-	mil25 = RechercherMilieu(cube,tab,ORANGE, GREEN);
-	
+	printf("ca marche cas  debut\n");
+
+	milieu mil25, mil21, mil20, mil23;
+	mil25 = RechercherMilieu(cube,tab,ORANGE, YELLOW);
+	printf("ca marche rechercher milieu\n");
 	char* cas = "";
 	
 	//Si cas FACE
 	if(mil25.coord1.face == ORANGE){
 		//cas parfait:
-		if(mil25.coord1.x == 1 && mil25.coord1.y == 0){
+		if(mil25.coord1.face == YELLOW){
 			cas = "parfait";
 		} else {
 		//cas imparfait --> cas dessous
 			cas = "imparfait";
 			tourner(mil25.coord2.face, cube);
+			
 			tourner(mil25.coord2.face, cube);
+			
 			
 		}
 	}
 	
+	mil25 = RechercherMilieu(cube,tab,ORANGE, YELLOW);
+
+	printf("ca marche cas FACE\n");
+
 	//Si cas CÔTÉ
-	if (mil25.coord1.face == YELLOW || mil25.coord1.face == GREEN ||
-		mil25.coord1.face == WHITE  || mil25.coord1.face == BLUE){
+	if (mil25.coord1.face != RED && mil25.coord1.face != ORANGE ){
+		printf("azer\n");
+		//cas haut:
+		printf("azer2\n");
+		if (mil25.coord2.face == ORANGE)
+		{
+			printf("wah\n");
+			tourner(mil25.coord1.face, cube);
+			printf("wah2\n");
+			//devient un cas côté
+			mil25 = RechercherMilieu(cube,tab,ORANGE, YELLOW);
+			printf("a");
+
+		}
+		printf("b");
+		//cas bas
+		if(mil25.coord2.face == RED)
+		{
+			tourner(mil25.coord1.face, cube);
+			//devient un cas côté
+			mil25 = RechercherMilieu(cube,tab,ORANGE, YELLOW);
+			printf("c");
+		}
+		printf("d");
+		//cas côté
+
+		//compteur de tour pour la face
+		int n =0;
+		int temp = mil25.coord1.face;
+		while (mil25.coord1.face != RED)
+		{
+			tourner(temp,cube);
+			n = n+1;
+			
+		}
+		mil25 = RechercherMilieu(cube,tab,ORANGE, YELLOW);
+		printf("e");
+		tourner(RED,cube);
+		tourner(RED,cube);
+
+		while (n != 4)
+		{
+			tourner(temp,cube);
+			n = n+1;
+		}
+		mil25 = RechercherMilieu(cube,tab,ORANGE, YELLOW);
+		printf("f\n");
+		//devient cas DESSOUS
+		
+
+
 		
 			
 	}
+	mil25 = RechercherMilieu(cube,tab,ORANGE, YELLOW);
+	printf("ca marche cas CÔTE\n");
+	affiche(cube);
+	//Si cas DESSOUS
+	if (mil25.coord1.face == RED)
+	{
+		while (mil25.coord2.face != YELLOW)
+		{
+			tourner(RED, cube);
+		}
+		tourner(YELLOW, cube);
+		tourner(YELLOW,cube);
+	}
+	printf("ca marchecas DESSOUS\n");
+
+	
 		
 	
 	
