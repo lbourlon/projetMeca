@@ -90,7 +90,7 @@ void FaireCroixOrange(int cube[6][3][3],milieu tab[12])
 	//Si cas FACE
 	if(mil25.coord1.face == ORANGE){
 		//cas parfait:
-		if(mil25.coord1.face == YELLOW){
+		if(mil25.coord2.face == YELLOW){
 			cas = "parfait";
 		} else {
 		//cas imparfait --> cas dessous
@@ -119,6 +119,7 @@ void FaireCroixOrange(int cube[6][3][3],milieu tab[12])
 			printf("wah2\n");
 			//devient un cas côté
 			mil25 = RechercherMilieu(cube,tab,ORANGE, YELLOW);
+			///NE FONCTIONNE PAS JUSTE AU DESSUS
 			printf("a");
 
 		}
