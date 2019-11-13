@@ -22,6 +22,28 @@ void init(int cube[6][3][3]){
 	
 }
 
+
+void copie(int cubeACopier[6][3][3], int cubeAColler[6][3][3]){
+	
+	int k;
+	for (k = 0; k <= 5; k++)
+	{
+		int i;
+		for(i = 0; i<=2; i++)
+		{
+			int j;
+			for (j = 0; j <= 2 ; j++)
+			{
+				cubeAColler[k][i][j] = cubeACopier[k][i][j];
+			}
+			
+		}
+	}
+	
+}
+
+
+
 void affiche(int cube[6][3][3]){
 	printf("  ");
 	printf("  ");
@@ -167,6 +189,7 @@ void tourner(int face, int cube[6][3][3]){
 		
 		switch(face){
 			case 0:
+				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[1][0][2];
 				temp1 = cube[1][1][2];
 				temp2 = cube[1][2][2];
@@ -191,7 +214,7 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 				
 			case 1:
-				
+				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[5][0][0];
 				temp1 = cube[5][0][1];
 				temp2 = cube[5][0][2];
@@ -215,7 +238,7 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 			
 			case 2:
-				
+				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[0][0][0];
 				temp1 = cube[0][1][0];
 				temp2 = cube[0][2][0];
@@ -239,6 +262,7 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 				
 			case 3:
+				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[5][2][2];
 				temp1 = cube[5][2][1];
 				temp2 = cube[5][2][0];
@@ -262,6 +286,7 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 				
 			case 4:
+				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[5][0][0];
 				temp1 = cube[5][1][0];
 				temp2 = cube[5][2][0];
@@ -285,6 +310,7 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 			
 			case 5:
+				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[3][2][0];
 				temp1 = cube[3][1][0];
 				temp2 = cube[3][0][0];

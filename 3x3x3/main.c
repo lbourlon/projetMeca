@@ -20,38 +20,25 @@ void main()
 							 rm(1,2,1,2,0,1), rm(2,1,0,5,1,2), rm(2,2,1,3,0,1),
 							 rm(3,1,0,5,2,1), rm(4,1,0,5,1,0), rm(3,2,1,4,0,1)};
 	//---------------------------------------------------------------------
+	//-----------------   LISTE DES COINS      ----------------------------
+	coin tabCoins[8] = {rc(2,2,0,5,2,2,3,0,0), rc(2,2,2,3,0,2,0,2,0), rc(2,0,2,0,0,0,1,2,2), rc(2,0,0,1,2,0,5,0,2),
+						rc(5,2,0,3,2,0,3,0,0), rc(0,2,2,3,2,2,4,0,2), rc(4,2,2,0,0,2,1,0,2), rc(4,2,0,5,0,0,1,0,0)};
+	//----------------------------------------------------------------------
+	
 	
 				  
 	int cube[6][3][3];
-	int cubeParfait[6][3][3];
-
-	
-	init(cubeParfait);
 	init(cube);
-	//cube[5][0][0] = 8;
-	//cube[4][0][0] = 9;
 	
-	tourner(2,cube);
 	
 	melangeCube(cube);
 	affiche(cube);
 	printf("---------------------------------------------------\n");
-	FaireCroixOrange(cube,tabMilieux);
+	FaireCroixOrange(cube,tabMilieux); 
 	printf("---------------------------------------------------\n");
 	affiche(cube);
 	
-	/*affiche(cube);
-	printf("---------------------------------------------------\n");
 	
-	milieu mil1 = RechercherMilieu(cubeParfait, tabMilieux, GREEN, ORANGE);
-	milieu mil2 = RechercherMilieu(cube, tabMilieux, GREEN, ORANGE);
 	
-	printf("%d %d %d %d %d %d\n", mil1.coord1.face, mil1.coord1.x, mil1.coord1.y, mil1.coord2.face, mil1.coord2.x, mil1.coord2.y);
-	printf("%d %d %d %d %d %d\n", mil2.coord1.face, mil2.coord1.x, mil2.coord1.y, mil2.coord2.face, mil2.coord2.x, mil2.coord2.y);
-	
-		
-	for(int i = 0; i < 12; i++){
-			cube[tabMilieux[i].coord1.face][tabMilieux[i].coord1.x][tabMilieux[i].coord1.y] = 8+i; 
-			cube[tabMilieux[i].coord2.face][tabMilieux[i].coord2.x][tabMilieux[i].coord2.y] = 8+i; 
-	}*/	
+
 }
