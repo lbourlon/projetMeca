@@ -35,6 +35,9 @@ void main()
 	affiche(cube);
 	printf("---------------------------------------------------\n");
 	FaireCroixOrange(cube,tabMilieux); 
+	coin co210 = RechercherCoin(cube,tabCoins,2,1,0);
+	printf("le coin co210 a pour coordonné %d , %d ,%d ,%d ,%d ,%d,%d ,%d ,%d \n",co210.coord1.face, co210.coord1.x,co210.coord1.y,co210.coord2.face, co210.coord2.x, co210.coord2.y, co210.coord3.face, co210.coord3.x, co210.coord3.y);
+
 	printf("---------------------------------------------------\n");
 	affiche(cube);
 	

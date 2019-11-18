@@ -28,3 +28,5 @@ void FaireBrasCroix(int cube[6][3][3],milieu mil25, milieu tabMilieux[12]);
 
 
 coin rc(int face1,int x1,int y1,int face2,int x2,int y2, int face3, int x3, int y3);
+coin RechercherCoin(int cube[6][3][3],coin tab[8], int couleurimportante, int couleur2, int couleur3);
+char* TrouveCasCoin(int cube[6][3][3], coin co);

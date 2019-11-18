@@ -246,8 +246,8 @@ void FaireCroixOrange(int cube[6][3][3],milieu tabMilieux[12])
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//Prend les coordonnées d'une case coin et les remplie dans un milieu
-//Abréviation de RemplirMilieu
+//Prend les coordonnées d'une case coin et les remplie dans un coin
+//Abréviation de RemplirCoin
 coin rc(int face1,int x1,int y1,int face2,int x2,int y2, int face3, int x3, int y3){
 	coin coinVar;
 	coinVar.coord1.face = face1;
@@ -321,15 +321,16 @@ coin RechercherCoin(int cube[6][3][3],coin tab[8], int couleurimportante, int co
 //retourne le cas dans lequel est situé le coin passé en paramètre pour faire les coins de la croix orange
 char* TrouveCasCoin(int cube[6][3][3], coin co)
 {
-	
-	
 	char* cas;
 	//=====================Si cas FACE=====================
 	if(co.coord1.face == ORANGE){
 		//cas parfait:
+
+		printf("coucou\n");
 		if(co.coord2.face == cube[co.coord2.face][co.coord2.x][co.coord2.y]
 			&& co.coord3.face == cube[co.coord3.face][co.coord3.x][co.coord3.y]){
 			cas = "parfait";
+			return cas;
 		} else {
 		//cas imparfait --> cas dessous
 			cas = "imparfait";	
@@ -340,6 +341,7 @@ char* TrouveCasCoin(int cube[6][3][3], coin co)
 	
 	//=====================Si cas CÔTE=====================
 	if (co.coord1.face != RED && co.coord1.face != ORANGE ){
+		
 		//cas haut:
 		if (co.coord2.face == ORANGE || co.coord3.face == ORANGE)
 		{
@@ -348,10 +350,15 @@ char* TrouveCasCoin(int cube[6][3][3], coin co)
 		}
 		
 		//cas bas
-		else if(co.coord2.face == RED || co.coord2.face == RED)
+		else if(co.coord2.face == RED || co.coord3.face == RED)
 		{
-			if(co.
-			cas = "cote_bas";
+			if(co.coord2.face == cube[co.coord2.face][co.coord2.x][co.coord2.y]
+			&& co.coord3.face == cube[co.coord1.face][co.coord1.x][co.coord1.y]
+			|| co.coord3.face == cube[co.coord3.face][co.coord3.x][co.coord3.y]
+			&& co.coord2.face == cube[co.coord1.face][co.coord1.x][co.coord1.y]){
+				cas = "cote_bas_parfait";
+			}
+			else{cas = "cote_bas";}
 		}
 	
 	}
@@ -364,7 +371,7 @@ char* TrouveCasCoin(int cube[6][3][3], coin co)
 		cas = "dessous";	
 	}
 	
-	//printf("le cas est %s",cas);
+	printf("\nle cas est %s\n",cas);
 	return cas;
 }
 
