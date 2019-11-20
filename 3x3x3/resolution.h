@@ -37,3 +37,5 @@ void FinirFaceOrange(int cube[6][3][3], coin tabCoins[8]);
 
 //Fonctions couronne
 char* TrouveCasCouronne(int cube[6][3][3], milieu mil);
+void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux);
+void FaireCouronne(int cube[6][3][3],milieu tab[12]);
