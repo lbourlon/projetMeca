@@ -22,7 +22,7 @@ void main()
 	//---------------------------------------------------------------------
 	//-----------------   LISTE DES COINS      ----------------------------
 	coin tabCoins[8] = {rc(2,2,0,5,2,2,3,0,0), rc(2,2,2,3,0,2,0,2,0), rc(2,0,2,0,0,0,1,2,2), rc(2,0,0,1,2,0,5,0,2),
-						rc(5,2,0,3,2,0,3,0,0), rc(0,2,2,3,2,2,4,0,2), rc(4,2,2,0,0,2,1,0,2), rc(4,2,0,5,0,0,1,0,0)};
+						rc(5,2,0,3,2,0,4,0,0), rc(0,2,2,3,2,2,4,0,2), rc(4,2,2,0,0,2,1,0,2), rc(4,2,0,5,0,0,1,0,0)};
 	//----------------------------------------------------------------------
 	
 	
@@ -35,9 +35,15 @@ void main()
 	affiche(cube);
 	printf("---------------------------------------------------\n");
 	FaireCroixOrange(cube,tabMilieux); 
-	coin co210 = RechercherCoin(cube,tabCoins,2,1,0);
-	printf("le coin co210 a pour coordonné %d , %d ,%d ,%d ,%d ,%d,%d ,%d ,%d \n",co210.coord1.face, co210.coord1.x,co210.coord1.y,co210.coord2.face, co210.coord2.x, co210.coord2.y, co210.coord3.face, co210.coord3.x, co210.coord3.y);
-
+	
+	
+	FinirFaceOrange(cube, tabCoins);
+	milieu mil35 = RechercherMilieu(cube, tabMilieux, 3, 5);
+	//printf("le coin co210 a pour coordonné %d, %d, %d, %d, %d, %d.\n", mil35.coord1.face, mil35.coord1.x, mil35.coord1.y, mil35.coord2.face, mil35.coord2.x, mil35.coord2.y);
+	char* cas35 = TrouveCasCouronne(cube, mil35);
+	printf("%s\n", cas35);
+	
+	
 	printf("---------------------------------------------------\n");
 	affiche(cube);
 	
