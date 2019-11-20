@@ -654,7 +654,7 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 		
 		if(cas == "bas_parfait")
 		{
-			
+			//recherche du coté sur la face du dessous
 			if(mil.coord1.face == RED)
 			{
 				orient = 2;
@@ -718,7 +718,7 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 			//on tourne sur coord2
 			if(orient == 2){
 				tourner(mil.coord2.face, cube);
-				milTemp = RechercherMilieu(cube, tabMilieux, couleur2, couleur1);
+				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 				casTemp = TrouveCasCouronne(cube, milTemp);
 				
 				if(casTemp == "cote_parfait"){
@@ -730,6 +730,7 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 					tourner(RED, cube);
 					tourner(RED, cube);
 					tourner(mil.coord2.face, cube);
+					affiche(cube);
 					
 					tourner(RED, cube);
 					tourner(mil.coord2.face, cube);				
@@ -837,6 +838,7 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 	mil = RechercherMilieu(cube,tabMilieux,couleur1, couleur2);
 	cas = TrouveCasCouronne(cube, mil);
 	}
+	printf("--------------------------FIN COTE COURONNE-----------------------\n");
 }
 
 void FaireCouronne(int cube[6][3][3],milieu tab[12])
