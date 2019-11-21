@@ -684,7 +684,8 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 				tourner(mil.coord1.face, cube);
 				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 				casTemp = TrouveCasCouronne(cube, milTemp);
-				
+				printf("le cas cote est %s\n", cote);
+				printf("le casTemp est %s\n", casTemp);
 				if(cote == "gauche_parfait"){
 					if (casTemp == "cote_parfait")
 					{
@@ -824,6 +825,8 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 				tourner(mil.coord2.face, cube);
 				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 				casTemp = TrouveCasCouronne(cube, milTemp);
+				printf("le cas cote est %s\n", cote);
+				printf("le casTemp est %s\n", casTemp);
 				
 				if(cote == "gauche_parfait"){
 					if (casTemp == "cote_parfait")
@@ -938,50 +941,123 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 		if (cas == "cote_imparfait")
 		{
 			printf("%s\n", cas);
+			int side;
+			/*if(couleur1 == YELLOW && couleur2 == GREEN){side = 1;}
+			if(couleur1 == 3 && couleur2 == 5){side = 1;}
+			if(couleur1 == 0 && couleur2 == 1){side = 2;}
+			if(couleur1 == 0 && couleur2 == 3){side = 1;}*/
+			//on regarde la couleur 
+
+			if((mil.coord1.face == BLUE && mil.coord1.x == 1 && mil.coord1.y == 0)
+				|| (mil.coord1.face == YELLOW && mil.coord1.x == 0 && mil.coord1.y == 1)
+				|| (mil.coord1.face == GREEN && mil.coord1.x == 1 && mil.coord1.y == 2)
+				|| (mil.coord1.face == WHITE && mil.coord1.x == 2 && mil.coord1.y == 1)
+			){side = 1;}
+			else{side = 2;}
 			
-			tourner(mil.coord1.face, cube);
-			milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
-			casTemp = TrouveCasCouronne(cube, milTemp);				
-			if(milTemp.coord1.face == ORANGE || milTemp.coord2.face == ORANGE){
-				tourner(RED, cube);
-				tourner(RED, cube);
-				tourner(RED, cube);
+
+
+
+			
+			if(side == 1){
 				tourner(mil.coord1.face, cube);
-				tourner(RED, cube);
-				tourner(RED, cube);
-				tourner(RED, cube);
+				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
+				casTemp = TrouveCasCouronne(cube, milTemp);		
+				printf("le side est %d\n", side);
+				printf("le casTemp est %s\n", casTemp);
+				if(casTemp != "bas_imparfait"){
+					printf("bon sens\n");
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);				
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);				
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+								
+				} else {	
+					printf("mauvais sens");
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);				
+				}
+			}
+			else{
 				tourner(mil.coord1.face, cube);
+				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
+				casTemp = TrouveCasCouronne(cube, milTemp);	
+				printf("le side est %d\n", side);
+				printf("le casTemp est %s\n", casTemp);	
+				if(casTemp != "bas_imparfait"){
 				
-				tourner(RED, cube);
-				tourner(mil.coord1.face, cube);				
-				tourner(mil.coord1.face, cube);
-				tourner(mil.coord1.face, cube);
-				tourner(RED, cube);
-				tourner(mil.coord1.face, cube);				
-				tourner(mil.coord1.face, cube);
-				tourner(mil.coord1.face, cube);
-							
-			} else {	
-				tourner(mil.coord1.face, cube);
-				tourner(mil.coord1.face, cube);
-				
-				tourner(RED, cube);
-				tourner(RED, cube);
-				tourner(RED, cube);
-				tourner(mil.coord1.face, cube);
-				tourner(mil.coord1.face, cube);
-				tourner(mil.coord1.face, cube);
-				tourner(RED, cube);
-				tourner(RED, cube);
-				tourner(RED, cube);
-				tourner(mil.coord1.face, cube);
-				tourner(mil.coord1.face, cube);
-				tourner(mil.coord1.face, cube);
-				
-				tourner(RED, cube);
-				tourner(mil.coord1.face, cube);
-				tourner(RED, cube);
-				tourner(mil.coord1.face, cube);				
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					}
+					else{
+					
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					}
+
 			}
 					
 			affiche(cube);
