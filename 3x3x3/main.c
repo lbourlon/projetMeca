@@ -38,7 +38,7 @@ void main()
 	FaireCroixOrange(cube,tabMilieux); 
 	FinirFaceOrange(cube, tabCoins);
 	//--------------------Deuxiéme Couronne
-	//milieu mil35 = RechercherMilieu(cube, tabMilieux, 3, 5);
+	milieu mil35 = RechercherMilieu(cube, tabMilieux, 3, 5);
 	//printf("le milieu mil35 a pour coordonné %d, %d, %d, %d, %d, %d.\n", mil35.coord1.face, mil35.coord1.x, mil35.coord1.y, mil35.coord2.face, mil35.coord2.x, mil35.coord2.y);
 	//char* cas35 = TrouveCasCouronne(cube, mil35);
 	//printf("%s\n", cas35);

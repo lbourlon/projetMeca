@@ -664,6 +664,18 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 				orient = 1;
 			}
 			
+			//on veut savoir si on va être en cote droit ou gauche parfait.
+			char* cote;
+
+			if(couleur1 == YELLOW && couleur2 == GREEN){if(orient == 1){cote = "droite_parfait";} else{cote = "gauche_parfait";}}
+			if(couleur1 == 3 && couleur2 == 5){if(orient == 1){cote ="droite_parfait";}else{cote = "gauche_parfait";}}
+			if(couleur1 == 0 && couleur2 == 1){if(orient == 1){cote = "gauche_parfait";}else{cote = "droite_parfait";}}
+			if(couleur1 == 0 && couleur2 == 3){if(orient == 1){cote = "droite_parfait";}else{cote = "gauche_parfait";}}
+
+
+
+
+
 		printf("orient est %d\n",orient);
 		printf("%s\n", cas);
 		affiche(cube);
@@ -673,7 +685,99 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 				casTemp = TrouveCasCouronne(cube, milTemp);
 				
-				if(casTemp == "cote_parfait"){
+				if(cote == "gauche_parfait"){
+					if (casTemp == "cote_parfait")
+					{
+						tourner(RED, cube);
+						tourner(mil.coord1.face, cube);
+						tourner(RED, cube);
+						tourner(mil.coord1.face, cube);
+						
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(mil.coord1.face, cube);				
+						tourner(mil.coord1.face, cube);
+						tourner(mil.coord1.face, cube);
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(mil.coord1.face, cube);				
+						tourner(mil.coord1.face, cube);
+						tourner(mil.coord1.face, cube);
+					}
+					else
+					{
+						tourner(mil.coord1.face, cube);
+						tourner(mil.coord1.face, cube);
+						tourner(RED, cube);
+						tourner(mil.coord1.face, cube);
+						tourner(mil.coord1.face, cube);
+						tourner(mil.coord1.face, cube);
+						tourner(RED, cube);
+						tourner(mil.coord1.face, cube);
+						tourner(mil.coord1.face, cube);
+						tourner(mil.coord1.face, cube);
+						
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(mil.coord1.face, cube);				
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(mil.coord1.face, cube);	
+					}
+					
+					
+								
+				}
+				if(cote == "droite_parfait") {
+					if(casTemp == "cote_parfait"){
+				
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					}
+					else{
+					
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(mil.coord1.face, cube);
+					
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					tourner(RED, cube);
+					tourner(mil.coord1.face, cube);
+					}
+					
+				}
+				/*if(casTemp == "cote_parfait"){
 					tourner(RED, cube);
 					tourner(RED, cube);
 					tourner(RED, cube);
@@ -713,7 +817,7 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 					tourner(mil.coord1.face, cube);
 					tourner(RED, cube);
 					tourner(mil.coord1.face, cube);				
-				}
+				}*/
 			}
 			//on tourne sur coord2
 			if(orient == 2){
@@ -721,47 +825,97 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 				casTemp = TrouveCasCouronne(cube, milTemp);
 				
-				if(casTemp == "cote_parfait"){
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(mil.coord2.face, cube);
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(mil.coord2.face, cube);
-					affiche(cube);
+				if(cote == "gauche_parfait"){
+					if (casTemp == "cote_parfait")
+					{
+						tourner(RED, cube);
+						tourner(mil.coord2.face, cube);
+						tourner(RED, cube);
+						tourner(mil.coord2.face, cube);
+						
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(mil.coord2.face, cube);				
+						tourner(mil.coord2.face, cube);
+						tourner(mil.coord2.face, cube);
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(mil.coord2.face, cube);				
+						tourner(mil.coord2.face, cube);
+						tourner(mil.coord2.face, cube);
+					}
+					else
+					{
+						tourner(mil.coord2.face, cube);
+						tourner(mil.coord2.face, cube);
+						tourner(RED, cube);
+						tourner(mil.coord2.face, cube);
+						tourner(mil.coord2.face, cube);
+						tourner(mil.coord2.face, cube);
+						tourner(RED, cube);
+						tourner(mil.coord2.face, cube);
+						tourner(mil.coord2.face, cube);
+						tourner(mil.coord2.face, cube);
+						
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(mil.coord2.face, cube);				
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(RED, cube);
+						tourner(mil.coord2.face, cube);	
+					}
 					
-					tourner(RED, cube);
-					tourner(mil.coord2.face, cube);				
-					tourner(mil.coord2.face, cube);
-					tourner(mil.coord2.face, cube);
-					tourner(RED, cube);
-					tourner(mil.coord2.face, cube);				
-					tourner(mil.coord2.face, cube);
-					tourner(mil.coord2.face, cube);
+					
 								
-				} else {	
-					tourner(mil.coord2.face, cube);
-					tourner(mil.coord2.face, cube);
-					
+				}
+				if(cote == "droite_parfait") {
+					if(casTemp == "cote_parfait"){
+				
 					tourner(RED, cube);
 					tourner(RED, cube);
 					tourner(RED, cube);
 					tourner(mil.coord2.face, cube);
-					tourner(mil.coord2.face, cube);
-					tourner(mil.coord2.face, cube);
 					tourner(RED, cube);
 					tourner(RED, cube);
 					tourner(RED, cube);
-					tourner(mil.coord2.face, cube);
-					tourner(mil.coord2.face, cube);
 					tourner(mil.coord2.face, cube);
 					
 					tourner(RED, cube);
 					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
 					tourner(RED, cube);
-					tourner(mil.coord2.face, cube);				
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					}
+					else{
+					
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(mil.coord2.face, cube);
+					
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					tourner(RED, cube);
+					tourner(mil.coord2.face, cube);
+					}
+					
 				}
 			}
 		}
@@ -788,7 +942,7 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 			tourner(mil.coord1.face, cube);
 			milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 			casTemp = TrouveCasCouronne(cube, milTemp);				
-				if(milTemp.coord1.face == ORANGE || milTemp.coord2.face == ORANGE){
+			if(milTemp.coord1.face == ORANGE || milTemp.coord2.face == ORANGE){
 				tourner(RED, cube);
 				tourner(RED, cube);
 				tourner(RED, cube);
@@ -843,13 +997,13 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 
 void FaireCouronne(int cube[6][3][3],milieu tab[12])
 {
-	milieu mil35, mil15, mil01, mil03;
+	milieu mil35, mil51, mil01, mil03;
 
 	mil35 = RechercherMilieu(cube,tab,3,5);
 	FairePartieCouronne(cube, mil35,tab);
 	
-	mil15 = RechercherMilieu(cube,tab,1,5);
-	FairePartieCouronne(cube, mil15,tab);
+	mil51 = RechercherMilieu(cube,tab,5,1);
+	FairePartieCouronne(cube, mil51,tab);
 
 	mil01 = RechercherMilieu(cube,tab,0,1);
 	FairePartieCouronne(cube, mil01,tab);
