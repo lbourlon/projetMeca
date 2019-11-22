@@ -938,7 +938,7 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 
 			
 		}
-		
+
 		if (cas == "cote_imparfait")
 		{
 			printf("%s\n", cas);
@@ -1011,7 +1011,7 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 				}
 			}
 			else{
-				tourner(mil.coord1.face, cube);
+				tourner(mil.coord2.face, cube);
 				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 				casTemp = TrouveCasCouronne(cube, milTemp);	
 				printf("le side est %d\n", side);
