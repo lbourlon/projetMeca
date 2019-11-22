@@ -24,52 +24,67 @@ void main(){
 	
 	int cube[6][2][2];
 	int cubeParfait[6][2][2];
-
 	
-	/*init(cubeParfait);
+
+	init(cubeParfait);
 	init(cube);
+	
+	
+	//melangeCube(cube);
+	
+	
+	cube[0][0][0] = WHITE;
+	cube[0][1][0] = RED;
+	cube[0][0][1] = GREEN;
+	cube[0][1][1] = ORANGE;
 
-	
-	melangeCube(cube);
-	affiche(cube);*/
-	
-	cube[0][0][0] = GREEN;
-	cube[0][1][0] = WHITE;
-	cube[0][0][1] = YELLOW;
-	cube[0][1][1] = YELLOW;
-	
-	cube[2][0][0] = WHITE;
-	cube[2][1][0] = ORANGE;
-	cube[2][0][1] = YELLOW;
+	cube[1][0][0] = RED;
+	cube[1][1][0] = GREEN;
+	cube[1][0][1] = WHITE;
+	cube[1][1][1] = BLUE;
+
+	cube[2][0][0] = ORANGE;
+	cube[2][1][0] = RED;
+	cube[2][0][1] = RED;
 	cube[2][1][1] = BLUE;
 	
-	cube[5][0][0] = ORANGE;
-	cube[5][1][0] = ORANGE;
-	cube[5][0][1] = GREEN;
-	cube[5][1][1] = YELLOW;
-	
-	cube[1][0][0] = WHITE;
-	cube[1][1][0] = RED;
-	cube[1][0][1] = BLUE;
-	cube[1][1][1] = RED;
+	cube[3][0][0] = WHITE;
+	cube[3][1][0] = ORANGE;
+	cube[3][0][1] = YELLOW;
+	cube[3][1][1] = BLUE;
 
 	cube[4][0][0] = BLUE;
-	cube[4][1][0] = GREEN;
-	cube[4][0][1] = GREEN;
-	cube[4][1][1] = RED;
+	cube[4][1][0] = YELLOW;
+	cube[4][0][1] = WHITE;
+	cube[4][1][1] = ORANGE;
+
+	cube[5][0][0] = GREEN;
+	cube[5][1][0] = YELLOW;
+	cube[5][0][1] = YELLOW;
+	cube[5][1][1] = GREEN;
 	
-	cube[3][0][0] = BLUE;
-	cube[3][1][0] = WHITE;
-	cube[3][0][1] = RED;
-	cube[3][1][1] = ORANGE;
+
 	
+	
+	affiche(cube);
 	int* tabSolution = BruteForce(cube);
 	//int tabSolution[14] = {0,0,0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-	int i = 0;
+
+	
+	int i = 0, num = 0;
 	printf("\n Une solution est: |");
 	for (i = 0; i < 14; i++)
 	{
-		printf("%d|",tabSolution[i]);
+		num = tabSolution[i];
+		if(num != -1){
+			if(num == 0){printf(" D|");}
+			if(num == 1){printf(" G|");}
+			if(num == 2){printf(" H|");}
+			if(num == 3){printf("-G|");}
+			if(num == 4){printf("-H|");}
+			if(num == 5){printf("-D|");}
+			
+		}
 	}
 	printf("\n");
 	

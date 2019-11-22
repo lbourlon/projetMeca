@@ -8,7 +8,7 @@ int compare(int cube1[6][2][2], int cube2 [6][2][2]);
 
 int* copieCube(int CubeACopier[6][2][2], int CubeSortie[6][2][2]);
 
-
+void randTour(int cube[6][2][2]);
 
 int *BruteForce(int cube[6][2][2]);
 

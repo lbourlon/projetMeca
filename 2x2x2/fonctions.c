@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-
+//Initialise le cube, avec les int couleurs appropriés.
 void init(int cube[6][2][2]){
 	
 	int k;
@@ -22,25 +22,17 @@ void init(int cube[6][2][2]){
 	
 }
 
+//Affiche un cube 2x2x2 sur le terminale.
 void affiche(int cube[6][2][2]){
-	printf("  ");
-	printf("  ");
+	printf("    ");
 	printf("%d ",cube[5][0][0]);
 	printf("%d ",cube[5][1][0]);
-	printf("  ");
-	printf("  ");
-	printf("  ");
-	printf("  ");
-			printf("\n");
-	printf("  ");
-	printf("  ");
+	printf("        \n    ");
+
 	printf("%d ",cube[5][0][1]);
 	printf("%d ",cube[5][1][1]);
-	printf("  ");
-	printf("  ");
-	printf("  ");
-	printf("  ");
-			printf("\n");
+	printf("        \n");
+
 	printf("%d ",cube[1][0][0]);
 	printf("%d ",cube[1][1][0]);
 	printf("%d ",cube[2][0][0]);
@@ -49,7 +41,8 @@ void affiche(int cube[6][2][2]){
 	printf("%d ",cube[3][1][0]);
 	printf("%d ",cube[4][0][0]);
 	printf("%d ",cube[4][1][0]);
-			printf("\n");
+	printf("\n");
+
 	printf("%d ",cube[1][0][1]);
 	printf("%d ",cube[1][1][1]);
 	printf("%d ",cube[2][0][1]);
@@ -58,27 +51,18 @@ void affiche(int cube[6][2][2]){
 	printf("%d ",cube[3][1][1]);
 	printf("%d ",cube[4][0][1]);
 	printf("%d ",cube[4][1][1]);
-			printf("\n");
-	printf("  ");
-	printf("  ");
+	printf("\n    ");
+
 	printf("%d ",cube[0][0][0]);
 	printf("%d ",cube[0][1][0]);
-	printf("  ");
-	printf("  ");
-	printf("  ");
-	printf("  ");
-			printf("\n");
-	printf("  ");
-	printf("  ");
+	printf("        \n");
+	printf("    ");
 	printf("%d ",cube[0][0][1]);
 	printf("%d ",cube[0][1][1]);
-	printf("  ");
-	printf("  ");
-	printf("  ");
-	printf("  ");
-	printf("\n");
+	printf("        \n");
 }
 
+//Prends la face à tourner et le cube en paramètre, et aplique la rotation au cube.
 void tourner(int face, int cube[6][2][2]){
 	switch(face)
 	{
@@ -187,10 +171,11 @@ void tourner(int face, int cube[6][2][2]){
 void randTour(int cube[6][2][2]){
 	//tire au sort un numero entre 0 et 5 et fait tourner le cube en fonction de celui-ci
 	int RandNum = (rand() % (6));
+	
 	tourner(RandNum, cube);
 }
 
-
+//Mélange un cube 2x2x2.
 void melangeCube(int cube[6][2][2]){
 	int i;
 	for (i = 0; i < 20; i++)
@@ -200,6 +185,7 @@ void melangeCube(int cube[6][2][2]){
 	
 }
 
+//Compare deux cubes, rends 1 si identiques et 0 sinon.
 int compare(int cube1[6][2][2], int cube2[6][2][2]){
 	int i = 0;
 	while (i <= 5)
@@ -226,9 +212,8 @@ int compare(int cube1[6][2][2], int cube2[6][2][2]){
 	
 }
 
-void copieCube(int CubeACopier[6][2][2], int CubeSortie[6][2][2])
-/*Copie cube a dans cube b*/
-{
+//Copie cube a dans cube b.
+void copieCube(int CubeACopier[6][2][2], int CubeSortie[6][2][2]){
 	int k;
 	for (k = 0; k <= 5; k++)
 	{
@@ -245,9 +230,20 @@ void copieCube(int CubeACopier[6][2][2], int CubeSortie[6][2][2])
 	}
 }
 	
-
+int verifie( int CubeSortie[6][2][2]){
+	int sortie = 0;
+	for(int i = 1; i <= 4; i++){
+		if(!(CubeSortie[i][0][0] == CubeSortie[i][1][0] && 
+			 CubeSortie[i][0][1] == CubeSortie[i][1][1] &&
+			 CubeSortie[i][0][0] == CubeSortie[i][1][1]))
+		{
+			return 0;
+		}
+	}
+	return 1;
+}
+//Prend un cube et un tableauSolution, et applique les rotations décrites dans le tableau au cube.
 void AppliqueSolution(int cube[6][2][2], int tabSolution[14]){
-	
 	int i;
 	for (i = 0; i < 14; i++)
 	{
@@ -270,7 +266,7 @@ int *BruteForce(int cube[6][2][2])
      
 	
 	
-	int* tabSolution = (int*)malloc(14 * sizeof(int));
+	int* tabSolution = malloc(14 * sizeof(int));
 	
 	int cubeParfait[6][2][2];
 	init(cubeParfait);
@@ -278,7 +274,10 @@ int *BruteForce(int cube[6][2][2])
 	int cubecopie[6][2][2];
 	copieCube(cube,cubecopie);
 
-	int a = -1,b=-1 ,c=-1,d=-1,e=-1,f=-1,g=-1,h=-1,i=-1,j=-1,k=-1,l=-1,m=-1,n=-1;
+	int a = -1, b = -1, c = -1, d = -1, e = -1,
+	    f = -1, g = -1, h = -1, i = -1, j = -1,
+	    k = -1, l = -1, m = -1, n = -1;
+	
 	
 	while (a <= 5)
 	{
@@ -298,7 +297,7 @@ int *BruteForce(int cube[6][2][2])
 		tabSolution[13] = n;
 		AppliqueSolution(cubecopie, tabSolution);
 		
-		if (compare(cubecopie, cubeParfait) == 1)
+		if (verifie(cubecopie) == 1)
 		{	
 			
 			end = clock();
@@ -388,7 +387,6 @@ int *BruteForce(int cube[6][2][2])
 	}
 	
 }
-
 
 
 
