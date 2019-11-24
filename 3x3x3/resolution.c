@@ -1256,24 +1256,31 @@ void MiseEnPlaceCoinsFinal(int cube[6][3][3])
 
 void FaireCoinsFinal(int cube[6][3][3])
 {
-	while(cube[3][2][2] != BLUE || cube[3][2][0] == BLUE || cube[5][2][0] == YELLOW || cube[5][0][0] == YELLOW || cube[1][0][0] == GREEN || cube[1][0][2] == GREEN || cube[0][0][2] == WHITE || cube[0][2][2] == WHITE)
+	while(cube[3][2][2] != cube[3][2][0] || cube[5][2][0] != cube[5][0][0] || cube[1][0][0] != cube[1][0][2] || cube[0][0][2] != cube[0][2][2])
 	{
 		//cas 2coins bien cote a cote
 		int i = 0;
-		while(cube[5][0][0] != cube[5][2][0] && i <= 3)
+		while((cube[5][0][0] != cube[5][2][0]) && i <= 3)
 		{
 			tourner(RED, cube);
 			i = i + 1;
 		}
 		if(cube[0][0][2] == cube[0][2][2])
 		{
+			printf("cas2cote\n");
 			MiseEnPlaceCoinsFinal(cube);
 		}
 
 		//cas 1 coin bien
 		else
 		{
+			printf("cas 1 coin\n");
 			MiseEnPlaceCoinsFinal(cube);
 		}
+		affiche(cube);
+	}
+	while(cube[5][2][0] != YELLOW)
+	{
+		tourner(RED, cube);
 	}
 }
