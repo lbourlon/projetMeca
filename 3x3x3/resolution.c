@@ -1090,3 +1090,150 @@ void FaireCouronne(int cube[6][3][3],milieu tab[12])
 
 }
 
+void MiseEnPlaceCoteRouge(int cube[6][3][3])
+{
+	tourner(WHITE, cube);
+	tourner(RED, cube);
+	tourner(GREEN, cube);
+
+	tourner(RED, cube);
+	tourner(RED, cube);
+	tourner(RED, cube);
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+	tourner(WHITE, cube);
+	tourner(WHITE, cube);
+	tourner(WHITE, cube);
+
+}
+
+void FaireCroixRouge(int cube[6][3][3])
+{while(cube[4][0][1] != RED || cube[4][1][0] != RED || cube[4][2][1] != RED || cube[4][1][2] != RED){
+		//cas point (pas de L ni de barre)
+		if(cube[4][0][1] != RED && cube[4][1][0] != RED && cube[4][2][1] != RED)
+		{
+			printf("casrien\n");
+			MiseEnPlaceCoteRouge(cube);
+		}
+
+		//cas ligne horizontale
+		if(cube[4][0][1] == cube[4][2][1]){
+			printf("caslignehori\n");
+			MiseEnPlaceCoteRouge(cube);
+		}
+		//cas ligne verticale
+		if(cube[4][1][0] == cube[4][1][2]){
+			printf("casligneverti\n");
+			tourner(RED,cube);
+			MiseEnPlaceCoteRouge(cube);
+		}
+		//cas L
+		else{
+			printf("casL\n");
+			while(cube[4][0][1] != RED || cube[4][1][0] != RED){
+				tourner(RED,cube);
+			}
+			MiseEnPlaceCoteRouge(cube);
+		}
+	}
+
+}
+
+void MiseEnPlaceCoinRouge(int cube[6][3][3])
+{
+	
+	tourner(GREEN, cube);
+	tourner(RED, cube);
+
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+
+	tourner(RED, cube);
+
+	tourner(GREEN, cube);
+
+	tourner(RED, cube);
+	tourner(RED, cube);
+
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+
+}
+
+
+void FaireCoinsRouge(int cube[6][3][3])
+{
+	while(cube[4][0][0] != RED || cube[4][2][0] != RED || cube[4][0][2] != RED || cube[4][2][2] != RED)
+		{
+		//cas pas de coins
+		if(cube[4][0][0] != RED && cube[4][2][0] != RED && cube[4][0][2] != RED && cube[4][2][2] != RED)
+		{
+			printf("cas pasdecoins\n");
+			MiseEnPlaceCoinRouge(cube);
+		}
+
+		//cas 2 coins opposés imparfait
+		if(cube[4][0][0] == RED && cube[4][2][2] == RED )
+		{
+			printf("cas 2coinsopposés\n");
+			MiseEnPlaceCoinRouge(cube);
+		}
+
+		//cas 2 coins opposés parfait
+		if(cube[4][0][2] == RED && cube[4][2][0] == RED )
+		{
+			printf("cas 2coinsopposés\n");
+			tourner(RED, cube);
+			MiseEnPlaceCoinRouge(cube);
+		}
+
+		//cas 2 coins alignés
+		if((cube[4][0][0] == RED && cube[4][2][0] == RED) ||
+			(cube[4][2][0] == RED && cube[4][2][2] == RED) ||
+			(cube[4][2][2] == RED && cube[4][0][2] == RED) ||
+			(cube[4][0][2] == RED && cube[4][0][0] == RED))
+			{
+				printf("cas 2coinsopposés\n");
+				while(cube[4][2][2] != RED && cube[4][0][2] != RED)
+				{
+					tourner(RED, cube);
+				}
+				MiseEnPlaceCoinRouge(cube);
+			}
+
+		//cas 1 seul coin
+		if((cube[4][0][0] == RED && cube[4][2][0] != RED && cube[4][0][2] != RED && cube[4][2][2] != RED) ||
+			(cube[4][0][0] != RED && cube[4][2][0] == RED && cube[4][0][2] != RED && cube[4][2][2] != RED) ||
+			(cube[4][0][0] != RED && cube[4][2][0] != RED && cube[4][0][2] == RED && cube[4][2][2] != RED) ||
+			(cube[4][0][0] != RED && cube[4][2][0] != RED && cube[4][0][2] != RED && cube[4][2][2] == RED))
+		
+		{
+			while(cube[4][0][2] != RED)
+			{
+				printf("cas 1seulcoin\n");
+				tourner(RED,cube);
+			}
+			MiseEnPlaceCoinRouge(cube);
+		}
+		//else{printf("pbm\n"); affiche(cube);}
+	}
+}
+
+void FaireCoinsFinal(int cube[6][3][3])
+{
+	while(cube[3][2][2] != BLUE || cube[3][2][0] == BLUE || cube[5][2][0] == YELLOW || cube[5][0][0] == YELLOW || cube[1][0][0] == GREEN || cube[1][0][2] == GREEN || cube[0][0][2] == WHITE || cube[0][2][2] == WHITE)
+	{
+		//cas 1 coin bien
+		if((cube[3][2][2] == BLUE && cube[0][2][2] != RED) ||
+			(cube[0][0][2] == WHITE && cube[1][0][2] != GREEN) ||
+			(cube[3][2][0] == BLUE && cube[0][2][2] != RED) ||
+			(cube[3][2][2] == BLUE && cube[0][2][2] != RED))
+
+		//cas 2coins bien opposés
+
+		//cas pas de coin?
+	}
+}

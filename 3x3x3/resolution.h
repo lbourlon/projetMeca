@@ -39,3 +39,9 @@ void FinirFaceOrange(int cube[6][3][3], coin tabCoins[8]);
 char* TrouveCasCouronne(int cube[6][3][3], milieu mil);
 void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux);
 void FaireCouronne(int cube[6][3][3],milieu tab[12]);
+
+
+void MiseEnPlaceCoteRouge(int cube[6][3][3]);
+void FaireCroixRouge(int cube[6][3][3]);
+void MiseEnPlaceCoinRouge(int cube[6][3][3]);
+void FaireCoinsRouge(int cube[6][3][3]);
