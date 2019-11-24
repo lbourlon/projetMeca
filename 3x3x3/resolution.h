@@ -45,3 +45,5 @@ void MiseEnPlaceCoteRouge(int cube[6][3][3]);
 void FaireCroixRouge(int cube[6][3][3]);
 void MiseEnPlaceCoinRouge(int cube[6][3][3]);
 void FaireCoinsRouge(int cube[6][3][3]);
+void MiseEnPlaceCoinsFinal(int cube[6][3][3]);
+void FaireCoinsFinal(int cube[6][3][3]);

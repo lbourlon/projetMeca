@@ -1222,18 +1222,58 @@ void FaireCoinsRouge(int cube[6][3][3])
 	}
 }
 
+void MiseEnPlaceCoinsFinal(int cube[6][3][3])
+{
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+
+	tourner(WHITE, cube);
+
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+
+	tourner(YELLOW, cube);
+	tourner(YELLOW, cube);
+
+	tourner(GREEN, cube);
+
+	tourner(WHITE, cube);
+	tourner(WHITE, cube);
+	tourner(WHITE, cube);
+
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+
+	tourner(YELLOW, cube);
+	tourner(YELLOW, cube);
+
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+}
+
 void FaireCoinsFinal(int cube[6][3][3])
 {
 	while(cube[3][2][2] != BLUE || cube[3][2][0] == BLUE || cube[5][2][0] == YELLOW || cube[5][0][0] == YELLOW || cube[1][0][0] == GREEN || cube[1][0][2] == GREEN || cube[0][0][2] == WHITE || cube[0][2][2] == WHITE)
 	{
+		//cas 2coins bien cote a cote
+		int i = 0;
+		while(cube[5][0][0] != cube[5][2][0] && i <= 3)
+		{
+			tourner(RED, cube);
+			i = i + 1;
+		}
+		if(cube[0][0][2] == cube[0][2][2])
+		{
+			MiseEnPlaceCoinsFinal(cube);
+		}
+
 		//cas 1 coin bien
-		if((cube[3][2][2] == BLUE && cube[0][2][2] != RED) ||
-			(cube[0][0][2] == WHITE && cube[1][0][2] != GREEN) ||
-			(cube[3][2][0] == BLUE && cube[0][2][2] != RED) ||
-			(cube[3][2][2] == BLUE && cube[0][2][2] != RED))
-
-		//cas 2coins bien opposés
-
-		//cas pas de coin?
+		else
+		{
+			MiseEnPlaceCoinsFinal(cube);
+		}
 	}
 }

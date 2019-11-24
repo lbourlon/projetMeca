@@ -47,6 +47,10 @@ void main()
 	FaireCoinsRouge(cube);
 	printf("---------------------------------------------------\n");
 	affiche(cube);
+	//--------------------Positionnement Coins Rouge
+	FaireCoinsFinal(cube);
+	printf("---------------------------------------------------\n");
+	affiche(cube);
 
 	
 	
