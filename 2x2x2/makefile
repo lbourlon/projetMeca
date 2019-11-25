@@ -11,7 +11,7 @@ LNAME = -lm
 EXEC=main.exe
 
 #liste des fichiers sources (on aurait pu utiliser SRC= $(wildcard *.c)
-SRC=  main.c fonctions.c
+SRC=  main.c fonctions.c resolution.c
 
 #liste des fichiers objets
 OBJ= $(SRC:.c=.o)

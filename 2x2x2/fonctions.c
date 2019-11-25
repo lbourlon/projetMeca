@@ -388,6 +388,25 @@ int *BruteForce(int cube[6][2][2])
 	
 }
 
+//Prend un tableaux Solution (avec des 1,2,3,4,5 et -1) et affiche les cotés a tourner.
+void printTabSolution(int tabSolution[14]){
+	int i = 0, num = 0;
+	printf("\n Une solution est: |");
+	for (i = 0; i < 14; i++)
+	{
+		num = tabSolution[i];
+		if(num != -1){
+			if(num == 0){printf(" F|");}
+			if(num == 1){printf(" C|");}
+			if(num == 2){printf(" H|");}
+			if(num == 3){printf("-C|");}
+			if(num == 4){printf("-H|");}
+			if(num == 5){printf("-F|");}
+			
+		}
+	}
+	printf("\n");
+}
 
 
 
