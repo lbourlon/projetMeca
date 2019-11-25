@@ -963,7 +963,8 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 			if(side == 1){
 				tourner(mil.coord1.face, cube);
 				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
-				casTemp = TrouveCasCouronne(cube, milTemp);		
+				casTemp = TrouveCasCouronne(cube, milTemp);
+				affiche(cube);		
 				printf("le side est %d\n", side);
 				printf("le casTemp est %s\n", casTemp);
 				if(casTemp != "bas_imparfait"){
@@ -1175,14 +1176,14 @@ void FaireCoinsRouge(int cube[6][3][3])
 			MiseEnPlaceCoinRouge(cube);
 		}
 
-		//cas 2 coins opposés imparfait
+		//cas 2 coins opposés parfait
 		if(cube[4][0][0] == RED && cube[4][2][2] == RED )
 		{
 			printf("cas 2coinsopposés\n");
 			MiseEnPlaceCoinRouge(cube);
 		}
 
-		//cas 2 coins opposés parfait
+		//cas 2 coins opposés imparfait
 		if(cube[4][0][2] == RED && cube[4][2][0] == RED )
 		{
 			printf("cas 2coinsopposés\n");
@@ -1265,19 +1266,14 @@ void FaireCoinsFinal(int cube[6][3][3])
 			tourner(RED, cube);
 			i = i + 1;
 		}
-		if(cube[0][0][2] == cube[0][2][2])
-		{
-			printf("cas2cote\n");
-			MiseEnPlaceCoinsFinal(cube);
-		}
-
-		//cas 1 coin bien
-		else
-		{
-			printf("cas 1 coin\n");
-			MiseEnPlaceCoinsFinal(cube);
-		}
-		affiche(cube);
+	
+		printf("cas2cote\n");
+		MiseEnPlaceCoinsFinal(cube);
+	
+		//printf("cas 1 coin\n");
+		//MiseEnPlaceCoinsFinal(cube);
+		
+		
 	}
 	while(cube[5][2][0] != YELLOW)
 	{
@@ -1291,5 +1287,51 @@ void MiseEnPlaceMilieuxFinal(int cube[6][3][3])
 	tourner(WHITE, cube);
 
 	tourner(RED, cube);
-	
+
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+	tourner(GREEN, cube);
+
+	tourner(BLUE, cube);
+
+	tourner(WHITE, cube);
+	tourner(WHITE, cube);
+
+	tourner(BLUE, cube);
+	tourner(BLUE, cube);
+	tourner(BLUE, cube);
+
+	tourner(GREEN, cube);
+
+	tourner(RED, cube);
+
+	tourner(WHITE, cube);
+	tourner(WHITE, cube);
+
+}
+
+void FinirCube(int cube[6][3][3])
+{
+	int cas = 0;
+	while(cube[3][2][1] != cube[3][2][2] || cube[5][1][0] != cube[5][2][0] || cube[1][0][1] != cube[1][0][2] || cube[0][1][2] != cube[0][2][2])
+	{
+		int i = 0;
+		while((cube[5][0][0] != cube[5][1][0]) && i <= 3)
+		{
+			tourner(RED, cube);
+			i = i + 1;
+			cas = 1;
+		}
+		
+		MiseEnPlaceMilieuxFinal(cube);
+		affiche(cube);
+	}
+	if(cas == 1)
+	{
+		while(cube[3][2][1] != BLUE || cube[5][1][0] != YELLOW || cube[1][0][1] != GREEN || cube[0][1][2] != WHITE)
+		{
+			tourner(RED, cube);
+		}
+
+	}
 }

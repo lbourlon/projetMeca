@@ -47,3 +47,5 @@ void MiseEnPlaceCoinRouge(int cube[6][3][3]);
 void FaireCoinsRouge(int cube[6][3][3]);
 void MiseEnPlaceCoinsFinal(int cube[6][3][3]);
 void FaireCoinsFinal(int cube[6][3][3]);
+void MiseEnPlaceMilieuxFinal(int cube[6][3][3]);
+void FinirCube(int cube[6][3][3]);
