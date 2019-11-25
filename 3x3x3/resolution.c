@@ -1284,3 +1284,12 @@ void FaireCoinsFinal(int cube[6][3][3])
 		tourner(RED, cube);
 	}
 }
+
+void MiseEnPlaceMilieuxFinal(int cube[6][3][3])
+{
+	tourner(WHITE, cube);
+	tourner(WHITE, cube);
+
+	tourner(RED, cube);
+	
+}
