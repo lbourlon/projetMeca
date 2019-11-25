@@ -7,6 +7,7 @@
 
 void main()
 {
+	srand(time(NULL));
 	int WHITE  = 0;
 	int GREEN  = 1;
 	int ORANGE = 2;
@@ -33,6 +34,12 @@ void main()
 	
 	melangeCube(cube);
 	affiche(cube);
+
+	clock_t start, end;
+     double timeUsed;
+     
+     start = clock();
+
 	printf("---------------------------------------------------\n");
 	//--------------------Face Orange
 	FaireCroixOrange(cube,tabMilieux); 
@@ -50,7 +57,11 @@ void main()
 	//--------------------Positionnement Coins Rouge
 	FaireCoinsFinal(cube);
 	printf("---------------------------------------------------\n");
+	end = clock();
+	timeUsed = ((double) (end - start)) / CLOCKS_PER_SEC;
+	printf("temps mis pour déterminer la réponse en seconde : %f\n",timeUsed);
 	affiche(cube);
+	
 
 	
 	
