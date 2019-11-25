@@ -53,9 +53,12 @@ void main()
 	//--------------------Coins Rouge
 	FaireCoinsRouge(cube);
 	printf("---------------------------------------------------\n");
-	affiche(cube);
 	//--------------------Positionnement Coins Rouge
 	FaireCoinsFinal(cube);
+	printf("---------------------------------------------------\n");
+	//--------------------Positionnement Milieux Rouge
+	affiche(cube);
+	FinirCube(cube);
 	printf("---------------------------------------------------\n");
 	end = clock();
 	timeUsed = ((double) (end - start)) / CLOCKS_PER_SEC;
