@@ -27,7 +27,7 @@ void main(){
 	melangeCube(cube);	
 	affiche(cube);
 	
-	//FaireFaceOrange(cube, tabCoins);	
+	FaireFaceOrange(cube, tabCoins);	
 	affiche(cube);
 	
 	
