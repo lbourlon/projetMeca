@@ -172,7 +172,7 @@ char* TrouveCasCoin(int cube[6][2][2], coin co){
 		cas = "dessous";	
 	}
 	
-	//printf("\nle cas est %s\n",cas);
+	printf("\nle cas est %s\n",cas);
 	return cas;
 }
 
@@ -331,7 +331,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 		
 	co = RechercherCoin(cube,tabCoins,ORANGE, couleur2, couleur3);
 	cas = TrouveCasCoin(cube, co);
-	
+	affiche(cube);
 	}
 	printf("===================FIN DU COIN================\n");
 

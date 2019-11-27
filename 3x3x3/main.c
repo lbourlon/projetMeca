@@ -35,7 +35,7 @@ void main()
 	melangeCube(cube);
 	affiche(cube);
 
-	clock_t start, end;
+	/*clock_t start, end;
      double timeUsed;
      
      start = clock();
@@ -63,8 +63,13 @@ void main()
 	end = clock();
 	timeUsed = ((double) (end - start)) / CLOCKS_PER_SEC;
 	printf("temps mis pour déterminer la réponse en seconde : %f\n",timeUsed);
-	affiche(cube);
+	affiche(cube);*/
 	
+	int* tabSolution = BruteForce(cube);
+	AppliqueSolution(cube,tabSolution);
+	affiche(cube);
+
+	printTabSolution(tabSolution);
 
 	
 	

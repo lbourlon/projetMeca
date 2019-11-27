@@ -62,7 +62,7 @@ void main(){
 	//affiche(cube);
 	hello(cube);
 	
-	//FaireFaceOrange(cube, tabCoins);	
+	FaireFaceOrange(cube, tabCoins);	
 	affiche(cube);
 	
 	
