@@ -32,13 +32,11 @@ void main()
 	init(cube);
 	
 	
+	
 	melangeCube(cube);
 	affiche(cube);
-	/*
-	clock_t start, end;
-     double timeUsed;
-     
-     start = clock();
+
+	
 
 	printf("---------------------------------------------------\n");
 	//--------------------Face Orange
@@ -46,7 +44,7 @@ void main()
 	FinirFaceOrange(cube, tabCoins);
 	printf("---------------------------------------------------\n");
 	//--------------------Deuxième Couronne
-	FaireCouronne(cube, tabMilieux);
+	FaireCouronne(cube, tabMilieux,tabCoins);
 	printf("---------------------------------------------------\n");
 	//--------------------Croix Rouge Couronne
 	FaireCroixRouge(cube);
@@ -60,16 +58,15 @@ void main()
 	affiche(cube);
 	FinirCube(cube);
 	printf("---------------------------------------------------\n");
-	end = clock();
-	timeUsed = ((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("temps mis pour déterminer la réponse en seconde : %f\n",timeUsed);
-	affiche(cube);*/
 	
-	int* tabSolution = BruteForce(cube);
+	
+	affiche(cube);
+	
+	/*int* tabSolution = BruteForce(cube);
 	AppliqueSolution(cube,tabSolution);
 	affiche(cube);
 
-	printTabSolution(tabSolution);
+	printTabSolution(tabSolution);*/
 
 	
 	

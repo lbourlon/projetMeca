@@ -637,25 +637,27 @@ char* TrouveCasCouronne(int cube[6][3][3], milieu mil){
 }
 
 
-void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
+void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux, coin *tabCoins){
 	char* cas;
 	cas = TrouveCasCouronne(cube, mil);
-	printf("!!!!!!!!!!!!!!!!!%s\n", cas);
+
 
 	int couleur1 = cube[mil.coord1.face][mil.coord1.x][mil.coord1.y];
 	int couleur2 = cube[mil.coord2.face][mil.coord2.x][mil.coord2.y];
 	
-	char* sens;
-	int orient ;
+	char* sens; //
+	int orient ; // pour savoir l'orientation de la piece milieux entre la courone et la face rouge
+	char* cote; // pour savoir le sens de rotation a choisir pour faire l'algorithme
 
 	milieu milTemp;
 	char* casTemp;
+	char f;
+	int side; // important pour le cas cote imparfait
 	
 	while(cas != "cote_parfait"){
 		
 		
-		if(cas == "bas_parfait")
-		{
+		if(cas == "bas_parfait"){
 			//recherche du coté sur la face du dessous
 			if(mil.coord1.face == RED)
 			{
@@ -666,28 +668,20 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 				orient = 1;
 			}
 			
-			//on veut savoir si on va être en cote droit ou gauche parfait.
-			char* cote;
+			//on veut savoir si on va être en cote droit parfait ou gauche parfait.
 
 			if(couleur1 == YELLOW && couleur2 == GREEN){if(orient == 1){cote = "droite_parfait";} else{cote = "gauche_parfait";}}
-			if(couleur1 == 3 && couleur2 == 5){if(orient == 1){cote ="droite_parfait";}else{cote = "gauche_parfait";}}
-			if(couleur1 == 0 && couleur2 == 1){if(orient == 1){cote = "gauche_parfait";}else{cote = "droite_parfait";}}
-			if(couleur1 == 0 && couleur2 == 3){if(orient == 1){cote = "droite_parfait";}else{cote = "gauche_parfait";}}
+			if(couleur1 == BLUE && couleur2 == YELLOW){if(orient == 1){cote ="droite_parfait";}else{cote = "gauche_parfait";}}
+			if(couleur1 == WHITE && couleur2 == GREEN){if(orient == 1){cote = "gauche_parfait";}else{cote = "droite_parfait";}}
+			if(couleur1 == WHITE && couleur2 == BLUE){if(orient == 1){cote = "droite_parfait";}else{cote = "gauche_parfait";}}
 
 
-
-
-
-		printf("orient est %d\n",orient);
-		printf("%s\n", cas);
-		affiche(cube);
 		//on tourne bien sur coord1
 			if(orient == 1){
 				tourner(mil.coord1.face, cube);
 				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 				casTemp = TrouveCasCouronne(cube, milTemp);
-				printf("le cas cote est %s\n", cote);
-				printf("le casTemp est %s\n", casTemp);
+				
 				if(cote == "gauche_parfait"){
 					if (casTemp == "cote_parfait")
 					{
@@ -780,55 +774,13 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 					}
 					
 				}
-				/*if(casTemp == "cote_parfait"){
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(mil.coord1.face, cube);
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(mil.coord1.face, cube);
-					
-					tourner(RED, cube);
-					tourner(mil.coord1.face, cube);				
-					tourner(mil.coord1.face, cube);
-					tourner(mil.coord1.face, cube);
-					tourner(RED, cube);
-					tourner(mil.coord1.face, cube);				
-					tourner(mil.coord1.face, cube);
-					tourner(mil.coord1.face, cube);
-								
-				} else {	
-					tourner(mil.coord1.face, cube);
-					tourner(mil.coord1.face, cube);
-					
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(mil.coord1.face, cube);
-					tourner(mil.coord1.face, cube);
-					tourner(mil.coord1.face, cube);
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(RED, cube);
-					tourner(mil.coord1.face, cube);
-					tourner(mil.coord1.face, cube);
-					tourner(mil.coord1.face, cube);
-					
-					tourner(RED, cube);
-					tourner(mil.coord1.face, cube);
-					tourner(RED, cube);
-					tourner(mil.coord1.face, cube);				
-				}*/
 			}
 			//on tourne sur coord2
 			if(orient == 2){
 				tourner(mil.coord2.face, cube);
 				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 				casTemp = TrouveCasCouronne(cube, milTemp);
-				printf("le cas cote est %s\n", cote);
-				printf("le casTemp est %s\n", casTemp);
+				
 				
 				if(cote == "gauche_parfait"){
 					if (casTemp == "cote_parfait")
@@ -924,11 +876,8 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 				}
 			}
 		}
-		if (cas == "bas_imparfait")
-		{
-			printf("%s\n", cas);
-			affiche(cube);
-
+	    
+		else if (cas == "bas_imparfait")	{
 			milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 			casTemp = TrouveCasCouronne(cube, milTemp);
 			while (casTemp != "bas_parfait")
@@ -940,25 +889,22 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 
 			
 		}
+		//cas = TrouveCasCouronne(cube, mil);
 
-		if (cas == "cote_imparfait")
-		{
-			printf("%s\n", cas);
-			int side;
-			/*if(couleur1 == YELLOW && couleur2 == GREEN){side = 1;}
-			if(couleur1 == 3 && couleur2 == 5){side = 1;}
-			if(couleur1 == 0 && couleur2 == 1){side = 2;}
-			if(couleur1 == 0 && couleur2 == 3){side = 1;}*/
-			//on regarde la couleur 
+		else if (cas == "cote_imparfait"){
+			/* Si la piece est placée dans un cote milieux, il faut savoir sur quel
+			 * 'cote' (gauche ou droite) elle se trouve.
+			 * On choisit alors la coordonne de la piece sur laquelle il faut tourner ( 1 ou 2)
+			 * pour être toujours en cas droite parfait*/
 
-			if((mil.coord1.face == BLUE && mil.coord1.x == 1 && mil.coord1.y == 0)
-				|| (mil.coord1.face == YELLOW && mil.coord1.x == 0 && mil.coord1.y == 1)
-				|| (mil.coord1.face == GREEN && mil.coord1.x == 1 && mil.coord1.y == 2)
-				|| (mil.coord1.face == WHITE && mil.coord1.x == 2 && mil.coord1.y == 1)
+			if((mil.coord1.face == BLUE    && mil.coord1.x == 1 && mil.coord1.y == 0)
+			|| (mil.coord1.face == YELLOW  && mil.coord1.x == 0 && mil.coord1.y == 1)
+			|| (mil.coord1.face == GREEN   && mil.coord1.x == 1 && mil.coord1.y == 2)
+			|| (mil.coord1.face == WHITE   && mil.coord1.x == 2 && mil.coord1.y == 1)
 			){side = 1;}
 			else{side = 2;}
 			
-
+			printf("\n Le side de cette affaire est : %d.\n", side);
 
 
 			
@@ -966,11 +912,9 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 				tourner(mil.coord1.face, cube);
 				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 				casTemp = TrouveCasCouronne(cube, milTemp);
-				affiche(cube);		
-				printf("le side est %d\n", side);
-				printf("le casTemp est %s\n", casTemp);
+				
+				
 				if(casTemp != "bas_imparfait"){
-					printf("bon sens\n");
 					tourner(RED, cube);
 					tourner(RED, cube);
 					tourner(RED, cube);
@@ -990,7 +934,7 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 					tourner(mil.coord1.face, cube);
 								
 				} else {	
-					printf("mauvais sens");
+					
 					tourner(mil.coord1.face, cube);
 					tourner(mil.coord1.face, cube);
 					
@@ -1012,13 +956,11 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 					tourner(RED, cube);
 					tourner(mil.coord1.face, cube);				
 				}
-			}
-			else{
+			} else {
 				tourner(mil.coord2.face, cube);
 				milTemp = RechercherMilieu(cube, tabMilieux, couleur1, couleur2);
 				casTemp = TrouveCasCouronne(cube, milTemp);	
-				printf("le side est %d\n", side);
-				printf("le casTemp est %s\n", casTemp);	
+				
 				if(casTemp != "bas_imparfait"){
 				
 					tourner(RED, cube);
@@ -1040,7 +982,7 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 					tourner(mil.coord2.face, cube);
 					}
 					else{
-					
+					//marche
 					tourner(mil.coord2.face, cube);
 					tourner(mil.coord2.face, cube);
 					tourner(RED, cube);
@@ -1060,36 +1002,61 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux){
 					tourner(mil.coord2.face, cube);
 					tourner(RED, cube);
 					tourner(mil.coord2.face, cube);
+					
 					}
 
 			}
 					
-			affiche(cube);
+		
 		}
 		
-	affiche(cube);
+
 		
 	mil = RechercherMilieu(cube,tabMilieux,couleur1, couleur2);
 	cas = TrouveCasCouronne(cube, mil);
+	
+	
+	affiche(cube);
+	printf("La piece qui m est : %d%d,\n",couleur1, couleur2);
+	printf("Le side qui nous fais ch : %d\n", side);
+	
+	
+	if(!(cube[2][2][0] == cube[2][2][0] && 
+		 cube[2][0][2] == cube[2][2][2] &&
+		 cube[2][0][0] == cube[2][2][2] &&
+		 cube[2][1][0] == cube[2][2][1] &&
+		 cube[2][0][1] == cube[2][1][2] &&
+		 cube[2][1][0] == cube[2][0][0]))
+		{
+			FaireCroixOrange(cube, tabMilieux);
+			FinirFaceOrange(cube, tabCoins);
+			printf("blblblblblbblblblblblblblblblblblblbblblblblblblblblblblblbblblblblblblblblblblblblblblblblblblbllblblbbllblblblblb\n\n\n\n\n\n");
+		}
+	
+	
+	
 	}
+	
 	printf("--------------------------FIN COTE COURONNE-----------------------\n");
+
 }
 
-void FaireCouronne(int cube[6][3][3],milieu tab[12])
+
+void FaireCouronne(int cube[6][3][3],milieu tab[12], coin *tabCoins)
 {
 	milieu mil35, mil51, mil01, mil03;
 
 	mil35 = RechercherMilieu(cube,tab,3,5);
-	FairePartieCouronne(cube, mil35,tab);
+	FairePartieCouronne(cube, mil35,tab, tabCoins);
 	
 	mil51 = RechercherMilieu(cube,tab,5,1);
-	FairePartieCouronne(cube, mil51,tab);
+	FairePartieCouronne(cube, mil51,tab, tabCoins);
 
 	mil01 = RechercherMilieu(cube,tab,0,1);
-	FairePartieCouronne(cube, mil01,tab);
+	FairePartieCouronne(cube, mil01,tab, tabCoins);
 
 	mil03 = RechercherMilieu(cube,tab,0,3);
-	FairePartieCouronne(cube, mil03,tab);
+	FairePartieCouronne(cube, mil03,tab, tabCoins);
 
 }
 
@@ -1376,11 +1343,11 @@ void AppliqueSolution(int cube[6][3][3], int tabSolution[18]){
 
 int* BruteForce(int cube[6][3][3])
 {
-	clock_t start, end;
+	/*clock_t start, end;
      double timeUsed;
      
      start = clock();
-     
+     */
 	
 	
 	int* tabSolution = malloc(18 * sizeof(int));
@@ -1422,9 +1389,9 @@ int* BruteForce(int cube[6][3][3])
 		if (verifie(cubecopie) == 1)
 		{	
 			
-			end = clock();
+			/*end = clock();
 			timeUsed = ((double) (end - start)) / CLOCKS_PER_SEC;
-			printf("temps mis pour déterminer la réponse en seconde : %f\n",timeUsed);
+			printf("temps mis pour déterminer la réponse en seconde : %f\n",timeUsed);*/
 			return tabSolution;
 		}
 		
@@ -1529,6 +1496,7 @@ int* BruteForce(int cube[6][3][3])
 	}
 	
 }
+
 
 //Prend un tableaux Solution (avec des 1,2,3,4,5 et -1) et affiche les cotés a tourner.
 void printTabSolution(int tabSolution[14]){

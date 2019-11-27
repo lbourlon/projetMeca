@@ -19,6 +19,7 @@ struct _coin {
 };
 
 
+
 //Fonctions milieux
 milieu rm(int face1,int x1,int y1,int face2,int x2,int y2);
 milieu RechercherMilieu(int cube[6][3][3],milieu tab[12], int couleur1, int couleur2);
@@ -37,8 +38,8 @@ void FinirFaceOrange(int cube[6][3][3], coin tabCoins[8]);
 
 //Fonctions couronne
 char* TrouveCasCouronne(int cube[6][3][3], milieu mil);
-void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux);
-void FaireCouronne(int cube[6][3][3],milieu tab[12]);
+void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux, coin *tabCoins);
+void FaireCouronne(int cube[6][3][3],milieu tab[12], coin *tabCoins);
 
 
 void MiseEnPlaceCoteRouge(int cube[6][3][3]);

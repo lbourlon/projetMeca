@@ -358,3 +358,5 @@ void melangeCube(int cube[6][3][3]){
 	}
 	
 }
+
+

@@ -5,7 +5,7 @@ CFLAGS =
 #CFLAGS = -g
 
 # nom des librairies a lier
-LNAME = -lm
+LNAME = -lm -Wall
 
 # nom de l executable
 EXEC=main.exe
@@ -34,3 +34,5 @@ $(EXEC) : $(OBJ)
 clean:
 	rm -rf *.o
 	ls
+	
+	
