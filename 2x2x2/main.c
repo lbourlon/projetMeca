@@ -21,7 +21,7 @@ void main(){
 	int cube[6][2][2];
 
 	init(cube);
-	affiche(cube);
+	//affiche(cube);
 
 	
 	melangeCube(cube);	
