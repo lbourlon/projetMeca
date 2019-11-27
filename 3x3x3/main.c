@@ -34,8 +34,8 @@ void main()
 	
 	melangeCube(cube);
 	affiche(cube);
-
-	/*clock_t start, end;
+	/*
+	clock_t start, end;
      double timeUsed;
      
      start = clock();

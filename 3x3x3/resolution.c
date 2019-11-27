@@ -1374,7 +1374,7 @@ void AppliqueSolution(int cube[6][3][3], int tabSolution[18]){
 
 
 
-int BruteForce(int cube[6][3][3])
+int* BruteForce(int cube[6][3][3])
 {
 	clock_t start, end;
      double timeUsed;
