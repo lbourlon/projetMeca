@@ -144,6 +144,28 @@ void tourner(int face, int cube[6][2][2]){
 			tourner(1,cube);
 			tourner(1,cube);
 			tourner(1,cube);
+			/*
+			temp = cube[face][1][0];
+			cube[face][1][0] = cube[face][0][0];
+			cube[face][0][0] = cube[face][0][1];
+			cube[face][0][1] = cube[face][1][1];
+			cube[face][1][1] = temp;
+			
+			temp =  cube[0][1][0];
+			temp1 = cube[0][1][1];
+			
+			cube[0][1][0] = cube[4][0][1];
+			cube[0][1][1] = cube[4][0][0];
+			
+			cube[4][0][1] = cube[5][1][0];
+			cube[4][0][0] = cube[5][1][1];
+			
+			cube[5][1][1] = cube[2][1][1]; 
+			cube[5][1][0] = cube[2][1][0];
+			
+			cube[2][1][0] = temp;
+			cube[2][1][1] = temp1;*/
+			
 			
 			break;
 			
@@ -152,6 +174,28 @@ void tourner(int face, int cube[6][2][2]){
 			tourner(2,cube);
 			tourner(2,cube);
 			tourner(2,cube);
+			/*
+			temp = cube[face][1][0];
+			cube[face][1][0] = cube[face][0][0];
+			cube[face][0][0] = cube[face][0][1];
+			cube[face][0][1] = cube[face][1][1];
+			cube[face][1][1] = temp;
+			
+			temp =  cube[3][1][0];
+			temp1 = cube[3][1][1];
+			
+			cube[3][1][0] = cube[0][1][1];
+			cube[3][1][1] = cube[0][0][1];
+			
+			cube[0][1][1] = cube[1][0][1];
+			cube[0][0][1] = cube[1][0][0];
+			
+			cube[1][0][1] = cube[5][0][0]; 
+			cube[1][0][0] = cube[5][1][0];
+			
+			cube[5][0][0] = temp;
+			cube[5][1][0] = temp1;*/
+			
 			
 			break;
 		
@@ -161,6 +205,31 @@ void tourner(int face, int cube[6][2][2]){
 			tourner(0,cube);
 			tourner(0,cube);
 			
+			/*
+			temp = cube[face][1][0];
+			cube[face][1][0] = cube[face][0][0];
+			cube[face][0][0] = cube[face][0][1];
+			cube[face][0][1] = cube[face][1][1];
+			cube[face][1][1] = temp;
+			
+			temp =  cube[2][1][0];
+			temp1 = cube[2][0][0];
+			
+			cube[2][1][0] = cube[3][1][0];
+			cube[2][0][0] = cube[3][0][0];
+			
+			cube[3][1][0] = cube[4][1][0];
+			cube[3][0][0] = cube[4][0][0];
+			
+			cube[4][1][0] = cube[1][1][0]; 
+			cube[4][0][0] = cube[1][0][0];
+			
+			cube[1][1][0] = temp;
+			cube[1][0][0] = temp1;*/
+			
+			
+			
+			
 			break;
 			
 		}		
@@ -168,6 +237,180 @@ void tourner(int face, int cube[6][2][2]){
 	
 }
 
+
+void mtourner(int face, int cube[6][2][2]){
+	switch(face)
+	{
+		int temp;
+		int temp1;
+		
+		case 0:
+			temp = cube[face][1][0];
+			cube[face][1][0] = cube[face][0][0];
+			cube[face][0][0] = cube[face][0][1];
+			cube[face][0][1] = cube[face][1][1];
+			cube[face][1][1] = temp;
+			
+			temp =  cube[4][0][1];
+			temp1 = cube[4][1][1];
+			
+			int i;
+			for (i = 4; i >= 2 ; i = i-1)
+			{
+				cube[i][0][1] = cube[i-1][0][1];
+				cube[i][1][1] = cube[i-1][1][1];
+			}
+			
+			cube[1][0][1] = temp;
+			cube[1][1][1] = temp1;
+			
+			break;
+			
+		case 1:
+			temp = cube[face][1][0];
+			cube[face][1][0] = cube[face][0][0];
+			cube[face][0][0] = cube[face][0][1];
+			cube[face][0][1] = cube[face][1][1];
+			cube[face][1][1] = temp;
+			
+			temp =  cube[4][1][0];
+			temp1 = cube[4][1][1];
+			
+			cube[4][1][0] = cube[0][0][1];
+			cube[4][1][1] = cube[0][0][0];
+			
+			cube[0][0][1] = cube[2][0][1];
+			cube[0][0][0] = cube[2][0][0];
+			
+			cube[2][0][1] = cube[5][0][1];
+			cube[2][0][0] = cube[5][0][0];
+			
+			cube[5][0][1] = temp;
+			cube[5][0][0] = temp1;
+			
+			break;
+			
+		case 2:
+			temp = cube[face][1][0];
+			cube[face][1][0] = cube[face][0][0];
+			cube[face][0][0] = cube[face][0][1];
+			cube[face][0][1] = cube[face][1][1];
+			cube[face][1][1] = temp;
+			
+			temp =  cube[0][0][0];
+			temp1 = cube[0][1][0];
+			
+			cube[0][0][0] = cube[3][0][1];
+			cube[0][1][0] = cube[3][0][0];
+			
+			cube[3][0][1] = cube[5][1][1];
+			cube[3][0][0] = cube[5][0][1];
+			
+			cube[5][1][1] = cube[1][1][0]; 
+			cube[5][0][1] = cube[1][1][1];
+			
+			cube[1][1][0] = temp;
+			cube[1][1][1] = temp1;
+			
+			break;
+		
+		case 3: 
+			//Equivalent de 3x le côté 2
+			/*tourner(1,cube);
+			tourner(1,cube);
+			tourner(1,cube);*/
+			
+			temp = cube[face][1][0];
+			cube[face][1][0] = cube[face][0][0];
+			cube[face][0][0] = cube[face][0][1];
+			cube[face][0][1] = cube[face][1][1];
+			cube[face][1][1] = temp;
+			
+			temp =  cube[0][1][0];
+			temp1 = cube[0][1][1];
+			
+			cube[0][1][0] = cube[4][0][1];
+			cube[0][1][1] = cube[4][0][0];
+			
+			cube[4][0][1] = cube[5][1][0];
+			cube[4][0][0] = cube[5][1][1];
+			
+			cube[5][1][1] = cube[2][1][1]; 
+			cube[5][1][0] = cube[2][1][0];
+			
+			cube[2][1][0] = temp;
+			cube[2][1][1] = temp1;
+			
+			
+			break;
+			
+		case 4: 
+			//Equivalent de 3x le côté 2
+			/*tourner(2,cube);
+			tourner(2,cube);
+			tourner(2,cube);*/
+			
+			
+			temp = cube[face][1][0];
+			cube[face][1][0] = cube[face][0][0];
+			cube[face][0][0] = cube[face][0][1];
+			cube[face][0][1] = cube[face][1][1];
+			cube[face][1][1] = temp;
+			
+			temp =  cube[3][1][0];
+			temp1 = cube[3][1][1];
+			
+			cube[3][1][0] = cube[0][1][1];
+			cube[3][1][1] = cube[0][0][1];
+			
+			cube[0][1][1] = cube[1][0][1];
+			cube[0][0][1] = cube[1][0][0];
+			
+			cube[1][0][1] = cube[5][0][0]; 
+			cube[1][0][0] = cube[5][1][0];
+			
+			cube[5][0][0] = temp;
+			cube[5][1][0] = temp1;
+			
+			break;
+		
+		case 5:
+			//Équivalet de 3x le côté 0
+			/*tourner(0,cube);
+			tourner(0,cube);
+			tourner(0,cube);*/
+			
+			
+			temp = cube[face][1][0];
+			cube[face][1][0] = cube[face][0][0];
+			cube[face][0][0] = cube[face][0][1];
+			cube[face][0][1] = cube[face][1][1];
+			cube[face][1][1] = temp;
+			
+			temp =  cube[2][1][0];
+			temp1 = cube[2][0][0];
+			
+			cube[2][1][0] = cube[3][1][0];
+			cube[2][0][0] = cube[3][0][0];
+			
+			cube[3][1][0] = cube[4][1][0];
+			cube[3][0][0] = cube[4][0][0];
+			
+			cube[4][1][0] = cube[1][1][0]; 
+			cube[4][0][0] = cube[1][0][0];
+			
+			cube[1][1][0] = temp;
+			cube[1][0][0] = temp1;
+			
+			
+			
+			
+			break;
+			
+		}		
+	
+	
+}
 void randTour(int cube[6][2][2]){
 	//tire au sort un numero entre 0 et 5 et fait tourner le cube en fonction de celui-ci
 	int RandNum = (rand() % (6));
