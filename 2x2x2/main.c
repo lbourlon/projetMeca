@@ -59,21 +59,23 @@ void main(){
 	int cube[6][2][2];
 
 	init(cube);
-	//hello(cube);
 	affiche(cube);
 
 	
 	melangeCube(cube);	
 	affiche(cube);
-	/*	
-	//tourner(YELLOW, cube);
-	
-	
+
 	
 	FaireFaceOrange(cube, tabCoins);	
 	affiche(cube);
+
+	FaireCoinsRouge(cube);
+	affiche(cube);
+
+	FaireCoinsFinal(cube);
+	affiche(cube);
+	/*
 	
-	*/
 	//-----------------------BRUTE FORCE----------------
 
 	int* tabSolution = BruteForce(cube);
@@ -81,7 +83,7 @@ void main(){
 	affiche(cube);
 
 	printTabSolution(tabSolution);
-	
+	*/
 	
 	
 }

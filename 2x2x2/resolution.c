@@ -172,7 +172,7 @@ char* TrouveCasCoin(int cube[6][2][2], coin co){
 		cas = "dessous";	
 	}
 	
-	printf("\nle cas est %s\n",cas);
+
 	return cas;
 }
 
@@ -195,7 +195,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 		//devient côté_bas
 		if(cas == "imparfait")
 		{
-			printf("%s\n", cas);
+
 			mtourner(co.coord2.face, cube);
 			coTemp = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 			casTemp = TrouveCasCoin(cube, coTemp);
@@ -222,7 +222,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 		//devient coté_bas
 		if(cas == "cote_haut")
 		{
-			printf("%s\n", cas);
+
 			mtourner(co.coord1.face, cube);
 			coTemp = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 			casTemp = TrouveCasCoin(cube, coTemp);
@@ -246,7 +246,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 		//devient coté_bas
 		if(cas == "dessous")
 		{
-			printf("%s\n", cas);
+
 			if((co.coord2.face == couleur2 && co.coord3.face == couleur3) ||
 				(co.coord2.face == couleur3 && co.coord3.face == couleur2))
 			{
@@ -277,7 +277,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 		//devient coté_bas_parfait
 		if(cas == "cote_bas_imparfait")
 		{
-			printf("%s\n", cas);
+
 			coTemp = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 			casTemp = TrouveCasCoin(cube, coTemp);
 			while (casTemp != "cote_bas_parfait")
@@ -285,7 +285,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 				mtourner(RED, cube);
 				coTemp = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 				casTemp = TrouveCasCoin(cube, coTemp);
-				printf("le cas coTemp est %s\n", casTemp);
+
 				affiche(cube);
 				
 			}
@@ -304,8 +304,8 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 				coTemp2 = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 				casTemp2 = TrouveCasCoin(cube, coTemp2);
 				if(casTemp2 != "cote_bas_parfait"){
-					tourner(RED, cube);
-					tourner(RED, cube);
+					mtourner(RED, cube);
+					mtourner(RED, cube);
 				}
 				
 				mtourner(co.coord1.face, cube);
@@ -343,22 +343,163 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 void FaireFaceOrange(int cube[6][2][2], coin tabCoins[8]){
 	coin co210, co215, co253, co230;
 	
-	printf("boujour mêssier1\n");
 	co210 = RechercherCoin(cube, tabCoins, 2, 1, 0);
-	printf("boujour mêssier2\n");
 	FaireCoinOrange(cube, co210, tabCoins);
-	
-	printf("boujour mêssier3\n");
+
 	co215 = RechercherCoin(cube, tabCoins, 2, 1, 5);
 	FaireCoinOrange(cube, co215, tabCoins);
-	
 	
 	co253 = RechercherCoin(cube, tabCoins, 2, 5, 3);
 	FaireCoinOrange(cube, co253, tabCoins);
 	
-	
 	co230 = RechercherCoin(cube, tabCoins, 2, 3, 0);
 	FaireCoinOrange(cube, co230, tabCoins);
-	
+}
 
+
+void MiseEnPlaceCoinRouge(int cube[6][2][2])
+{
+	
+	mtourner(GREEN, cube);
+	mtourner(RED, cube);
+
+	mtourner(GREEN, cube);
+	mtourner(GREEN, cube);
+	mtourner(GREEN, cube);
+
+	mtourner(RED, cube);
+
+	mtourner(GREEN, cube);
+
+	mtourner(RED, cube);
+	mtourner(RED, cube);
+
+	mtourner(GREEN, cube);
+	mtourner(GREEN, cube);
+	mtourner(GREEN, cube);
+
+}
+
+
+void FaireCoinsRouge(int cube[6][2][2])
+{
+	while(cube[4][0][0] != RED || cube[4][1][0] != RED || cube[4][0][1] != RED || cube[4][1][1] != RED)
+		{
+		//cas pas de coins
+		if(cube[4][0][0] != RED && cube[4][1][0] != RED && cube[4][0][1] != RED && cube[4][1][1] != RED)
+		{
+			printf("cas pasdecoins\n");
+			MiseEnPlaceCoinRouge(cube);
+		}
+
+		//cas 2 coins opposés parfait
+		if(cube[4][0][0] == RED && cube[4][1][1] == RED )
+		{
+			printf("cas 2coinsopposés1\n");
+			MiseEnPlaceCoinRouge(cube);
+		}
+
+		//cas 2 coins opposés imparfait
+		if(cube[4][0][1] == RED && cube[4][1][0] == RED )
+		{
+			printf("cas 2coinsopposés2\n");
+			tourner(RED, cube);
+			MiseEnPlaceCoinRouge(cube);
+		}
+
+		//cas 2 coins alignés
+		if((cube[4][0][0] == RED && cube[4][1][0] == RED) ||
+			(cube[4][1][0] == RED && cube[4][1][1] == RED) ||
+			(cube[4][1][1] == RED && cube[4][0][1] == RED) ||
+			(cube[4][0][1] == RED && cube[4][0][0] == RED))
+			{
+				printf("cas 2coinsopposés\n");
+				while(cube[4][1][1] != RED && cube[4][0][1] != RED)
+				{
+					mtourner(RED, cube);
+				}
+				MiseEnPlaceCoinRouge(cube);
+			}
+
+		//cas 1 seul coin
+		if((cube[4][0][0] == RED && cube[4][1][0] != RED && cube[4][0][1] != RED && cube[4][1][1] != RED) ||
+			(cube[4][0][0] != RED && cube[4][1][0] == RED && cube[4][0][1] != RED && cube[4][1][1] != RED) ||
+			(cube[4][0][0] != RED && cube[4][1][0] != RED && cube[4][0][1] == RED && cube[4][1][1] != RED) ||
+			(cube[4][0][0] != RED && cube[4][1][0] != RED && cube[4][0][1] != RED && cube[4][1][1] == RED))
+		
+		{
+			while(cube[4][0][1] != RED)
+			{
+				printf("cas 1seulcoin\n");
+				affiche(cube);
+				mtourner(RED,cube);
+			}
+			MiseEnPlaceCoinRouge(cube);
+		}
+		//else{printf("pbm\n"); affiche(cube);}
+	}
+}
+
+void MiseEnPlaceCoinsFinal(int cube[6][2][2])
+{
+	mtourner(GREEN, cube);
+	mtourner(GREEN, cube);
+	mtourner(GREEN, cube);
+
+	mtourner(WHITE, cube);
+
+	mtourner(GREEN, cube);
+	mtourner(GREEN, cube);
+	mtourner(GREEN, cube);
+
+	mtourner(YELLOW, cube);
+	mtourner(YELLOW, cube);
+
+	mtourner(GREEN, cube);
+
+	mtourner(WHITE, cube);
+	mtourner(WHITE, cube);
+	mtourner(WHITE, cube);
+
+	mtourner(GREEN, cube);
+	mtourner(GREEN, cube);
+	mtourner(GREEN, cube);
+
+	mtourner(YELLOW, cube);
+	mtourner(YELLOW, cube);
+
+	mtourner(GREEN, cube);
+	mtourner(GREEN, cube);
+}
+
+void FaireCoinsFinal(int cube[6][2][2])
+{
+	while(cube[3][1][1] != cube[3][1][0] || cube[5][1][0] != cube[5][0][0] || cube[1][0][0] != cube[1][0][1] || cube[0][0][1] != cube[0][1][1])
+	{
+		//cas 2coins bien cote a cote
+		int i = 0;
+		while((cube[5][0][0] != cube[5][1][0]) && i <= 3)
+		{
+			mtourner(RED, cube);
+			i = i + 1;
+		}
+	
+		printf("cas2cote\n");
+		affiche(cube);
+		MiseEnPlaceCoinsFinal(cube);
+	
+		//printf("cas 1 coin\n");
+		//MiseEnPlaceCoinsFinal(cube);
+		
+		printf("fin de boucle\n");
+		affiche(cube);
+	}
+	printf("sortie de boucle\n");
+	affiche(cube);
+	while(cube[3][1][1] != cube[3][0][0])
+	{
+		printf("dans la dernière boucle\n");
+		mtourner(RED, cube);
+		affiche(cube);
+	}
 }

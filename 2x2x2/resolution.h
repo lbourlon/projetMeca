@@ -19,3 +19,9 @@ char* TrouveCasCoin(int cube[6][2][2], coin co);
 void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]);
 
 void FaireFaceOrange(int cube[6][2][2], coin tabCoins[8]);
+
+void MiseEnPlaceCoinRouge(int cube[6][2][2]);
+void FaireCoinsRouge(int cube[6][2][2]);
+
+void MiseEnPlaceCoinsFinal(int cube[6][2][2]);
+void FaireCoinsFinal(int cube[6][2][2]);

@@ -22,12 +22,14 @@ void init(int cube[6][2][2]){
 	
 }
 
-//Affiche un cube 2x2x2 sur le terminale.
+//Affiche un cube 2x2x2 sur le terminal.
 void affiche(int cube[6][2][2]){
+	printf("---------------\n");
 	printf("    ");
 	printf("%d ",cube[5][0][0]);
 	printf("%d ",cube[5][1][0]);
 	printf("        \n    ");
+	printf("    ----        \n");
 
 	printf("%d ",cube[5][0][1]);
 	printf("%d ",cube[5][1][1]);
@@ -315,10 +317,6 @@ void mtourner(int face, int cube[6][2][2]){
 			break;
 		
 		case 3: 
-			//Equivalent de 3x le côté 2
-			/*tourner(1,cube);
-			tourner(1,cube);
-			tourner(1,cube);*/
 			
 			temp = cube[face][1][0];
 			cube[face][1][0] = cube[face][0][0];
@@ -345,10 +343,6 @@ void mtourner(int face, int cube[6][2][2]){
 			break;
 			
 		case 4: 
-			//Equivalent de 3x le côté 2
-			/*tourner(2,cube);
-			tourner(2,cube);
-			tourner(2,cube);*/
 			
 			
 			temp = cube[face][1][0];
@@ -374,12 +368,7 @@ void mtourner(int face, int cube[6][2][2]){
 			
 			break;
 		
-		case 5:
-			//Équivalet de 3x le côté 0
-			/*tourner(0,cube);
-			tourner(0,cube);
-			tourner(0,cube);*/
-			
+		case 5:	
 			
 			temp = cube[face][1][0];
 			cube[face][1][0] = cube[face][0][0];
