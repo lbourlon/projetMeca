@@ -177,7 +177,7 @@ char* TrouveCasCoin(int cube[6][2][2], coin co){
 }
 
 //place le coin co dans son bon emplacement.
-void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
+void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8],int *compt){
 	char* cas;
 	cas = TrouveCasCoin(cube, co);
 	int couleur2 = cube[co.coord2.face][co.coord2.x][co.coord2.y];
@@ -197,6 +197,8 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 		{
 
 			mtourner(co.coord2.face, cube);
+			*compt = *compt + 1;
+
 			coTemp = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 			casTemp = TrouveCasCoin(cube, coTemp);
 			if(casTemp == "cote_bas_imparfait"){
@@ -205,6 +207,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 				mtourner(co.coord2.face, cube);
 				mtourner(co.coord2.face, cube);
 				mtourner(co.coord2.face, cube);
+				*compt = *compt + 3;
 				
 			} else {
 				mtourner(co.coord2.face, cube);
@@ -212,6 +215,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 				mtourner(RED, cube);
 				mtourner(RED, cube);
 				mtourner(co.coord2.face, cube);
+				*compt = *compt + 5;
 				
 			}
 		
@@ -224,6 +228,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 		{
 
 			mtourner(co.coord1.face, cube);
+			*compt = *compt + 1;
 			coTemp = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 			casTemp = TrouveCasCoin(cube, coTemp);
 			if(casTemp == "cote_bas_imparfait" ||  casTemp == "cote_bas_parfait" ){
@@ -232,6 +237,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 				mtourner(co.coord1.face, cube);
 				mtourner(co.coord1.face, cube);
 				mtourner(co.coord1.face, cube);
+				*compt = *compt + 3;
 				
 			} else {
 				mtourner(co.coord1.face, cube);
@@ -239,6 +245,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 				mtourner(RED, cube);
 				mtourner(RED, cube);
 				mtourner(co.coord1.face, cube);
+				*compt = *compt + 5;
 			}
 		}
 		
@@ -251,6 +258,8 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 				(co.coord2.face == couleur3 && co.coord3.face == couleur2))
 			{
 				mtourner(co.coord2.face, cube);
+				*compt = *compt + 1;
+
 				coTemp = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 				casTemp = TrouveCasCoin(cube, coTemp);
 				if(casTemp == "cote_bas_imparfait"){
@@ -259,16 +268,19 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 					mtourner(co.coord2.face, cube);
 					mtourner(co.coord2.face, cube);
 					mtourner(co.coord2.face, cube);
+					*compt = *compt + 3;
 				} else {
 					mtourner(co.coord2.face, cube);
 					mtourner(co.coord2.face, cube);
 					mtourner(RED, cube);
 					mtourner(RED, cube);
 					mtourner(co.coord2.face, cube);
+					*compt = *compt + 5;
 				}
 				
 			} else {
 				mtourner(RED, cube);
+				*compt = *compt + 1;
 			}
 			
 			
@@ -283,6 +295,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 			while (casTemp != "cote_bas_parfait")
 			{
 				mtourner(RED, cube);
+				*compt = *compt + 1;
 				coTemp = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 				casTemp = TrouveCasCoin(cube, coTemp);
 
@@ -296,36 +309,43 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 		if(cas == "cote_bas_parfait")
 		{
 			mtourner(co.coord1.face, cube);
+			*compt = *compt + 1;
 			coTemp = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 			casTemp = TrouveCasCoin(cube, coTemp);
 			
 			if(casTemp == "cote_bas_imparfait"){
 				mtourner(RED, cube);
+				*compt = *compt + 1;
 				coTemp2 = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 				casTemp2 = TrouveCasCoin(cube, coTemp2);
 				if(casTemp2 != "cote_bas_parfait"){
 					mtourner(RED, cube);
 					mtourner(RED, cube);
+					*compt = *compt + 2;
 				}
 				
 				mtourner(co.coord1.face, cube);
 				mtourner(co.coord1.face, cube);
 				mtourner(co.coord1.face, cube);
+				*compt = *compt + 1;
 				
 				 
 			} else {
 				mtourner(co.coord1.face, cube);
 				mtourner(co.coord1.face, cube);
+				*compt = *compt + 2;
 				
 				coTemp2 = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 				casTemp2 = TrouveCasCoin(cube, coTemp2);
 				while(casTemp2 != "cote_bas_parfait"){
 					mtourner(RED, cube);
+					*compt = *compt + 1;
 					coTemp2 = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 					casTemp2 = TrouveCasCoin(cube, coTemp2);
 				}
 				
 				mtourner(co.coord1.face, cube);
+				*compt = *compt + 1;
 				
 			}
 			
@@ -340,24 +360,24 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8]){
 }
 
 //appelle FaireCoinOrange, pour résouder les quatre coins manquants de la face orange
-void FaireFaceOrange(int cube[6][2][2], coin tabCoins[8]){
+void FaireFaceOrange(int cube[6][2][2], coin tabCoins[8], int *compt){
 	coin co210, co215, co253, co230;
 	
 	co210 = RechercherCoin(cube, tabCoins, 2, 1, 0);
-	FaireCoinOrange(cube, co210, tabCoins);
+	FaireCoinOrange(cube, co210, tabCoins, compt); 
 
 	co215 = RechercherCoin(cube, tabCoins, 2, 1, 5);
-	FaireCoinOrange(cube, co215, tabCoins);
+	FaireCoinOrange(cube, co215, tabCoins, compt);
 	
 	co253 = RechercherCoin(cube, tabCoins, 2, 5, 3);
-	FaireCoinOrange(cube, co253, tabCoins);
+	FaireCoinOrange(cube, co253, tabCoins, compt);
 	
 	co230 = RechercherCoin(cube, tabCoins, 2, 3, 0);
-	FaireCoinOrange(cube, co230, tabCoins);
+	FaireCoinOrange(cube, co230, tabCoins, compt);
 }
 
 
-void MiseEnPlaceCoinRouge(int cube[6][2][2])
+void MiseEnPlaceCoinRouge(int cube[6][2][2], int *compt)
 {
 	
 	mtourner(GREEN, cube);
@@ -378,10 +398,12 @@ void MiseEnPlaceCoinRouge(int cube[6][2][2])
 	mtourner(GREEN, cube);
 	mtourner(GREEN, cube);
 
+	*compt = *compt + 8;
+
 }
 
 
-void FaireCoinsRouge(int cube[6][2][2])
+void FaireCoinsRouge(int cube[6][2][2], int *compt)
 {
 	while(cube[4][0][0] != RED || cube[4][1][0] != RED || cube[4][0][1] != RED || cube[4][1][1] != RED)
 		{
@@ -389,22 +411,23 @@ void FaireCoinsRouge(int cube[6][2][2])
 		if(cube[4][0][0] != RED && cube[4][1][0] != RED && cube[4][0][1] != RED && cube[4][1][1] != RED)
 		{
 			printf("cas pasdecoins\n");
-			MiseEnPlaceCoinRouge(cube);
+			MiseEnPlaceCoinRouge(cube, compt);
 		}
 
 		//cas 2 coins opposés parfait
 		if(cube[4][0][0] == RED && cube[4][1][1] == RED )
 		{
 			printf("cas 2coinsopposés1\n");
-			MiseEnPlaceCoinRouge(cube);
+			MiseEnPlaceCoinRouge(cube, compt);
 		}
 
 		//cas 2 coins opposés imparfait
 		if(cube[4][0][1] == RED && cube[4][1][0] == RED )
 		{
 			printf("cas 2coinsopposés2\n");
-			tourner(RED, cube);
-			MiseEnPlaceCoinRouge(cube);
+			mtourner(RED, cube);
+			*compt = *compt + 1;
+			MiseEnPlaceCoinRouge(cube, compt);
 		}
 
 		//cas 2 coins alignés
@@ -417,8 +440,9 @@ void FaireCoinsRouge(int cube[6][2][2])
 				while(cube[4][1][1] != RED && cube[4][0][1] != RED)
 				{
 					mtourner(RED, cube);
+					*compt = *compt + 1;
 				}
-				MiseEnPlaceCoinRouge(cube);
+				MiseEnPlaceCoinRouge(cube, compt);
 			}
 
 		//cas 1 seul coin
@@ -430,17 +454,16 @@ void FaireCoinsRouge(int cube[6][2][2])
 		{
 			while(cube[4][0][1] != RED)
 			{
-				printf("cas 1seulcoin\n");
-				affiche(cube);
 				mtourner(RED,cube);
+				*compt = *compt + 1;
 			}
-			MiseEnPlaceCoinRouge(cube);
+			MiseEnPlaceCoinRouge(cube, compt);
 		}
-		//else{printf("pbm\n"); affiche(cube);}
+		
 	}
 }
 
-void MiseEnPlaceCoinsFinal(int cube[6][2][2])
+void MiseEnPlaceCoinsFinal(int cube[6][2][2], int *compt)
 {
 	mtourner(GREEN, cube);
 	mtourner(GREEN, cube);
@@ -470,9 +493,11 @@ void MiseEnPlaceCoinsFinal(int cube[6][2][2])
 
 	mtourner(GREEN, cube);
 	mtourner(GREEN, cube);
+
+	*compt = *compt + 12;
 }
 
-void FaireCoinsFinal(int cube[6][2][2])
+void FaireCoinsFinal(int cube[6][2][2], int *compt)
 {
 	while(cube[3][1][1] != cube[3][1][0] || cube[5][1][0] != cube[5][0][0] || cube[1][0][0] != cube[1][0][1] || cube[0][0][1] != cube[0][1][1])
 	{
@@ -483,23 +508,19 @@ void FaireCoinsFinal(int cube[6][2][2])
 			mtourner(RED, cube);
 			i = i + 1;
 		}
+		if(i == 2){compt = compt + 1;}
+		else{if(i != 3){*compt = *compt + i;}}
 	
-		printf("cas2cote\n");
-		affiche(cube);
-		MiseEnPlaceCoinsFinal(cube);
-	
-		//printf("cas 1 coin\n");
-		//MiseEnPlaceCoinsFinal(cube);
+		MiseEnPlaceCoinsFinal(cube, compt);
 		
-		printf("fin de boucle\n");
-		affiche(cube);
+	
 	}
-	printf("sortie de boucle\n");
-	affiche(cube);
+
 	while(cube[3][1][1] != cube[3][0][0])
 	{
-		printf("dans la dernière boucle\n");
 		mtourner(RED, cube);
+		*compt = *compt + 1;
+
 		affiche(cube);
 	}
 }

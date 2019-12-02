@@ -32,3 +32,4 @@ clock_t startClock();
  */
 double endClock(clock_t tempsDebut);
 
+int CompteMouvementBF(int * compt, int *TabSolution);
