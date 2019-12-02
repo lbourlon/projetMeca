@@ -57,6 +57,7 @@ void main(){
 	//----------------------------------------------------------------------
 
 	int cube[6][2][2];
+	int compteur = 0;
 
 	init(cube);
 	affiche(cube);
@@ -66,24 +67,45 @@ void main(){
 	affiche(cube);
 
 	
-	FaireFaceOrange(cube, tabCoins);	
+	FaireFaceOrange(cube, tabCoins, &compteur);	
 	affiche(cube);
 
-	FaireCoinsRouge(cube);
+	FaireCoinsRouge(cube, &compteur);
 	affiche(cube);
 
-	FaireCoinsFinal(cube);
+	FaireCoinsFinal(cube, &compteur);
 	affiche(cube);
-	/*
+	printf("le nombre de tour est: %d\n",compteur);
+	
 	
 	//-----------------------BRUTE FORCE----------------
-
+/*
 	int* tabSolution = BruteForce(cube);
 	AppliqueSolution(cube,tabSolution);
 	affiche(cube);
 
-	printTabSolution(tabSolution);
-	*/
+
+
 	
+	printf("%d\n",tabSolution[1]);
+	printf("%d\n",tabSolution[2]);
+	printf("%d\n",tabSolution[3]);
+	printf("%d\n",tabSolution[4]);
+	printf("%d\n",tabSolution[5]);
+	printf("%d\n",tabSolution[6]);
+	printf("%d\n",tabSolution[7]);
+	printf("%d\n",tabSolution[8]);
+	printf("%d\n",tabSolution[9]);
+	printf("%d\n",tabSolution[10]);
+	printf("%d\n",tabSolution[11]);
+	printf("%d\n",tabSolution[12]);
+
+	int compt = 0;
+	CompteMouvementBF(&compt, tabSolution);
+	printf("le nombre de tour est : %d\n", compt);
+
+	printTabSolution(tabSolution);
+	
+	*/
 	
 }

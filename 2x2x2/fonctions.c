@@ -25,43 +25,53 @@ void init(int cube[6][2][2]){
 //Affiche un cube 2x2x2 sur le terminal.
 void affiche(int cube[6][2][2]){
 	printf("---------------\n");
-	printf("    ");
+	printf("      ");
 	printf("%d ",cube[5][0][0]);
 	printf("%d ",cube[5][1][0]);
-	printf("        \n    ");
-	printf("    ----        \n");
-
+	printf("    \n      ");
 	printf("%d ",cube[5][0][1]);
 	printf("%d ",cube[5][1][1]);
 	printf("        \n");
+	printf("      ---        \n");
 
 	printf("%d ",cube[1][0][0]);
 	printf("%d ",cube[1][1][0]);
+	printf("| ");
 	printf("%d ",cube[2][0][0]);
 	printf("%d ",cube[2][1][0]);
+	printf("| ");
 	printf("%d ",cube[3][0][0]);
 	printf("%d ",cube[3][1][0]);
+	printf("| ");
 	printf("%d ",cube[4][0][0]);
 	printf("%d ",cube[4][1][0]);
 	printf("\n");
 
 	printf("%d ",cube[1][0][1]);
 	printf("%d ",cube[1][1][1]);
+	printf("| ");
 	printf("%d ",cube[2][0][1]);
 	printf("%d ",cube[2][1][1]);
+	printf("| ");
 	printf("%d ",cube[3][0][1]);
 	printf("%d ",cube[3][1][1]);
+	printf("| ");
 	printf("%d ",cube[4][0][1]);
 	printf("%d ",cube[4][1][1]);
-	printf("\n    ");
+	printf("\n");
+	printf("      ---        \n");
+	printf("      ");
 
 	printf("%d ",cube[0][0][0]);
 	printf("%d ",cube[0][1][0]);
 	printf("        \n");
-	printf("    ");
+	printf("      ");
 	printf("%d ",cube[0][0][1]);
 	printf("%d ",cube[0][1][1]);
 	printf("        \n");
+
+
+	printf("---------------\n");
 }
 
 //Prends la face à tourner et le cube en paramètre, et aplique la rotation au cube.
@@ -643,3 +653,15 @@ void printTabSolution(int tabSolution[14]){
 
 
 
+
+void CompteMouvementBF(int *compt, int TabSolution[14])
+{
+	int i = 0;
+	while(TabSolution[i] != -1)
+	{
+		printf(" la valeur %d\n", TabSolution[i]);
+		*compt = *compt + 1;
+		i = i + 1;
+	}
+	
+}

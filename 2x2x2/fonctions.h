@@ -16,3 +16,4 @@ int *BruteForce(int cube[6][2][2]);
 void AppliqueSolution(int cube[6][2][2], int tabSolution[14]);
 void printTabSolution(int tabSolution[14]);
 
+int CompteMouvementBF(int * compt, int *TabSolution);
