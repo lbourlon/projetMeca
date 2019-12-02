@@ -16,3 +16,19 @@ int *BruteForce(int cube[6][2][2]);
 void AppliqueSolution(int cube[6][2][2], int tabSolution[14]);
 void printTabSolution(int tabSolution[14]);
 
+
+//TIMING
+
+/* A exécuter avant la fonction endClock pour mesurer un temps.
+ *
+ * Retourne un objet clock avec l'horaire de début.
+ */
+clock_t startClock();
+
+/* A exécuter après la fonction startClock pour mesurer un temps.
+ * 
+ * Prends en paramètre un objet clock avec le temps de début (retourné par startClock)
+ * et calcule le temps passé entre les deux instants. La fonction retourne ensuite le double temps.
+ */
+double endClock(clock_t tempsDebut);
+

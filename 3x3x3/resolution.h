@@ -57,5 +57,6 @@ void FinirCube(int cube[6][3][3]);
 //BRUTEFORCE
 int verifie( int CubeSortie[6][3][3]);
 void AppliqueSolution(int cube[6][3][3], int tabSolution[18]);
-int BruteForce(int cube[6][3][3]);
 void printTabSolution(int tabSolution[14]);
+
+

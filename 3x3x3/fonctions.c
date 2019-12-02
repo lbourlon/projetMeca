@@ -1,8 +1,16 @@
+/* Ce ficher contient toutes le fonctions prélimintaires de définition du cube
+ * et toutes les fonctions suplémentaires. 
+ *
+ */
+
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
+/* Prends un cube en paramètre, c'est à dire une matrice [6][3][3] et
+ * l'initialise avec des entiers 'couleurs' suivant les couleurs du rubiks cube.
+ */
 void init(int cube[6][3][3]){
 	
 	int k;
@@ -22,7 +30,7 @@ void init(int cube[6][3][3]){
 	
 }
 
-
+//Copie un cubeA dans un cubeB
 void copie(int cubeACopier[6][3][3], int cubeAColler[6][3][3]){
 	
 	int k;
@@ -43,7 +51,7 @@ void copie(int cubeACopier[6][3][3], int cubeAColler[6][3][3]){
 }
 
 
-
+//Affiche un cube sur le terminal
 void affiche(int cube[6][3][3]){
 	printf("  ");
 	printf("  ");
@@ -163,9 +171,14 @@ void affiche(int cube[6][3][3]){
 	printf("  ");
 			printf("\n");
 }
+
+/* Prends un cube en paramètre et la face à tourner fait tourner cette face.
+ * Ceci en suivant les règles physiques imposés par le cube.
+ * Les rotations sont faites en sens Horaire (suivant le schéma).
+ */
 void tourner(int face, int cube[6][3][3]){
 		
-		//fait tourner sur la face, s'applique indépendament de la face
+		//S'applique indépendament de la face, fait tourner les valeurs sur celle-ci
 			int temp;
 			temp = cube[face][0][0];
 			cube[face][0][0] = cube[face][0][2];
@@ -179,17 +192,13 @@ void tourner(int face, int cube[6][3][3]){
 			cube[face][1][2] = cube[face][2][1];
 			cube[face][2][1] = temp;
 		
-		
-		//SENS HORAIRE MESSIER!
-	
 		int temp0;
 		int temp1;
 		int temp2;
 		
-		
+		//Suivant la face choisie, il faudra changer différement les couleurs
 		switch(face){
 			case 0:
-				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[1][0][2];
 				temp1 = cube[1][1][2];
 				temp2 = cube[1][2][2];
@@ -210,11 +219,9 @@ void tourner(int face, int cube[6][3][3]){
 				cube[2][2][2] = temp2;
 				cube[2][1][2] = temp1;
 				cube[2][0][2] = temp0;
-				
 				break;
 				
 			case 1:
-				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[5][0][0];
 				temp1 = cube[5][0][1];
 				temp2 = cube[5][0][2];
@@ -234,11 +241,9 @@ void tourner(int face, int cube[6][3][3]){
 				cube[2][0][2] = temp2;
 				cube[2][0][1] = temp1;
 				cube[2][0][0] = temp0;
-				
 				break;
 			
 			case 2:
-				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[0][0][0];
 				temp1 = cube[0][1][0];
 				temp2 = cube[0][2][0];
@@ -258,11 +263,9 @@ void tourner(int face, int cube[6][3][3]){
 				cube[1][2][0] = temp0;
 				cube[1][2][1] = temp1;
 				cube[1][2][2] = temp2;
-				
 				break;
 				
 			case 3:
-				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[5][2][2];
 				temp1 = cube[5][2][1];
 				temp2 = cube[5][2][0];
@@ -286,7 +289,6 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 				
 			case 4:
-				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[5][0][0];
 				temp1 = cube[5][1][0];
 				temp2 = cube[5][2][0];
@@ -309,8 +311,6 @@ void tourner(int face, int cube[6][3][3]){
 				cube[1][0][0] = temp2;
 				break;
 			
-			case 5:
-				//printf("MEssier, je me repetê : %d  ", face);
 				temp0 = cube[3][2][0];
 				temp1 = cube[3][1][0];
 				temp2 = cube[3][0][0];
@@ -342,17 +342,24 @@ void tourner(int face, int cube[6][3][3]){
 
 
 
-
+//Fait tourner une face aléatoire du cube en orientation aléatoire
 void randTour(int cube[6][3][3]){
-	//tire au sort un numero entre 0 et 5 et fait tourner le cube en fonction de celui-ci
-	int RandNum = (rand() % (6));
-	tourner(RandNum, cube);
+	int randFace = (rand() % (6));
+	//int randOrientation = (rand() % (2));
+	tourner(randFace, cube); /*
+	if(randOrientation == 0){
+		tourner(randFace, cube);
+	} else {
+		tourner(randFace, cube);
+		tourner(randFace, cube);
+		tourner(randFace, cube);
+	}*/
 }
 
-
+//Mélange le cube avec 20 mouvements aléatoires.
 void melangeCube(int cube[6][3][3]){
 	int i;
-	for (i = 0; i < 20; i++)
+	for (i = 0; i < 40; i++)
 	{
 		randTour(cube);
 	}

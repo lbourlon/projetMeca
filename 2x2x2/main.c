@@ -50,40 +50,51 @@ void hello(int cube[6][2][2]){
 
 
 void main(){
-	srand(time(NULL));
-	//-----------------   LISTE DES COINS      ----------------------------
+	srand(time(NULL)); //Pour les fonction de mélange
+	
+	clock_t SmartSolveClock;
+	clock_t BruteForceClock;
+
+	double tempsSmartSolve;
+	double tempsBruteForce;
+	
+
+
+	//--------------------------   LISTE DES COINS      ----------------------------
 	coin tabCoins[8] = {rc(2,1,0,5,1,1,3,0,0), rc(2,1,1,3,0,1,0,1,0), rc(2,0,1,0,0,0,1,1,1), rc(2,0,0,1,1,0,5,0,1),
 						rc(5,1,0,3,1,0,4,0,0), rc(0,1,1,3,1,1,4,0,1), rc(4,1,1,0,0,1,1,0,1), rc(4,1,0,5,0,0,1,0,0)};
-	//----------------------------------------------------------------------
-
-	int cube[6][2][2];
-
-	init(cube);
-	affiche(cube);
+	//-------------------------------------------------------------------------------
+	
+	int cube1[6][2][2];
+	int cube2[6][2][2];
 
 	
-	melangeCube(cube);	
-	affiche(cube);
-
+	init(cube1);
 	
-	FaireFaceOrange(cube, tabCoins);	
-	affiche(cube);
-
-	FaireCoinsRouge(cube);
-	affiche(cube);
-
-	FaireCoinsFinal(cube);
-	affiche(cube);
-	/*
+	melangeCube(cube1);	
+	affiche(cube1);
+	copieCube(cube1, cube2);
 	
-	//-----------------------BRUTE FORCE----------------
 
-	int* tabSolution = BruteForce(cube);
-	AppliqueSolution(cube,tabSolution);
-	affiche(cube);
+	//--------------------------   SMART SOLVE      ----------------------------
+	SmartSolveClock = startClock();
+	FaireFaceOrange(cube1, tabCoins);	
+	FaireCoinsRouge(cube1);
+	FaireCoinsFinal(cube1);
+	tempsSmartSolve = endClock(SmartSolveClock);
+	
+	//--------------------------   BRUTE FORCE      ----------------------------
 
-	printTabSolution(tabSolution);
-	*/
+	BruteForceClock = startClock();
+	int* tabSolution = BruteForce(cube2);
+	AppliqueSolution(cube2,tabSolution);
+	affiche(cube2);
+	tempsBruteForce = endClock(BruteForceClock);
+
+	//printTabSolution(tabSolution);
+	
+	printf("Temps mis pour SmartSolve est : %f (en secondes).\n",tempsSmartSolve);
+	printf("temps mis pour BruteForce est : %f (en secondes).\n",tempsBruteForce);
 	
 	
 }
