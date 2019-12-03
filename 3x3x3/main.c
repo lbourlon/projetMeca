@@ -26,37 +26,45 @@ void main()
 						rc(5,2,0,3,2,0,4,0,0), rc(0,2,2,3,2,2,4,0,2), rc(4,2,2,0,0,2,1,0,2), rc(4,2,0,5,0,0,1,0,0)};
 	//----------------------------------------------------------------------
 	
-	int compteur = 0;
+	int compteur = 0;// de mouvements du cube pendant la résolution
 				  
 	int cube[6][3][3];
-	init(cube);
+	init(cube); // initialisation type "parfait" afin de générer un cube aléatoire réel
 	
 	
 	
-	melangeCube(cube);
+	melangeCube(cube);// fabrication du cube mélangé
 	affiche(cube);
 
 	
 
 	printf("---------------------------------------------------\n");
-	//--------------------Face Orange
-	FaireCroixOrange(cube,tabMilieux, &compteur); 
+	//--------------------Croix Orange-------------------------------
+	FaireCroixOrange(cube,tabMilieux, &compteur);
+	affiche(cube);
+	printf("---------------------------------------------------\n");
+	//--------------------Coins Orange-------------------------------
 	FinirFaceOrange(cube, tabCoins, &compteur);
-	printf("---------------------------------------------------\n");
-	//--------------------Deuxième Couronne
-	FaireCouronne(cube, tabMilieux,tabCoins, &compteur);
-	printf("---------------------------------------------------\n");
-	//--------------------Croix Rouge Couronne
-	FaireCroixRouge(cube, &compteur);
-	//--------------------Coins Rouge
-	FaireCoinsRouge(cube, &compteur);
-	printf("---------------------------------------------------\n");
-	//--------------------Positionnement Coins Rouge
-	FaireCoinsFinal(cube, &compteur);
-	printf("---------------------------------------------------\n");
-	//--------------------Positionnement Milieux Rouge
 	affiche(cube);
+	printf("---------------------------------------------------\n");
+	//--------------------Deuxième Couronne-------------------------
+	FaireCouronne(cube, tabMilieux,tabCoins, &compteur);
+	affiche(cube);
+	printf("---------------------------------------------------\n");
+	//--------------------Croix Rouge Couronne----------------------
+	FaireCroixRouge(cube, &compteur);
+	affiche(cube);
+	//--------------------Coins Rouge-------------------------------
+	FaireCoinsRouge(cube, &compteur);
+	affiche(cube);
+	printf("---------------------------------------------------\n");
+	//--------------------Positionnement Coins Rouge----------------
+	FaireCoinsFinal(cube, &compteur);
+	affiche(cube);
+	printf("---------------------------------------------------\n");
+	//--------------------Positionnement Milieux Rouge--------------
 	FinirCube(cube, &compteur);
+	affiche(cube);
 	printf("---------------------------------------------------\n");
 	
 	

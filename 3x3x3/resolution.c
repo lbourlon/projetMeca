@@ -1141,6 +1141,7 @@ void FaireCroixRouge(int cube[6][3][3], int *compt)
 			MiseEnPlaceCoteRouge(cube, compt);
 		}
 	}
+	printf("--------------------------FIN CROIX ROUGE-----------------------\n");
 
 }
 
@@ -1232,6 +1233,7 @@ void FaireCoinsRouge(int cube[6][3][3], int *compt)
 		}
 
 	}
+	printf("--------------------------FIN COINS ROUGE-----------------------\n");
 }
 
 void MiseEnPlaceCoinsFinal(int cube[6][3][3], int *compt)
@@ -1294,6 +1296,7 @@ void FaireCoinsFinal(int cube[6][3][3], int *compt)
 	}
 		if(i == 2){*compt = *compt + 1;}
 		else{*compt = *compt + i;}
+	printf("--------------------------FIN POSITIONNEMENT COINS ROUGES-----------------------\n");
 }
 
 void MiseEnPlaceMilieuxFinal(int cube[6][3][3], int *compt)
@@ -1356,6 +1359,7 @@ void FinirCube(int cube[6][3][3], int *compt)
 		else{*compt = *compt + i;}
 
 	}
+	printf("--------------------------FIN DU CUBE-----------------------\n");
 }
 
 
