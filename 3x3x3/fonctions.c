@@ -355,7 +355,7 @@ void tourner(int face, int cube[6][3][3]){
 void randTour(int cube[6][3][3]){
 	int randFace = (rand() % (6));
 	int randOrientation = (rand() % (2));
-	tourner(randFace, cube);
+	
 	if(randOrientation == 0){
 		tourner(randFace, cube);
 	} else {
@@ -363,14 +363,6 @@ void randTour(int cube[6][3][3]){
 		tourner(randFace, cube);
 		tourner(randFace, cube);
 	}
-}
-
-//Mélange le cube avec 20 mouvements aléatoires.
-//tire au sort un numero entre 0 et 5 et fait tourner le cube en fonction de celui-ci
-void randTour(int cube[6][3][3]){
-	
-	int RandNum = (rand() % (6));
-	tourner(RandNum, cube);
 }
 
 //Utilise randTour pour mélanger le cube: en tout 20 mouvements
@@ -384,3 +376,29 @@ void melangeCube(int cube[6][3][3]){
 }
 
 
+
+
+/* A exécuter avant la fonction endClock pour mesurer un temps.
+ *
+ * Retourne un objet clock avec l'horaire de début.
+ */
+clock_t startClock(){
+	clock_t tempsDebut;
+    
+    tempsDebut = clock();
+	return tempsDebut;
+}
+
+/* A exécuter après la fonction startClock pour mesurer un temps.
+ * 
+ * Prends en paramètre un objet clock avec le temps de début (retourné par startClock)
+ * et calcule le temps passé entre les deux instants. La fonction retourne ensuite le double temps.
+ */
+double endClock(clock_t tempsDebut){
+	clock_t end;
+	double timeUsed; 
+	end = clock();
+	timeUsed = ((double) (end - tempsDebut)) / CLOCKS_PER_SEC;
+	
+	return timeUsed;
+}

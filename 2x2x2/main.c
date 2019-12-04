@@ -17,39 +17,40 @@
 void hello(int cube[6][2][2]){
 
 	cube[0][0][0] = WHITE;
-	cube[0][1][0] = YELLOW;
-	cube[0][0][1] = YELLOW;
-	cube[0][1][1] = WHITE;
+	cube[0][1][0] = ORANGE;
+	cube[0][0][1] = BLUE;
+	cube[0][1][1] = BLUE;
 
-	cube[1][0][0] = ORANGE;
+	cube[1][0][0] = YELLOW;
 	cube[1][1][0] = RED;
-	cube[1][0][1] = ORANGE;
+	cube[1][0][1] = YELLOW;
 	cube[1][1][1] = BLUE;
 
-	cube[2][0][0] = YELLOW;
+	cube[2][0][0] = GREEN;
 	cube[2][1][0] = WHITE;
 	cube[2][0][1] = RED;
-	cube[2][1][1] = GREEN;
+	cube[2][1][1] = BLUE;
 	
-	cube[3][0][0] = GREEN;
-	cube[3][1][0] = BLUE;
-	cube[3][0][1] = RED;
-	cube[3][1][1] = GREEN;
+	cube[3][0][0] = ORANGE;
+	cube[3][1][0] = RED;
+	cube[3][0][1] = WHITE;
+	cube[3][1][1] = YELLOW;
 
-	cube[4][0][0] = ORANGE;
-	cube[4][1][0] = GREEN;
-	cube[4][0][1] = ORANGE;
-	cube[4][1][1] = BLUE;
+	cube[4][0][0] = WHITE;
+	cube[4][1][0] = ORANGE;
+	cube[4][0][1] = RED;
+	cube[4][1][1] = ORANGE;
 
-	cube[5][0][0] = YELLOW;
-	cube[5][1][0] = WHITE;
-	cube[5][0][1] = BLUE;
-	cube[5][1][1] = RED;
+	cube[5][0][0] = GREEN;
+	cube[5][1][0] = GREEN;
+	cube[5][0][1] = YELLOW;
+	cube[5][1][1] = GREEN;
 }
 
 
 
 void main(){
+
 	srand(time(NULL)); //Pour les fonction de mélange
 	
 	clock_t SmartSolveClock;
@@ -64,53 +65,38 @@ void main(){
 						rc(5,1,0,3,1,0,4,0,0), rc(0,1,1,3,1,1,4,0,1), rc(4,1,1,0,0,1,1,0,1), rc(4,1,0,5,0,0,1,0,0)};
 	//----------------------------------------------------------------------
 
+
+	//SortieDonnees(tabCoins);
+	
+	
+	
+	
+	
 	int cube[6][2][2];
-	int compteur = 0;
-
-	init(cube);
-	affiche(cube);
-
+	//init(cube);
+	hello(cube);
 	
-	melangeCube(cube);	
-	affiche(cube);
-
+	
+	
 	/*
-	FaireFaceOrange(cube, tabCoins, &compteur);	
-	affiche(cube);
-
-	FaireCoinsRouge(cube, &compteur);
-	affiche(cube);
-
-	FaireCoinsFinal(cube, &compteur);
-	affiche(cube);
-	printf("le nombre de tour est: %d\n",compteur);
+	int compteur = 0;
 	
+	SmartSolve(cube, tabCoins, &compteur);
+	
+	printf("compteur : %d\n", compteur);
 	*/
+
 	//-----------------------BRUTE FORCE----------------
 
+	affiche(cube);
 	int* tabSolution = BruteForce(cube);
 	AppliqueSolution(cube,tabSolution);
 	affiche(cube);
 
 
-
-	
-	printf("%d\n",tabSolution[1]);
-	printf("%d\n",tabSolution[2]);
-	printf("%d\n",tabSolution[3]);
-	printf("%d\n",tabSolution[4]);
-	printf("%d\n",tabSolution[5]);
-	printf("%d\n",tabSolution[6]);
-	printf("%d\n",tabSolution[7]);
-	printf("%d\n",tabSolution[8]);
-	printf("%d\n",tabSolution[9]);
-	printf("%d\n",tabSolution[10]);
-	printf("%d\n",tabSolution[11]);
-	printf("%d\n",tabSolution[12]);
-
 	int compt = 0;
 	CompteMouvementBF(&compt, tabSolution);
-	printf("le nombre de tour est : %d\n", compt);
+	
 
 	printTabSolution(tabSolution);
 	

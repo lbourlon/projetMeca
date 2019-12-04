@@ -41,7 +41,7 @@ char* TrouveCasCouronne(int cube[6][3][3], milieu mil);
 void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux, coin *tabCoins, int *compt);
 void FaireCouronne(int cube[6][3][3],milieu tab[12], coin *tabCoins, int *compt);
 
-
+//Fonctions sur la face rouge
 void MiseEnPlaceCoteRouge(int cube[6][3][3], int *compt);
 void FaireCroixRouge(int cube[6][3][3], int *compt);
 void MiseEnPlaceCoinRouge(int cube[6][3][3], int *compt);
@@ -52,6 +52,8 @@ void MiseEnPlaceMilieuxFinal(int cube[6][3][3], int *compt);
 void FinirCube(int cube[6][3][3], int *compt);
 
 
+void SmartSolve(int cube[6][3][3], coin tabCoins[8], milieu tabMilieux[12], int* compteur);
+
 
 
 //BRUTEFORCE
@@ -59,3 +61,8 @@ int verifie( int CubeSortie[6][3][3]);
 void AppliqueSolution(int cube[6][3][3], int tabSolution[18]);
 int BruteForce(int cube[6][3][3]);
 void printTabSolution(int tabSolution[14]);
+
+
+
+//Fontions de récupération de données
+void SortieDonnees(coin tabCoins[8], milieu tabMilieux[12]);

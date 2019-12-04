@@ -11,10 +11,7 @@ int* copieCube(int CubeACopier[6][2][2], int CubeSortie[6][2][2]);
 
 void randTour(int cube[6][2][2]);
 
-int *BruteForce(int cube[6][2][2]);
-
-void AppliqueSolution(int cube[6][2][2], int tabSolution[14]);
-void printTabSolution(int tabSolution[14]);
+int verifie( int CubeSortie[6][2][2]);
 
 
 int CompteMouvementBF(int * compt, int *TabSolution);
@@ -34,3 +31,5 @@ clock_t startClock();
  * et calcule le temps passé entre les deux instants. La fonction retourne ensuite le double temps.
  */
 double endClock(clock_t tempsDebut);
+
+

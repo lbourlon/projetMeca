@@ -1574,3 +1574,74 @@ void printTabSolution(int tabSolution[14]){
 	}
 	printf("\n");
 }
+
+void SmartSolve(int cube[6][3][3], coin tabCoins[8], milieu tabMilieux[12], int* compteur){
+	
+
+
+	printf("---------------------------------------------------\n");
+	//--------------------Croix Orange-------------------------------
+	FaireCroixOrange(cube,tabMilieux, compteur);
+
+	//--------------------Coins Orange-------------------------------
+	FinirFaceOrange(cube, tabCoins, compteur);
+
+	//--------------------Deuxième Couronne-------------------------
+	FaireCouronne(cube, tabMilieux,tabCoins, compteur);
+
+	//--------------------Croix Rouge Couronne----------------------
+	FaireCroixRouge(cube, compteur);
+
+	//--------------------Coins Rouge-------------------------------
+	FaireCoinsRouge(cube, compteur);
+
+	//--------------------Positionnement Coins Rouge----------------
+	FaireCoinsFinal(cube, compteur);
+
+	//--------------------Positionnement Milieux Rouge--------------
+	FinirCube(cube, compteur);
+
+	printf("---------------------------------------------------\n");
+	
+
+}
+
+
+
+void SortieDonnees(coin tabCoins[8], milieu tabMilieux[12])
+{
+	
+	srand(time(NULL)); //Pour les fonction de mélange
+	
+	FILE* traj_txt = NULL;
+	traj_txt = fopen("Donnees3x3.txt", "w");
+	
+	
+	clock_t SmartSolveClock;
+	double tempsSmartSolve;
+
+	
+	int cube[6][3][3];
+		
+	int i;
+	for (i = 1; i <= 10000; i++)
+	{
+		
+		init(cube);
+		melangeCube(cube);
+		
+		int compteur = 0;
+		
+		//SMART_SOLVE
+		
+		SmartSolveClock = startClock();
+		SmartSolve(cube, tabCoins, tabMilieux, &compteur);
+		tempsSmartSolve = endClock(SmartSolveClock);
+
+		fprintf (traj_txt, " cube : %2d      tour : %3d     temps :%f\n",i, compteur, tempsSmartSolve); 
+		
+	}
+	
+}
+
+

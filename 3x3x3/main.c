@@ -36,37 +36,8 @@ void main()
 	melangeCube(cube);// fabrication du cube mélangé
 	affiche(cube);
 
-	
-
-	printf("---------------------------------------------------\n");
-	//--------------------Croix Orange-------------------------------
-	FaireCroixOrange(cube,tabMilieux, &compteur);
-	affiche(cube);
-	printf("---------------------------------------------------\n");
-	//--------------------Coins Orange-------------------------------
-	FinirFaceOrange(cube, tabCoins, &compteur);
-	affiche(cube);
-	printf("---------------------------------------------------\n");
-	//--------------------Deuxième Couronne-------------------------
-	FaireCouronne(cube, tabMilieux,tabCoins, &compteur);
-	affiche(cube);
-	printf("---------------------------------------------------\n");
-	//--------------------Croix Rouge Couronne----------------------
-	FaireCroixRouge(cube, &compteur);
-	affiche(cube);
-	//--------------------Coins Rouge-------------------------------
-	FaireCoinsRouge(cube, &compteur);
-	affiche(cube);
-	printf("---------------------------------------------------\n");
-	//--------------------Positionnement Coins Rouge----------------
-	FaireCoinsFinal(cube, &compteur);
-	affiche(cube);
-	printf("---------------------------------------------------\n");
-	//--------------------Positionnement Milieux Rouge--------------
-	FinirCube(cube, &compteur);
-	affiche(cube);
-	printf("---------------------------------------------------\n");
-	
+	//SmartSolve(cube, tabCoins, tabMilieux, &compteur);
+	SortieDonnees(tabCoins, tabMilieux);
 	
 	affiche(cube);
 

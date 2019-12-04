@@ -25,3 +25,14 @@ void FaireCoinsRouge(int cube[6][2][2], int *compt);
 
 void MiseEnPlaceCoinsFinal(int cube[6][2][2], int *compt);
 void FaireCoinsFinal(int cube[6][2][2], int *compt);
+
+void SmartSolve(int cube[6][2][2], coin tabCoins[8], int *compteur);
+
+
+
+
+int* BruteForce(int cube[6][2][2]);
+void AppliqueSolution(int cube[6][2][2], int tabSolution[14]);
+void printTabSolution(int tabSolution[14]);
+
+void SortieDonnees(coin tabCoins[8]);
