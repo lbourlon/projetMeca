@@ -174,6 +174,7 @@ void affiche(int cube[6][3][3]){
  * Ceci en suivant les règles physiques imposés par le cube.
  * Les rotations sont faites en sens Horaire (suivant le schéma).
  */
+
 void tourner(int face, int cube[6][3][3]){
 		
 		//S'applique indépendament de la face, fait tourner les valeurs sur celle-ci
@@ -190,6 +191,9 @@ void tourner(int face, int cube[6][3][3]){
 			cube[face][1][2] = cube[face][2][1];
 			cube[face][2][1] = temp;
 		
+		
+		//SENS HORAIRE
+	
 		int temp0;
 		int temp1;
 		int temp2;
@@ -197,6 +201,7 @@ void tourner(int face, int cube[6][3][3]){
 		//Suivant la face choisie, il faudra changer différement les couleurs
 		switch(face){
 			case 0:
+				
 				temp0 = cube[1][0][2];
 				temp1 = cube[1][1][2];
 				temp2 = cube[1][2][2];
@@ -220,6 +225,7 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 				
 			case 1:
+				
 				temp0 = cube[5][0][0];
 				temp1 = cube[5][0][1];
 				temp2 = cube[5][0][2];
@@ -242,6 +248,7 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 			
 			case 2:
+				
 				temp0 = cube[0][0][0];
 				temp1 = cube[0][1][0];
 				temp2 = cube[0][2][0];
@@ -264,6 +271,7 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 				
 			case 3:
+				
 				temp0 = cube[5][2][2];
 				temp1 = cube[5][2][1];
 				temp2 = cube[5][2][0];
@@ -287,6 +295,7 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 				
 			case 4:
+				
 				temp0 = cube[5][0][0];
 				temp1 = cube[5][1][0];
 				temp2 = cube[5][2][0];
@@ -310,6 +319,7 @@ void tourner(int face, int cube[6][3][3]){
 				break;
 			
 			case 5:
+				
 				temp0 = cube[3][2][0];
 				temp1 = cube[3][1][0];
 				temp2 = cube[3][0][0];
@@ -356,6 +366,14 @@ void randTour(int cube[6][3][3]){
 }
 
 //Mélange le cube avec 20 mouvements aléatoires.
+//tire au sort un numero entre 0 et 5 et fait tourner le cube en fonction de celui-ci
+void randTour(int cube[6][3][3]){
+	
+	int RandNum = (rand() % (6));
+	tourner(RandNum, cube);
+}
+
+//Utilise randTour pour mélanger le cube: en tout 20 mouvements
 void melangeCube(int cube[6][3][3]){
 	int i;
 	for (i = 0; i < 40; i++)

@@ -117,7 +117,7 @@ coin RechercherCoin(int cube[6][2][2],coin tab[8], int couleur1, int couleur2, i
 		
 	}
 	
-	printf("vous vous êtes trompés de couleurs mêssier \n");
+	printf("vous vous êtes trompés de couleurs \n");
 	return	rc(0,0,0,0,0,0,0,0,0);
 }
 
@@ -299,7 +299,6 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8],int *compt){
 				coTemp = RechercherCoin(cube, tabCoins, ORANGE, couleur2, couleur3);
 				casTemp = TrouveCasCoin(cube, coTemp);
 
-				affiche(cube);
 				
 			}
 			
@@ -353,7 +352,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8],int *compt){
 		
 	co = RechercherCoin(cube,tabCoins,ORANGE, couleur2, couleur3);
 	cas = TrouveCasCoin(cube, co);
-	affiche(cube);
+
 	}
 	printf("===================FIN DU COIN================\n");
 
@@ -410,21 +409,21 @@ void FaireCoinsRouge(int cube[6][2][2], int *compt)
 		//cas pas de coins
 		if(cube[4][0][0] != RED && cube[4][1][0] != RED && cube[4][0][1] != RED && cube[4][1][1] != RED)
 		{
-			printf("cas pasdecoins\n");
+
 			MiseEnPlaceCoinRouge(cube, compt);
 		}
 
 		//cas 2 coins opposés parfait
 		if(cube[4][0][0] == RED && cube[4][1][1] == RED )
 		{
-			printf("cas 2coinsopposés1\n");
+
 			MiseEnPlaceCoinRouge(cube, compt);
 		}
 
 		//cas 2 coins opposés imparfait
 		if(cube[4][0][1] == RED && cube[4][1][0] == RED )
 		{
-			printf("cas 2coinsopposés2\n");
+
 			mtourner(RED, cube);
 			*compt = *compt + 1;
 			MiseEnPlaceCoinRouge(cube, compt);
@@ -436,7 +435,7 @@ void FaireCoinsRouge(int cube[6][2][2], int *compt)
 			(cube[4][1][1] == RED && cube[4][0][1] == RED) ||
 			(cube[4][0][1] == RED && cube[4][0][0] == RED))
 			{
-				printf("cas 2coinsopposés\n");
+
 				while(cube[4][1][1] != RED && cube[4][0][1] != RED)
 				{
 					mtourner(RED, cube);
@@ -521,6 +520,5 @@ void FaireCoinsFinal(int cube[6][2][2], int *compt)
 		mtourner(RED, cube);
 		*compt = *compt + 1;
 
-		affiche(cube);
 	}
 }
