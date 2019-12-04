@@ -50,7 +50,15 @@ void hello(int cube[6][2][2]){
 
 
 void main(){
-	srand(time(NULL));
+	srand(time(NULL)); //Pour les fonction de mélange
+	
+	clock_t SmartSolveClock;
+	clock_t BruteForceClock;
+
+	double tempsSmartSolve;
+	double tempsBruteForce;
+	
+	
 	//-----------------   LISTE DES COINS      ----------------------------
 	coin tabCoins[8] = {rc(2,1,0,5,1,1,3,0,0), rc(2,1,1,3,0,1,0,1,0), rc(2,0,1,0,0,0,1,1,1), rc(2,0,0,1,1,0,5,0,1),
 						rc(5,1,0,3,1,0,4,0,0), rc(0,1,1,3,1,1,4,0,1), rc(4,1,1,0,0,1,1,0,1), rc(4,1,0,5,0,0,1,0,0)};

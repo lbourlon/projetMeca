@@ -665,3 +665,30 @@ void CompteMouvementBF(int *compt, int TabSolution[14])
 	}
 	
 }
+
+
+
+/* A exécuter avant la fonction endClock pour mesurer un temps.
+ *
+ * Retourne un objet clock avec l'horaire de début.
+ */
+clock_t startClock(){
+	clock_t tempsDebut;
+    
+    tempsDebut = clock();
+	return tempsDebut;
+}
+
+/* A exécuter après la fonction startClock pour mesurer un temps.
+ * 
+ * Prends en paramètre un objet clock avec le temps de début (retourné par startClock)
+ * et calcule le temps passé entre les deux instants. La fonction retourne ensuite le double temps.
+ */
+double endClock(clock_t tempsDebut){
+	clock_t end;
+	double timeUsed; 
+	end = clock();
+	timeUsed = ((double) (end - tempsDebut)) / CLOCKS_PER_SEC;
+	
+	return timeUsed;
+}
