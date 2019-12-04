@@ -1617,14 +1617,14 @@ void SortieDonnees(coin tabCoins[8], milieu tabMilieux[12])
 	traj_txt = fopen("Donnees3x3.txt", "w");
 	
 	
-	clock_t SmartSolveClock;
+	
 	double tempsSmartSolve;
 
 	
 	int cube[6][3][3];
 		
 	int i;
-	for (i = 1; i <= 10000; i++)
+	for (i = 1; i <= 100; i++)
 	{
 		
 		init(cube);
@@ -1634,9 +1634,9 @@ void SortieDonnees(coin tabCoins[8], milieu tabMilieux[12])
 		
 		//SMART_SOLVE
 		
-		SmartSolveClock = startClock();
+		clock_t SmartSolveClock = clock();
 		SmartSolve(cube, tabCoins, tabMilieux, &compteur);
-		tempsSmartSolve = endClock(SmartSolveClock);
+		tempsSmartSolve = stopClock(SmartSolveClock);
 
 		fprintf (traj_txt, " cube : %2d      tour : %3d     temps :%f\n",i, compteur, tempsSmartSolve); 
 		

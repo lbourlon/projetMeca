@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
-#include <stdlib.h>
 #include "fonctions.h"
+#include <stdlib.h>
 // Résolution faite en començant par la face orange
 #define WHITE   0
 #define GREEN   1
@@ -356,7 +356,7 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8],int *compt){
 	cas = TrouveCasCoin(cube, co);
 
 	}
-	printf("===================FIN DU COIN================\n");
+	//printf("===================FIN DU COIN================\n");
 
 }
 
@@ -594,10 +594,6 @@ int *BruteForce(int cube[6][2][2])
 		
 		if (verifie(cubecopie) == 1)
 		{	
-			
-			end = clock();
-			timeUsed = ((double) (end - start)) / CLOCKS_PER_SEC;
-			printf("temps mis pour déterminer la réponse en seconde : %f\n",timeUsed);
 			return tabSolution;
 		}
 		
@@ -706,57 +702,55 @@ void printTabSolution(int tabSolution[14]){
 
 
 
-void SortieDonnees(coin tabCoins[8])
-{
+void SortieDonnees(coin tabCoins[8]){
 	
-	srand(time(NULL)); //Pour les fonction de mélange
+	
 	
 	FILE* traj_txt = NULL;
 	traj_txt = fopen("Donnees2x2.txt", "w");
 	
-	
-	clock_t SmartSolveClock;
-	clock_t BruteForceClock;
-
-	double tempsSmartSolve;
-	double tempsBruteForce;
-	
-
-	
 	int cube1[6][2][2];
 	int cube2[6][2][2];
+
+	
+
+
 		
-	int i;
-	for (i = 1; i <= 3; i++)
+	for(int k = 0; k <= 150; k++)
 	{
+		printf("tour %d\n", k);
+		
+		double tempsSmartSolve;
+		double tempsBruteForce;
+		int compteur1 = 0;
+		int compteur2 = 0;
 		
 		init(cube1);
 		melangeCube(cube1);
 		copieCube(cube1, cube2);
 		
-		int compteur1 = 0;
-		int compteur2 = 0;
 		
 		
 		//SMART_SOLVE
-		
-		SmartSolveClock = startClock();
+		clock_t SmartSolveClock = clock();
 		SmartSolve(cube1, tabCoins, &compteur1);
-		tempsSmartSolve = endClock(SmartSolveClock);
+		tempsSmartSolve = stopClock(SmartSolveClock);
 		
 		
 		
 		
 		//BRUTE_FORCE
+		/*
 		int* tabSolution;
-		BruteForceClock = startClock();
+		clock_t BruteForceClock = clock();
 		tabSolution = BruteForce(cube2);
-		tempsBruteForce = endClock(BruteForceClock);
+		tempsBruteForce = stopClock(BruteForceClock);
 		
-		CompteMouvementBF(&compteur2, tabSolution);
+		compteur2 = CompteMouvementBF(tabSolution);
+		*/
+		fprintf (traj_txt, " cube : %d      tour : %d     temps :%f", k, compteur1, tempsSmartSolve); 
+		//fprintf (traj_txt, " 	     		tour : %3d     temps :%f\n", compteur2, tempsBruteForce); 
 		
-		fprintf (traj_txt, " cube : %2d      tour : %3d     temps :%f",i, compteur1, tempsSmartSolve); 
-		fprintf (traj_txt, " 				 tour : %3d     temps :%f\n", compteur2, tempsBruteForce); 
 		
 	}
 	

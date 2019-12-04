@@ -14,22 +14,16 @@ void randTour(int cube[6][2][2]);
 int verifie( int CubeSortie[6][2][2]);
 
 
-int CompteMouvementBF(int * compt, int *TabSolution);
+int CompteMouvementBF(int *TabSolution);
 
 
 //------------------------------------------TIMING----------------------------------------------------------
-
-/* A exécuter avant la fonction endClock pour mesurer un temps.
- *
- * Retourne un objet clock avec l'horaire de début.
- */
-clock_t startClock();
 
 /* A exécuter après la fonction startClock pour mesurer un temps.
  * 
  * Prends en paramètre un objet clock avec le temps de début (retourné par startClock)
  * et calcule le temps passé entre les deux instants. La fonction retourne ensuite le double temps.
  */
-double endClock(clock_t tempsDebut);
+double stopClock(clock_t tempsDebut);
 
 
