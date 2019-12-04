@@ -66,7 +66,7 @@ void main(){
 	melangeCube(cube);	
 	affiche(cube);
 
-	
+	/*
 	FaireFaceOrange(cube, tabCoins, &compteur);	
 	affiche(cube);
 
@@ -77,9 +77,9 @@ void main(){
 	affiche(cube);
 	printf("le nombre de tour est: %d\n",compteur);
 	
-	
+	*/
 	//-----------------------BRUTE FORCE----------------
-/*
+
 	int* tabSolution = BruteForce(cube);
 	AppliqueSolution(cube,tabSolution);
 	affiche(cube);
@@ -106,6 +106,6 @@ void main(){
 
 	printTabSolution(tabSolution);
 	
-	*/
+	
 	
 }
