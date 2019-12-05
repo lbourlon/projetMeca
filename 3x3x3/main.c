@@ -27,7 +27,7 @@ void main()
 	//----------------------------------------------------------------------
 	
 	int compteur = 0;// de mouvements du cube pendant la résolution
-				  
+			  
 	int cube[6][3][3];
 	init(cube); // initialisation type "parfait" afin de générer un cube aléatoire réel
 	
@@ -36,13 +36,22 @@ void main()
 	melangeCube(cube);// fabrication du cube mélangé
 	affiche(cube);
 
-	//SmartSolve(cube, tabCoins, tabMilieux, &compteur);
-	SortieDonnees(tabCoins, tabMilieux);
-	
-	affiche(cube);
 
-	printf("Nombre de tour: %d\n", compteur);
-	
+
+
+	//clock_t start, end;
+	//start = clock();
+	time_t t0 = time(NULL);
+   
+	printf("Le calcul a pris %lu secondes\n",t0);
+
+	SmartSolve(cube, tabCoins, tabMilieux, &compteur);
+	//SortieDonnees(tabCoins, tabMilieux);
+	int i;
+	for(i = 0;i <100000;i++) printf("a");
+
+	printf("Le calcul a pris %lu secondes\n",(time(NULL)-t0));
+
 	/*int* tabSolution = BruteForce(cube);
 	AppliqueSolution(cube,tabSolution);
 	affiche(cube);

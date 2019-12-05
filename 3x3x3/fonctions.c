@@ -381,7 +381,7 @@ void melangeCube(int cube[6][3][3]){
  * Prends en paramètre un objet clock avec le temps de début (retourné par startClock)
  * et calcule le temps passé entre les deux instants. La fonction retourne ensuite le double temps.
  */
-double stopClock(clock_t tempsDebut){
+float stopClock(clock_t tempsDebut){
 	clock_t end;
 	double timeUsed; 
 	end = clock();

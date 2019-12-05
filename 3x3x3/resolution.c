@@ -1634,9 +1634,11 @@ void SortieDonnees(coin tabCoins[8], milieu tabMilieux[12])
 		
 		//SMART_SOLVE
 		
-		clock_t SmartSolveClock = clock();
+		clock_t SmartSolveClock;
+		SmartSolveClock = clock();
 		SmartSolve(cube, tabCoins, tabMilieux, &compteur);
 		tempsSmartSolve = stopClock(SmartSolveClock);
+		printf("le temps est %f\n", tempsSmartSolve);
 
 		fprintf (traj_txt, " cube : %2d      tour : %3d     temps :%f\n",i, compteur, tempsSmartSolve); 
 		
