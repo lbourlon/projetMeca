@@ -376,25 +376,12 @@ void melangeCube(int cube[6][3][3]){
 }
 
 
-
-
-/* A exécuter avant la fonction endClock pour mesurer un temps.
- *
- * Retourne un objet clock avec l'horaire de début.
- */
-clock_t startClock(){
-	clock_t tempsDebut;
-    
-    tempsDebut = clock();
-	return tempsDebut;
-}
-
 /* A exécuter après la fonction startClock pour mesurer un temps.
  * 
  * Prends en paramètre un objet clock avec le temps de début (retourné par startClock)
  * et calcule le temps passé entre les deux instants. La fonction retourne ensuite le double temps.
  */
-double endClock(clock_t tempsDebut){
+double stopClock(clock_t tempsDebut){
 	clock_t end;
 	double timeUsed; 
 	end = clock();

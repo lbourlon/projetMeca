@@ -422,42 +422,28 @@ int verifie( int CubeSortie[6][2][2]){
 }
 
 
-
-
 /*La fonction prend en paramètre un pointeur pour un compteur (un entier) et le
  * tableau de solution qui est retourné par BruteForce.
  * La fonction compte juste le nombre de éléments dans tabSolution
  */
-void CompteMouvementBF(int *compt, int TabSolution[14])
-{
-	int i = 0;
+int CompteMouvementBF(int TabSolution[14]){
+	
+	int i = 0, compt = 0;
 	while(TabSolution[i] != -1)
 	{
-		*compt = *compt + 1;
+		compt = compt + 1;
 		i = i + 1;
 	}
-	
+	return compt;
 }
 
-
-
-/* A exécuter avant la fonction endClock pour mesurer un temps.
- *
- * Retourne un objet clock avec l'horaire de début.
- */
-clock_t startClock(){
-	clock_t tempsDebut;
-    
-    tempsDebut = clock();
-	return tempsDebut;
-}
 
 /* A exécuter après la fonction startClock pour mesurer un temps.
  * 
  * Prends en paramètre un objet clock avec le temps de début (retourné par startClock)
  * et calcule le temps passé entre les deux instants. La fonction retourne ensuite le double temps.
  */
-double endClock(clock_t tempsDebut){
+double stopClock(clock_t tempsDebut){
 	clock_t end;
 	double timeUsed; 
 	end = clock();

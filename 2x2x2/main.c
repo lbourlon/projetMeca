@@ -66,15 +66,15 @@ void main(){
 	//----------------------------------------------------------------------
 
 
-	//SortieDonnees(tabCoins);
+	SortieDonnees(tabCoins);
 	
 	
 	
 	
 	
-	int cube[6][2][2];
+	//int cube[6][2][2];
 	//init(cube);
-	hello(cube);
+	//hello(cube);
 	
 	
 	
@@ -87,7 +87,7 @@ void main(){
 	*/
 
 	//-----------------------BRUTE FORCE----------------
-
+	/*
 	affiche(cube);
 	int* tabSolution = BruteForce(cube);
 	AppliqueSolution(cube,tabSolution);
@@ -99,7 +99,7 @@ void main(){
 	
 
 	printTabSolution(tabSolution);
-	
+	*/
 	
 	
 }
