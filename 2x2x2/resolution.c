@@ -2,7 +2,8 @@
 #include <time.h>
 #include "fonctions.h"
 #include <stdlib.h>
-// Résolution faite en començant par la face orange
+
+//Définition des couleurs
 #define WHITE   0
 #define GREEN   1
 #define ORANGE  2
@@ -10,13 +11,19 @@
 #define RED     4
 #define YELLOW  5
 
-
+/* Les structures suivantes définissent le coublon coin, 
+ * ce dernier, constitué de 3 coordonnée, pour le repérer dans le tableau cube
+ * les objets coord repèrent les couleurs indiviuelles dans le tableau grace à face, x et y.
+ * face donne la face où se retrouve la couleur, x et y donnent la coordonnée dans la face.
+ */ 
+ 
 typedef struct _coord coord;
 struct _coord {
 	int face;
 	int x;
 	int y;
 };
+
 
 typedef struct _coin coin;
 struct _coin {
@@ -25,8 +32,11 @@ struct _coin {
 	coord coord3;
 };
 
-//Prend les coordonnées d'une case coin et les remplie dans un coin
-//Abréviation de RemplirCoin
+
+
+/* Abréviation de RemplirCoin
+ * Place les informations du cublon dans le cublon.
+ */
 coin rc(int face1,int x1,int y1,int face2,int x2,int y2, int face3, int x3, int y3){
 	coin coinVar;
 	coinVar.coord1.face = face1;
@@ -42,9 +52,10 @@ coin rc(int face1,int x1,int y1,int face2,int x2,int y2, int face3, int x3, int 
 	return coinVar;
 }
 
-//Recherche l'emplacement de la piece coin contenant les couleurs 1 et 2 et 3
-//Et retourne un objet coin avec les coordonées respectives aux couleurs
-//(l'ordre d'entrée n'est pas conserv)
+/* Recherche l'emplacement du cublon coin contenant les couleurs 1 et 2 et 3
+ * Et retourne ce coin avec les coordonées respectives aux couleurs
+ * Il rend toujours la couleur 1 sur coord1, les autres importent moins
+ */
 coin RechercherCoin(int cube[6][2][2],coin tab[8], int couleur1, int couleur2, int couleur3){
 	for(int i = 0; i < 8; i++){
 		
@@ -123,7 +134,9 @@ coin RechercherCoin(int cube[6][2][2],coin tab[8], int couleur1, int couleur2, i
 	return	rc(0,0,0,0,0,0,0,0,0);
 }
 
-//retourne le cas dans lequel est situé le coin passé en paramètre pour faire les coins de la croix orange
+/* Les cas nous donnent des informations sur la configuration du cube
+ * suivant le cas, on utiliseras des algorithmes différents dans la fonction faireCoinsOrange
+ */
 char* TrouveCasCoin(int cube[6][2][2], coin co){
 	char* cas;
 	//=====================Si cas FACE=====================
@@ -178,7 +191,7 @@ char* TrouveCasCoin(int cube[6][2][2], coin co){
 	return cas;
 }
 
-//place le coin co dans son bon emplacement.
+//Place le coin orange donnée en paramètre dans son bon emplacement.
 void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8],int *compt){
 	char* cas;
 	cas = TrouveCasCoin(cube, co);
@@ -360,24 +373,28 @@ void FaireCoinOrange(int cube[6][2][2],coin co, coin tabCoins[8],int *compt){
 
 }
 
-//appelle FaireCoinOrange, pour résouder les quatre coins manquants de la face orange
+//Appelle FaireCoinOrange, pour résouder les quatre coins de la face orange
 void FaireFaceOrange(int cube[6][2][2], coin tabCoins[8], int *compt){
 	coin co210, co215, co253, co230;
 	
 	co210 = RechercherCoin(cube, tabCoins, 2, 1, 0);
 	FaireCoinOrange(cube, co210, tabCoins, compt); 
+	affiche(cube);
 
 	co215 = RechercherCoin(cube, tabCoins, 2, 1, 5);
 	FaireCoinOrange(cube, co215, tabCoins, compt);
+	affiche(cube);
 	
 	co253 = RechercherCoin(cube, tabCoins, 2, 5, 3);
 	FaireCoinOrange(cube, co253, tabCoins, compt);
+	affiche(cube);
 	
 	co230 = RechercherCoin(cube, tabCoins, 2, 3, 0);
 	FaireCoinOrange(cube, co230, tabCoins, compt);
+	affiche(cube);
 }
 
-
+// Algorithme repris dans FaireCoinsRouge.
 void MiseEnPlaceCoinRouge(int cube[6][2][2], int *compt)
 {
 	
@@ -403,7 +420,10 @@ void MiseEnPlaceCoinRouge(int cube[6][2][2], int *compt)
 
 }
 
-
+/* Utilise MiseEnPlaceCoinRouge pour placer les coins rouges une fois la face orange bien faite.
+ * Oriente le cube pour appliquer de manière pertinente l'algorithme.
+ * FaireCoinRouge, place oriente les cublons coins mais sans les placer.
+ */
 void FaireCoinsRouge(int cube[6][2][2], int *compt)
 {
 	while(cube[4][0][0] != RED || cube[4][1][0] != RED || cube[4][0][1] != RED || cube[4][1][1] != RED)
@@ -462,8 +482,10 @@ void FaireCoinsRouge(int cube[6][2][2], int *compt)
 		}
 		
 	}
+
 }
 
+//Algorithme repris dans FaireCoinsCoinsFinal.
 void MiseEnPlaceCoinsFinal(int cube[6][2][2], int *compt)
 {
 	mtourner(GREEN, cube);
@@ -496,13 +518,16 @@ void MiseEnPlaceCoinsFinal(int cube[6][2][2], int *compt)
 	mtourner(GREEN, cube);
 
 	*compt = *compt + 12;
+	
 }
 
+/* Similairement à FaireCoinsRouge, reprend un algorithme de base
+ * La fonction oriente les coins sur la face rouge. 
+ */
 void FaireCoinsFinal(int cube[6][2][2], int *compt)
 {
 	while(cube[3][1][1] != cube[3][1][0] || cube[5][1][0] != cube[5][0][0] || cube[1][0][0] != cube[1][0][1] || cube[0][0][1] != cube[0][1][1])
 	{
-		//cas 2coins bien cote a cote
 		int i = 0;
 		while((cube[5][0][0] != cube[5][1][0]) && i <= 3)
 		{
@@ -513,7 +538,7 @@ void FaireCoinsFinal(int cube[6][2][2], int *compt)
 		else{if(i != 3){*compt = *compt + i;}}
 	
 		MiseEnPlaceCoinsFinal(cube, compt);
-		
+		affiche(cube);
 	
 	}
 
@@ -523,9 +548,11 @@ void FaireCoinsFinal(int cube[6][2][2], int *compt)
 		*compt = *compt + 1;
 
 	}
+	
+	
 }
 
-
+//Applique les fonctions de résolution pour la méthode SmartSolve
 void SmartSolve(int cube[6][2][2], coin tabCoins[8], int *compteur)
 {
 	FaireFaceOrange(cube, tabCoins, compteur);	
@@ -533,11 +560,11 @@ void SmartSolve(int cube[6][2][2], coin tabCoins[8], int *compteur)
 	FaireCoinsRouge(cube, compteur);
 
 	FaireCoinsFinal(cube, compteur);
-
+	affiche(cube); //affichage cube final
 }
 
 
-//Prend un cube et un tableauSolution, et applique les rotations décrites dans le tableau au cube.
+//Prend un cube et le tableauSolution retourné par BruteForce, et ensutie applique les rotations décrites dans le tableau au cube.
 void AppliqueSolution(int cube[6][2][2], int tabSolution[14]){
 	int i;
 	for (i = 0; i < 14; i++)
@@ -552,6 +579,11 @@ void AppliqueSolution(int cube[6][2][2], int tabSolution[14]){
 		
 }
 
+/* La fonction prend un cube mélangé en paramètre et trouve la solution la plus éfficace en terme de coups.
+ * Sachant que le nombre de dieu pour le 2x2x2 est 14, on 14 boucles imbriquées pour chaque mouvement possible.
+ * La fonction essaye toute les possibilités en ordre croissant de nombre de tours, rendant ainsi la solution la plus éfficace.
+ * Et renvoie un tableauSolution des faces à tourner suivant l'ordre à appliquer les rotations.
+ */
 int *BruteForce(int cube[6][2][2])
 {
 	clock_t start, end;
@@ -679,7 +711,8 @@ int *BruteForce(int cube[6][2][2])
 	
 }
 
-//Prend un tableaux Solution (avec des 1,2,3,4,5 et -1) et affiche les cotés a tourner.
+//Prend un tableaux Solution retourné par BruteForce, ce dernier qui contient des données lisibles par la machine (contenant des 0,1,2,3,4,5 et -1)
+// et affiche les cotés a tourner par l'utilisateur.
 void printTabSolution(int tabSolution[14]){
 	int i = 0, num = 0;
 	printf("\n Une solution est: |");
@@ -701,8 +734,10 @@ void printTabSolution(int tabSolution[14]){
 
 
 
-
-void SortieDonnees(coin tabCoins[8]){
+/* Fonction permettant de récuperer le temps de calcul et le nombre de tours éfectués pour les fonctions BF et SS.
+ * Cette fonction mélange n fois le cube et rend n points de données.
+ */
+void SortieDonnees(coin tabCoins[8], int n){
 	
 	
 	
@@ -716,7 +751,7 @@ void SortieDonnees(coin tabCoins[8]){
 
 
 		
-	for(int k = 0; k <= 150; k++)
+	for(int k = 0; k <= n; k++)
 	{
 		printf("tour %d\n", k);
 		

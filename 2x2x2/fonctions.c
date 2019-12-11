@@ -22,7 +22,7 @@ void init(int cube[6][2][2]){
 	
 }
 
-//Affiche un cube 2x2x2 sur le terminal.
+//Affiche un cube 2x2x2 sur le terminal avec les séparations nécessaires entre les faces
 void affiche(int cube[6][2][2]){
 	printf("---------------\n");
 	printf("      ");
@@ -74,7 +74,7 @@ void affiche(int cube[6][2][2]){
 	printf("---------------\n");
 }
 
-//Prends la face à tourner et le cube en paramètre, et aplique la rotation au cube.
+//Prends la face à tourner et le cube en paramètre, et applique la rotation au cube.
 void tourner(int face, int cube[6][2][2]){
 	switch(face)
 	{
@@ -180,7 +180,10 @@ void tourner(int face, int cube[6][2][2]){
 	
 }
 
-
+/*
+ * Variation de tourner pour la résolution SmartSolve, nécessaire pour rester 
+ * compatible avec le smartSolve du 3x3x3 où la résolution dépend de l'orientation de rotation
+ */
 void mtourner(int face, int cube[6][2][2]){
 	switch(face)
 	{
@@ -339,7 +342,7 @@ void mtourner(int face, int cube[6][2][2]){
 	
 }
 
-//Fait tourner une face aléatoire du cube en orientation aléatoire
+//Fait tourner une face aléatoire du cube soit horairement soit anti-horairement
 void randTour(int cube[6][2][2]){
 	int randFace = (rand() % (6));
 	int randOrientation = (rand() % (2));
@@ -353,7 +356,7 @@ void randTour(int cube[6][2][2]){
 	}
 }
 
-//Mélange un cube 2x2x2.
+//Mélange un cube 2x2x2. (Application de randTour)
 void melangeCube(int cube[6][2][2]){
 	int i;
 	for (i = 0; i < 20; i++)
@@ -363,7 +366,9 @@ void melangeCube(int cube[6][2][2]){
 	
 }
 
-//Compare deux cubes, rends 1 si identiques et 0 sinon.
+/* Compare deux cubes, rends 1 si identiques et 0 sinon. 
+ * 
+ */
 int compare(int cube1[6][2][2], int cube2[6][2][2]){
 	int i = 0;
 	while (i <= 5)
@@ -407,7 +412,12 @@ void copieCube(int CubeACopier[6][2][2], int CubeSortie[6][2][2]){
 		}
 	}
 }
-	
+
+/* Verifie si le cube est dans un état résolu.
+ * La fonction regarde si 4 faces ne contiennent qu'une seule couleur,
+ * dans ce cas le cube est résolu.
+ * 
+ */
 int verifie( int CubeSortie[6][2][2]){
 	int sortie = 0;
 	for(int i = 1; i <= 4; i++){
@@ -424,7 +434,7 @@ int verifie( int CubeSortie[6][2][2]){
 
 /*La fonction prend en paramètre un pointeur pour un compteur (un entier) et le
  * tableau de solution qui est retourné par BruteForce.
- * La fonction compte juste le nombre de éléments dans tabSolution
+ * La fonction compte juste le nombre d'éléments dans tabSolution
  */
 int CompteMouvementBF(int TabSolution[14]){
 	
@@ -438,9 +448,9 @@ int CompteMouvementBF(int TabSolution[14]){
 }
 
 
-/* A exécuter après la fonction startClock pour mesurer un temps.
+/* A exécuter après avoir initialisé un objet 'clock_t' pour mesurer un temps.
  * 
- * Prends en paramètre un objet clock avec le temps de début (retourné par startClock)
+ * Prends en paramètre un objet clock avec le temps de début
  * et calcule le temps passé entre les deux instants. La fonction retourne ensuite le double temps.
  */
 double stopClock(clock_t tempsDebut){

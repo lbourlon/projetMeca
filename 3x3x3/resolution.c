@@ -3,6 +3,9 @@
 #include "fonctions.h"
 #include <stdlib.h>
 
+
+
+//Définition des couleurs
 #define WHITE   0
 #define GREEN   1
 #define ORANGE  2
@@ -10,9 +13,9 @@
 #define RED     4
 #define YELLOW  5
 
-// Résolution faite en començant par la face orange
-
-
+/* Ces structures permettent de définir les cublons coins et milieux pour les repérer dans le tableau représentant le cube.
+ * Ils ont donc: une face, un x, un y, pour chaque face du cublon (trois pour les coins et 2 pour les milieux). 
+ */
 typedef struct _coord coord;
 struct _coord {
 	int face;
@@ -50,7 +53,7 @@ milieu rm(int face1,int x1,int y1,int face2,int x2,int y2){
 
 //Recherche l'emplacement de la pièce milieu contenant les couleurs 1 et 2
 //Et retourne un objet milieu avec les coordonées respectives aux couleurs
-//(l'ordre d'entrée est conserv)
+//(l'ordre d'entrée est conservé)
 milieu RechercherMilieu(int cube[6][3][3],milieu tab[12], int couleur1, int couleur2){
 	
 	for(int i = 0; i < 12; i++){
@@ -79,6 +82,7 @@ milieu RechercherMilieu(int cube[6][3][3],milieu tab[12], int couleur1, int coul
 }
 
 //retourne le cas dans lequel est situé le milieu passé en paramètre pour faire la croix orange
+//L'algorithme à appliquer dépends de ce cas
 char* TrouveCasMilieu(int cube[6][3][3], milieu mil)
 {
 
@@ -138,7 +142,7 @@ char* TrouveCasMilieu(int cube[6][3][3], milieu mil)
 	return cas;
 }
 
-
+//Applique un algorithme spécifique en fonction de chaque cas pour faire la croix orange
 void FaireBrasCroix(int cube[6][3][3],milieu mil, milieu tabMilieux[12], int *compt){
 	char* cas;
 	cas = TrouveCasMilieu(cube, mil);
@@ -229,6 +233,7 @@ void FaireBrasCroix(int cube[6][3][3],milieu mil, milieu tabMilieux[12], int *co
 }
 
 
+//Fais les 4 bras de la croix en appelant la fonction FaireBrasCroix
 void FaireCroixOrange(int cube[6][3][3],milieu tabMilieux[12], int *compt)
 {
 	
@@ -253,7 +258,7 @@ void FaireCroixOrange(int cube[6][3][3],milieu tabMilieux[12], int *compt)
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//Prend les coordonnées d'une case coin et les remplie dans un coin
+//Prend les coordonnées d'une case coin et les remplit dans un coin (semblable à RemplirMilieu)
 //Abréviation de RemplirCoin
 coin rc(int face1,int x1,int y1,int face2,int x2,int y2, int face3, int x3, int y3){
 	coin coinVar;
@@ -355,7 +360,7 @@ coin RechercherCoin(int cube[6][3][3],coin tab[8], int couleur1, int couleur2, i
 
 
 
-//retourne le cas dans lequel est situé le coin passé en paramètre pour faire les coins de la croix orange
+//retourne le cas dans lequel est situé le coin passé en paramètre pour faire les coins de la face orange
 char* TrouveCasCoin(int cube[6][3][3], coin co)
 {
 	char* cas;
@@ -591,7 +596,7 @@ void FaireCoinOrange(int cube[6][3][3],coin co, coin tabCoins[8], int *compt){
 }
 	
 
-//appelle FaireCoinOrange, pour positionner les quatre coins manquants de la face orange
+//appelle FaireCoinOrange, pour positionner les quatre coins manquants de la face orange après avoir fait la face
 void FinirFaceOrange(int cube[6][3][3], coin tabCoins[8], int *compt){
 
 	coin co210, co215, co253, co230;
@@ -609,6 +614,8 @@ void FinirFaceOrange(int cube[6][3][3], coin tabCoins[8], int *compt){
 }
 
 
+
+// Renvoie le cas dans lequel se trouve le cublon milieu pour faire la couronne (seconde ligne du cube)
 char* TrouveCasCouronne(int cube[6][3][3], milieu mil){
 	char* cas;
 	
@@ -652,6 +659,8 @@ char* TrouveCasCouronne(int cube[6][3][3], milieu mil){
 }
 
 
+
+//En fonction du cas de TrouveCasCouronne, applique un algorithme pour positionner correctement le milieu passé en paramètre
 void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux, coin *tabCoins, int *compt){
 	char* cas;
 	cas = TrouveCasCouronne(cube, mil);
@@ -1071,7 +1080,7 @@ void FairePartieCouronne(int cube[6][3][3], milieu mil, milieu* tabMilieux, coin
 
 }
 
-
+//Positionne les quatres milieux constituant la couronne en appelant la fonction FairePartieCouronne
 void FaireCouronne(int cube[6][3][3],milieu tab[12], coin *tabCoins, int *compt)
 {
 	milieu mil35, mil51, mil01, mil03;
@@ -1090,6 +1099,9 @@ void FaireCouronne(int cube[6][3][3],milieu tab[12], coin *tabCoins, int *compt)
 
 }
 
+
+
+//Algorithme général permettant de faire la croix rouge (sans souci de l'endroit ou est le milieu)
 void MiseEnPlaceCoteRouge(int cube[6][3][3], int *compt)
 {
 	tourner(WHITE, cube);
@@ -1109,6 +1121,9 @@ void MiseEnPlaceCoteRouge(int cube[6][3][3], int *compt)
 
 }
 
+
+
+//Applique l'algorithme de la fonction MiseEnPlaceCoteROuge et fait la croix rouge
 void FaireCroixRouge(int cube[6][3][3], int *compt)
 {while(cube[4][0][1] != RED || cube[4][1][0] != RED || cube[4][2][1] != RED || cube[4][1][2] != RED){
 		//cas point (pas de L ni de barre)
@@ -1145,6 +1160,9 @@ void FaireCroixRouge(int cube[6][3][3], int *compt)
 
 }
 
+
+
+//Algorithme général permettant de lacer les coins rouges (sans souci de leur place)
 void MiseEnPlaceCoinRouge(int cube[6][3][3], int *compt)
 {
 	
@@ -1171,6 +1189,7 @@ void MiseEnPlaceCoinRouge(int cube[6][3][3], int *compt)
 }
 
 
+//applique aux moments opportuns la fonction MiseEnPlaceCoinRouge
 void FaireCoinsRouge(int cube[6][3][3], int *compt)
 {
 	while(cube[4][0][0] != RED || cube[4][2][0] != RED || cube[4][0][2] != RED || cube[4][2][2] != RED)
@@ -1236,6 +1255,8 @@ void FaireCoinsRouge(int cube[6][3][3], int *compt)
 	printf("--------------------------FIN COINS ROUGE-----------------------\n");
 }
 
+
+//Algorithme de mise en place des coins rouges en conservant la bonne orientation
 void MiseEnPlaceCoinsFinal(int cube[6][3][3], int *compt)
 {
 	tourner(GREEN, cube);
@@ -1270,6 +1291,8 @@ void MiseEnPlaceCoinsFinal(int cube[6][3][3], int *compt)
 	*compt = *compt + 12;
 }
 
+
+//Appelle MiseEnPlaceCoinsFinal et positionne les coins efficacement
 void FaireCoinsFinal(int cube[6][3][3], int *compt)
 {
 	while(cube[3][2][2] != cube[3][2][0] || cube[5][2][0] != cube[5][0][0] || cube[1][0][0] != cube[1][0][2] || cube[0][0][2] != cube[0][2][2])
@@ -1299,6 +1322,8 @@ void FaireCoinsFinal(int cube[6][3][3], int *compt)
 	printf("--------------------------FIN POSITIONNEMENT COINS ROUGES-----------------------\n");
 }
 
+
+//algortihme de mise en place des milieux le cube est alors fini
 void MiseEnPlaceMilieuxFinal(int cube[6][3][3], int *compt)
 {
 	tourner(WHITE, cube);
@@ -1330,6 +1355,8 @@ void MiseEnPlaceMilieuxFinal(int cube[6][3][3], int *compt)
 
 }
 
+
+//Appelle la fonctionne MiseEnPlaceMilieuxFinal et termine le cube
 void FinirCube(int cube[6][3][3], int *compt)
 {
 	int cas = 0;
@@ -1362,7 +1389,7 @@ void FinirCube(int cube[6][3][3], int *compt)
 	printf("--------------------------FIN DU CUBE-----------------------\n");
 }
 
-
+//Vérifie si chaque face du cube est remplie par une seule couleur
 int verifie( int CubeSortie[6][3][3]){
 	int sortie = 0;
 	for(int i = 1; i <= 4; i++){
@@ -1380,7 +1407,7 @@ int verifie( int CubeSortie[6][3][3]){
 }
 
 
-//Prend un cube et un tableauSolution, et applique les rotations décrites dans le tableau au cube.
+//Prends un cube et un tableauSolution, et applique les rotations décrites dans le tableau au cube.
 void AppliqueSolution(int cube[6][3][3], int tabSolution[18]){
 	int i;
 	for (i = 0; i < 18; i++)
@@ -1397,183 +1424,7 @@ void AppliqueSolution(int cube[6][3][3], int tabSolution[18]){
 
 
 
-
-int* BruteForce(int cube[6][3][3])
-{
-	/*clock_t start, end;
-     double timeUsed;
-     
-     start = clock();
-     */
-	
-	
-	int* tabSolution = malloc(18 * sizeof(int));
-	
-	int cubeParfait[6][3][3];
-	init(cubeParfait);
-	
-	int cubecopie[6][3][3];
-	copie(cube,cubecopie);
-
-	int a = -1, b = -1, c = -1, d = -1, e = -1,
-	    f = -1, g = -1, h = -1, i = -1, j = -1,
-	    k = -1, l = -1, m = -1, n = -1, o = -1,
-		p = -1, q = -1, r = -1;
-	
-	
-	while (a <= 5)
-	{
-		tabSolution[0] = a;
-		tabSolution[1] = b;
-		tabSolution[2] = c;
-		tabSolution[3] = d;
-		tabSolution[4] = e;
-		tabSolution[5] = f;
-		tabSolution[6] = g;
-		tabSolution[7] = h;
-		tabSolution[8] = i;
-		tabSolution[9] = j;
-		tabSolution[10] = k;
-		tabSolution[11] = l;
-		tabSolution[12] = m;
-		tabSolution[13] = n;
-		tabSolution[14] = o;
-		tabSolution[15] = p;
-		tabSolution[16] = q;
-		tabSolution[17] = r;
-		AppliqueSolution(cubecopie, tabSolution);
-		
-		if (verifie(cubecopie) == 1)
-		{	
-			
-			/*end = clock();
-			timeUsed = ((double) (end - start)) / CLOCKS_PER_SEC;
-			printf("temps mis pour déterminer la réponse en seconde : %f\n",timeUsed);*/
-			return tabSolution;
-		}
-		
-		copie(cube,cubecopie);
-		
-		
-		if (a == 5)
-		{
-			if (b==5)
-			{
-				if (c==5)
-				{	
-					if (d==5)
-					{	
-						if (e==5)
-						{	
-							if (f==5)
-							{	
-								if (g==5)
-								{	
-									if (h==5)
-									{	
-										if (i==5)
-										{	
-											if (j==5)
-											{	
-												if (k==5)
-												{	
-													if (l==5)
-													{	
-														if (m==5)
-														{	
-															if (n==5)
-															{	
-																if (o==5)
-																{	
-																	if (p==5)
-																	{	
-																		if (q==5)
-																		{	
-																			if (r==5)
-																			{	
-																				printf("AUCUNE SOLUTION");
-																				return tabSolution;
-																				r = 0;
-																				
-																			} else { r++; }
-																			q = 0;
-																			
-																		} else { q++; }
-																		p = 0;
-																		
-																	} else { p++; }
-																	o = 0;
-																	
-																} else { o++; }
-																n = 0;
-																
-															} else { n++; }		
-															m = 0;
-															
-														} else { m++; }										
-														l = 0;
-														
-													} else { l++; }	
-													k = 0;
-													
-												} else { k++; }										
-												j = 0;
-												
-											} else { j++; }										
-											i = 0;
-											
-										} else { i++; }										
-										h = 0;
-										
-									} else { h++; }										
-									g = 0;
-									
-								} else { g++; }									
-								f = 0;
-								
-							} else { f++; }									
-							e = 0;
-							
-						} else { e++; }									
-						d = 0;
-						
-					} else { d++; }									
-					c = 0;
-					
-				} else { c++; }
-				
-				b = 0;
-				
-			} else { b++; }
-			
-			a = 0;
-		} else { a++;  }
-		
-		
-	}
-	
-}
-
-
-//Prend un tableaux Solution (avec des 1,2,3,4,5 et -1) et affiche les cotés a tourner.
-void printTabSolution(int tabSolution[14]){
-	int i = 0, num = 0;
-	printf("\n Une solution est: |");
-	for (i = 0; i < 14; i++)
-	{
-		num = tabSolution[i];
-		if(num != -1){
-			if(num == 0){printf(" F|");}
-			if(num == 1){printf(" C|");}
-			if(num == 2){printf(" H|");}
-			if(num == 3){printf("-C|");}
-			if(num == 4){printf("-H|");}
-			if(num == 5){printf("-F|");}
-			
-		}
-	}
-	printf("\n");
-}
+//Méthode compléte du SmartSolve
 
 void SmartSolve(int cube[6][3][3], coin tabCoins[8], milieu tabMilieux[12], int* compteur){
 	
@@ -1608,6 +1459,7 @@ void SmartSolve(int cube[6][3][3], coin tabCoins[8], milieu tabMilieux[12], int*
 
 
 
+//Permet de sortir des données sur un fichier texte.
 void SortieDonnees(coin tabCoins[8], milieu tabMilieux[12])
 {
 	

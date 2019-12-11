@@ -9,7 +9,7 @@
 #include <time.h>
 
 /* Prends un cube en paramètre, c'est à dire une matrice [6][3][3] et
- * l'initialise avec des entiers 'couleurs' suivant les couleurs du rubiks cube.
+ * l'initialise avec des entiers correspondants aux couleurs suivant les couleurs du rubiks cube.
  */
 void init(int cube[6][3][3]){
 	
@@ -51,7 +51,7 @@ void copie(int cubeACopier[6][3][3], int cubeAColler[6][3][3]){
 }
 
 
-//Affiche un cube sur le terminal
+//Affiche un cube sur le terminal avec les séprations entre les faces
 void affiche(int cube[6][3][3]){
 	printf("  ");
 	printf("  ");
@@ -174,7 +174,6 @@ void affiche(int cube[6][3][3]){
  * Ceci en suivant les règles physiques imposés par le cube.
  * Les rotations sont faites en sens Horaire (suivant le schéma).
  */
-
 void tourner(int face, int cube[6][3][3]){
 		
 		//S'applique indépendament de la face, fait tourner les valeurs sur celle-ci
@@ -351,7 +350,7 @@ void tourner(int face, int cube[6][3][3]){
 
 
 
-//Fait tourner une face aléatoire du cube en orientation aléatoire
+//Fait tourner une face aléatoire du cube en horairement ou anti-horairement aléatoire
 void randTour(int cube[6][3][3]){
 	int randFace = (rand() % (6));
 	int randOrientation = (rand() % (2));
@@ -365,7 +364,7 @@ void randTour(int cube[6][3][3]){
 	}
 }
 
-//Utilise randTour pour mélanger le cube: en tout 20 mouvements
+//Utilise randTour pour mélanger le cube: en tout 20 mouvements = nombre de Dieu
 void melangeCube(int cube[6][3][3]){
 	int i;
 	for (i = 0; i < 40; i++)
@@ -376,9 +375,9 @@ void melangeCube(int cube[6][3][3]){
 }
 
 
-/* A exécuter après la fonction startClock pour mesurer un temps.
+/* A exécuter après avoir initialisé un objet clock_t pour mesurer un temps.
  * 
- * Prends en paramètre un objet clock avec le temps de début (retourné par startClock)
+ * Prends en paramètre un objet clock avec le temps de début
  * et calcule le temps passé entre les deux instants. La fonction retourne ensuite le double temps.
  */
 float stopClock(clock_t tempsDebut){

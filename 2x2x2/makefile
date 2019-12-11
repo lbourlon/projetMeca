@@ -1,4 +1,4 @@
-#compilation du code DogTracking
+#compilation du code Rubik's Cube
 
 # Options de compilation
 CFLAGS = 
