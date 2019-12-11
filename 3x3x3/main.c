@@ -26,39 +26,33 @@ void main()
 						rc(5,2,0,3,2,0,4,0,0), rc(0,2,2,3,2,2,4,0,2), rc(4,2,2,0,0,2,1,0,2), rc(4,2,0,5,0,0,1,0,0)};
 	//----------------------------------------------------------------------
 	
-	int compteur = 0;// de mouvements du cube pendant la résolution
+
+
+	int compteur = 0; // de mouvements du cube pendant la résolution
 			  
 	int cube[6][3][3];
-	init(cube); // initialisation type "parfait" afin de générer un cube aléatoire réel
-	
-	
-	
+	init(cube); // initialisation type "parfait" afin de générer un cube aléatoire existant
 	melangeCube(cube);// fabrication du cube mélangé
 	affiche(cube);
 
+	// Pour le 3x3x3, il n'y a pas de fonction permettant de rentrer les données du cube de l'utilisateur
 
 
+	//-----------------  Smart Solve      ----------------------------
 
-	//clock_t start, end;
-	//start = clock();
-	time_t t0 = time(NULL);
-   
-	printf("Le calcul a pris %lu secondes\n",t0);
+	clock_t start;
+	float temps;
+	start = clock();
 
 	SmartSolve(cube, tabCoins, tabMilieux, &compteur);
+
+	temps = stopClock(start);
+
+	printf("Le calcul a pris %f secondes\n",temps);
+	printf("Il y a eu %d tours\n", compteur);
+
+
 	//SortieDonnees(tabCoins, tabMilieux);
-	int i;
-	for(i = 0;i <100000;i++) printf("a");
-
-	printf("Le calcul a pris %lu secondes\n",(time(NULL)-t0));
-
-	/*int* tabSolution = BruteForce(cube);
-	AppliqueSolution(cube,tabSolution);
-	affiche(cube);
-
-	printTabSolution(tabSolution);*/
-
-	
 	
 
 }

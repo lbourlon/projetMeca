@@ -238,20 +238,19 @@ void FaireCroixOrange(int cube[6][3][3],milieu tabMilieux[12], int *compt)
 {
 	
 	
-
-	
-	
-	
 	milieu mil25, mil21, mil20, mil23;
 	mil25 = RechercherMilieu(cube,tabMilieux, ORANGE, YELLOW);
 	FaireBrasCroix(cube, mil25, tabMilieux, compt);
+	affiche(cube);
 	mil21 = RechercherMilieu(cube,tabMilieux, ORANGE, GREEN);
 	FaireBrasCroix(cube, mil21, tabMilieux, compt);
+	affiche(cube);
 	mil20 = RechercherMilieu(cube,tabMilieux, ORANGE, WHITE);
 	FaireBrasCroix(cube, mil20, tabMilieux, compt);
+	affiche(cube);
 	mil23 = RechercherMilieu(cube,tabMilieux, ORANGE, BLUE);
 	FaireBrasCroix(cube, mil23, tabMilieux, compt);
-
+	affiche(cube);
 	
 	
 		
@@ -602,15 +601,19 @@ void FinirFaceOrange(int cube[6][3][3], coin tabCoins[8], int *compt){
 	coin co210, co215, co253, co230;
 	co210 = RechercherCoin(cube, tabCoins, 2, 1, 0);
 	FaireCoinOrange(cube, co210, tabCoins, compt);
+	affiche(cube);
 	
 	co215 = RechercherCoin(cube, tabCoins, 2, 1, 5);
 	FaireCoinOrange(cube, co215, tabCoins, compt);
+	affiche(cube);
 	
 	co253 = RechercherCoin(cube, tabCoins, 2, 5, 3);
 	FaireCoinOrange(cube, co253, tabCoins, compt);
+	affiche(cube);
 	
 	co230 = RechercherCoin(cube, tabCoins, 2, 3, 0);
 	FaireCoinOrange(cube, co230, tabCoins, compt);
+	affiche(cube);
 }
 
 
@@ -1087,15 +1090,19 @@ void FaireCouronne(int cube[6][3][3],milieu tab[12], coin *tabCoins, int *compt)
 
 	mil35 = RechercherMilieu(cube,tab,3,5);
 	FairePartieCouronne(cube, mil35,tab, tabCoins, compt);
+	affiche(cube);
 	
 	mil51 = RechercherMilieu(cube,tab,5,1);
 	FairePartieCouronne(cube, mil51,tab, tabCoins, compt);
+	affiche(cube);
 
 	mil01 = RechercherMilieu(cube,tab,0,1);
 	FairePartieCouronne(cube, mil01,tab, tabCoins, compt);
+	affiche(cube);
 
 	mil03 = RechercherMilieu(cube,tab,0,3);
 	FairePartieCouronne(cube, mil03,tab, tabCoins, compt);
+	affiche(cube);
 
 }
 
@@ -1157,6 +1164,7 @@ void FaireCroixRouge(int cube[6][3][3], int *compt)
 		}
 	}
 	printf("--------------------------FIN CROIX ROUGE-----------------------\n");
+	affiche(cube);
 
 }
 
@@ -1253,6 +1261,7 @@ void FaireCoinsRouge(int cube[6][3][3], int *compt)
 
 	}
 	printf("--------------------------FIN COINS ROUGE-----------------------\n");
+	affiche(cube);
 }
 
 
@@ -1320,6 +1329,7 @@ void FaireCoinsFinal(int cube[6][3][3], int *compt)
 		if(i == 2){*compt = *compt + 1;}
 		else{*compt = *compt + i;}
 	printf("--------------------------FIN POSITIONNEMENT COINS ROUGES-----------------------\n");
+	affiche(cube);
 }
 
 
@@ -1387,6 +1397,7 @@ void FinirCube(int cube[6][3][3], int *compt)
 
 	}
 	printf("--------------------------FIN DU CUBE-----------------------\n");
+	affiche(cube);
 }
 
 //Vérifie si chaque face du cube est remplie par une seule couleur
